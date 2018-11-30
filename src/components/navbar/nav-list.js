@@ -26,12 +26,6 @@ const Button = styled(Link)`
 	}
 `;
 
-const NavItems = [
-	{ name: 'Αρχική', link: '/frouta/' },
-	{ name: 'Τιμοκατάλογος', link: '/frouta/pricelist' },
-	{ name: 'Επικοινωνία', link: '/frouta/contact' },
-];
-
 const NavLi = () => {
 	const current = window.location.href;
 	const page = current.substring(current.length, 28);
@@ -40,7 +34,7 @@ const NavLi = () => {
 			<Button
 				className="ml-3 btn"
 				active={page === '/' ? 'true' : 'false'}
-				to="/frouta/"
+				to="/"
 			>
 				Αρχική
 			</Button>
@@ -48,7 +42,7 @@ const NavLi = () => {
 			<Button
 				className="ml-3 btn"
 				active={page === '/pricelist' ? 'true' : 'false'}
-				to="/frouta/pricelist"
+				to="/pricelist"
 			>
 				Τιμοκατάλογος
 			</Button>
@@ -56,7 +50,7 @@ const NavLi = () => {
 			<Button
 				className="ml-3 btn"
 				active={page === '/contact' ? 'true' : 'false'}
-				to="/frouta/contact"
+				to="/contact"
 			>
 				Επικοινωνία
 			</Button>
