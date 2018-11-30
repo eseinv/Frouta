@@ -1,0 +1,18 @@
+.hand {
+	cursor: pointer;
+}
+
+.countstyle {
+	width: 300px;
+}
+
+.prevbox {
+	background: #eee;
+	display: inline-block;
+}
+
+.product-left {
+	border-radius: 50px;
+}
+/* DO NOT DO THIS. By default, most of the time, you wanna rm -rf public folder before build.
+All your css would have been removed */
