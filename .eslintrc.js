@@ -81,6 +81,7 @@ module.exports = {
 		'react/prop-types': 1,
 		'react/prefer-stateless-function': 1,
 		'no-unused-vars': 1,
+		'linebreak-style': 0,
 		'jsx-a11y/alt-text': [
 			1,
 			{
