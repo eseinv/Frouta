@@ -5,8 +5,10 @@ import { SignInAltSolid } from '../../icons/sign-in-alt-solid';
 import { ShoppingCartSolid } from '../../icons/shopping-cart-solid';
 
 const Button = styled.div`
-	color: #373535;
+	opacity: 0.9
+	color: #f7f8f8
 	&:hover {
+		opacity: 1
 		color: #fff;
 	}
 `;
