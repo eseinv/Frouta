@@ -21,21 +21,23 @@ const P = styled.p`
 	color: #707070;
 `;
 
-const ProductList = MainProductList.map((product, index) => (
-	<div key={index} className="col-4 text-justify p-3">
-		<ProductCard className="card border-0" i={index}>
-			<img
-				className="card-img-top w-25 mt-4 ml-4"
-				src={fp}
-				alt={product.name}
-			/>
-			<div className="card-body">
-				<H5 className="card-title">{product.name}</H5>
-				<P className="card-text">{product.info}</P>
-			</div>
-		</ProductCard>
-	</div>
-));
+const ProductList = () => {
+	MainProductList.map((product, index) => (
+		<div key={index} className="col-4 text-justify p-3">
+			<ProductCard className="card border-0" i={index}>
+				<img
+					className="card-img-top w-25 mt-4 ml-4"
+					src={fp}
+					alt={product.name}
+				/>
+				<div className="card-body">
+					<H5 className="card-title">{product.name}</H5>
+					<P className="card-text">{product.info}</P>
+				</div>
+			</ProductCard>
+		</div>
+	));
+};
 
 /*
 	One cool thing you can pass is a bool prop. Check this out:
