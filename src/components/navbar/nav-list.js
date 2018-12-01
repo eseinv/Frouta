@@ -34,7 +34,7 @@ const NavLi = () => {
 		<div className="row h-100 align-items-center d-flex">
 			<Button
 				className="ml-3 btn"
-				active={page === '/index' ? 'true' : 'false'}
+				active={page === '/' ? 'true' : 'false'}
 				to="/index"
 			>
 				Αρχική
