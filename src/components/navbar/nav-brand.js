@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import fp from './images/fp.png';
+import fp from '../../images/fp.png';
 
 const FP = styled.img`
 	width: 65px;

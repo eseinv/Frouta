@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import fb from './icons/facebook-square-brands.png';
-import skype from './icons/skype-brands.png';
-import phone from './icons/phone-square-solid.png';
+import fb from '../icons/facebook-footer.png';
+import skype from '../icons/skype-footer.png';
+import phone from '../icons/phone-footer.png';
 
 const Hr = styled.hr`
 	color: #587c34;

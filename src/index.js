@@ -1,18 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Frouta } from './components/index';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Pricelist } from './components/pricelist';
 import { Contact } from './components/contact';
+import { NavBar } from './components/navbar/nav-bar';
+import { ProductList } from './components/product-list';
+import { Footer } from './components/footer';
 
-const App = () => (
-	<Router>
-		<div>
-			<Route exact path="/" component={Frouta} />
-			<Route path="/pricelist" component={Pricelist} />
-			<Route path="/contact" component={Contact} />
-		</div>
-	</Router>
-);
+class App extends React.Component {
+	constructor() {
+		super();
+		this.state = { logState: false };
+	}
+	toggleLog = () => {
+		this.setState({ logState: !this.state.logState });
+	};
+	render() {
+		return (
+			<div>
+				<Router>
+					<div>
+						<NavBar
+							toggleLog={this.toggleLog}
+							logState={this.state.logState}
+						/>
+
+						<Route exact path="/" component={ProductList} />
+						<Route path="/pricelist" component={Pricelist} />
+						<Route path="/contact" component={Contact} />
+					</div>
+				</Router>
+				<Footer />
+			</div>
+		);
+	}
+}
 
 ReactDOM.render(<App />, document.querySelector('.root'));

@@ -20,7 +20,12 @@ const NavActions = props => {
 			</Button>
 		);
 	}
-	return <ShoppingCartSolid color="currentColor" />;
+	return (
+		<Button>
+			<ShoppingCartSolid color="currentColor" />
+			<span> Cart </span>
+		</Button>
+	);
 };
 
 NavActions.propTypes = {

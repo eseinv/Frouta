@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MainProductList } from '../../main-product-list';
-import fp from './images/fp.png';
+import { MainProductList } from '../main-product-list';
+import fp from '../images/fp.png';
 
 const ProductCard = styled.div`
 	border-radius: 5px;

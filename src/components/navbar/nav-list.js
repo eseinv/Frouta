@@ -28,13 +28,14 @@ const Button = styled(Link)`
 
 const NavLi = () => {
 	const current = window.location.href;
-	const page = current.substring(current.length, 28);
+	const page = current.substring(current.length, 21);
+
 	return (
 		<div className="row h-100 align-items-center d-flex">
 			<Button
 				className="ml-3 btn"
-				active={page === '/' ? 'true' : 'false'}
-				to="/"
+				active={page === '/index' ? 'true' : 'false'}
+				to="/index"
 			>
 				Αρχική
 			</Button>
@@ -57,7 +58,5 @@ const NavLi = () => {
 		</div>
 	);
 };
-
-const NavList = () => <div className="row h-100">{NavLi}</div>;
 
 export { NavLi };
