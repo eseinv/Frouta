@@ -22,7 +22,7 @@ const Img = styled.img`
 `;
 
 const Footer = () => (
-	<div className="container mt-5">
+	<div className="container mt-5 pb-5">
 		<div className="row">
 			<Hr className="col-8 offset-2" />
 		</div>
