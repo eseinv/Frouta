@@ -11,14 +11,14 @@ export const MainProductList = [
 		name: 'Πεστίλη μήλου',
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
-		image: '../frouta/images/yabloko.jpg',
+		image: './images/yabloko.jpg',
 	},
 	{
 		id: '3',
 		name: 'Σούπα με μανιτάρια',
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
-		image: './pages/frouta/images/soup.jpg',
+		image: './images/soup.jpg',
 	},
 	{
 		id: '1',
@@ -32,13 +32,13 @@ export const MainProductList = [
 		name: 'Πεστίλη μήλου',
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
-		image: '../frouta/images/yabloko.jpg',
+		image: './images/yabloko.jpg',
 	},
 	{
 		id: '3',
 		name: 'Σούπα με μανιτάρια',
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
-		image: './pages/frouta/images/soup.jpg',
+		image: './images/soup.jpg',
 	},
 ];
