@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import fb from '../icons/facebook-footer.png';
-import skype from '../icons/skype-footer.png';
-import phone from '../icons/phone-footer.png';
 import { Facebook } from '../icons/';
+import { Skype } from '../icons/';
+import { Phone } from '../icons/';
+
 const Hr = styled.hr`
 	color: #587c34;
 `;
@@ -36,10 +36,10 @@ const Footer = () => (
 				<Facebook color="#00a062" />
 			</div>
 			<div className="col-1">
-				<Img src={skype} alt="skype-contact" />
+				<Skype color="#00a062" />
 			</div>
 			<div className="col-1">
-				<Img src={phone} alt="phone-contact" />
+				<Phone color="#00a062" />
 			</div>
 		</div>
 	</div>
