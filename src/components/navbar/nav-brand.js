@@ -8,8 +8,8 @@ const Fp = styled.img`
 `;
 
 const NavBrand = () => (
-	<div className="row">
-		<div className="col-10 offset-2">
+	<div className="row d-flex align-items-center h-100">
+		<div className="col-10 offset-2 mb-1">
 			<Fp className="image-fluid mt-2" src={fp} alt="fp-logo-brand" />
 		</div>
 	</div>
