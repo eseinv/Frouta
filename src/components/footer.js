@@ -14,13 +14,6 @@ const ContactText = styled.p`
 	letter-spacing: 1.1px;
 `;
 
-const Img = styled.img`
-	max-width: 35px;
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
 const Footer = () => (
 	<div className="container mt-5 pb-5">
 		<div className="row">
