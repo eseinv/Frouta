@@ -35,7 +35,7 @@ const NavLi = () => {
 			<Button
 				className="ml-3 btn"
 				active={page === '/' ? 'true' : 'false'}
-				to="/index"
+				to="/"
 			>
 				Αρχική
 			</Button>
