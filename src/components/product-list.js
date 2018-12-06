@@ -42,7 +42,7 @@ const ProductList = () => (
 		</div>
 	</div>
 );
-const Producs = () => console.log('asd');
+
 /*
 	One cool thing you can pass is a bool prop. Check this out:
 	<ProductBorder className="card" i={i = ProductList.length - 1}>
