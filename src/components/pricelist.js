@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import fp from '../images/fp.png';
+import { ShoppingCartPlus } from '../icons/';
 
 const ButtonPacked = styled.button`
 	border: 1px solid #707070;
@@ -44,11 +45,23 @@ const ProdText = styled.p`
 	color: #707070;
 `;
 
+const Input = styled.input`
+	width: 25%;
+	border: none;
+	border-bottom: 3px solid #707070;
+	background-color: inherit;
+	color: #707070;
+	text-align: center;
+`;
+
 class Pricelist extends React.Component {
 	constructor() {
 		super();
 
-		this.state = { packed: true };
+		this.state = { packed: true, quantity: null };
+	}
+	handleChange(value) {
+		this.setState({ quantity: value.replace(/\D/, '') });
 	}
 	render() {
 		return (
@@ -69,10 +82,10 @@ class Pricelist extends React.Component {
 				</div>
 
 				<div className="row mt-4">
-					<div className="col-3 offset-1">
+					<div className="col-sm-12 col-md-3 offset-1">
 						<ProdPic src={fp} alt="Product Name" />
 					</div>
-					<div className="col-4 ml-2 mt-2">
+					<div className="col-sm-12 col-md-4 ml-2 mt-2">
 						<ProdName>Πεστίλη μήλου</ProdName>
 						<ProdText>
 							Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που
@@ -80,6 +93,15 @@ class Pricelist extends React.Component {
 							παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ
 							ρεύμα. Αγόρασε την τώρα.
 						</ProdText>
+
+						<Input
+							onChange={event =>
+								this.handleChange(event.target.value)
+							}
+							placeholder="Ποσότητα..."
+							type="text"
+							value={this.state.quantity}
+						/>
 					</div>
 				</div>
 			</div>
