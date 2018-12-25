@@ -8,10 +8,7 @@ import { ProductList } from './components/product-list';
 import { Footer } from './components/footer';
 
 class App extends React.Component {
-	constructor() {
-		super();
-		this.state = { logState: false };
-	}
+	state = { logState: false };
 	toggleLog = () => {
 		this.setState({ logState: !this.state.logState });
 	};
