@@ -25,7 +25,7 @@ const ProductList = () => (
 	<div className="container">
 		<div className="row">
 			{MainProductList.map((product, index) => (
-				<div key={index} className="col-4 text-justify p-3">
+				<div key={index} className="col-md-4 col-sm-6 text-justify p-3">
 					<ProductCard className="card border-0" i={index}>
 						<img
 							className="card-img-top w-25 mt-4 ml-4"
