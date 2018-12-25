@@ -24,14 +24,14 @@ const Footer = () => (
 				<ContactText>Επικοινωνήστε μαζί μας</ContactText>
 			</div>
 		</div>
-		<div className="row offset-5">
-			<div className="col-1">
+		<div className="row offset-md-5 offset-sm-4">
+			<div className="col-md-1 col-sm-2">
 				<Facebook color="#00a062" />
 			</div>
-			<div className="col-1">
+			<div className="col-md-1 col-sm-2">
 				<Skype color="#00a062" />
 			</div>
-			<div className="col-1">
+			<div className="col-md-1 col-sm-2">
 				<Phone color="#00a062" />
 			</div>
 		</div>
