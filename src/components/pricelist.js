@@ -47,7 +47,7 @@ class Pricelist extends React.Component {
 	constructor() {
 		super();
 
-		this.state = { packed: 1, quantity: null };
+		this.state = { packed: 1, quantity: 0 };
 	}
 	handleChange(value) {
 		this.setState({ quantity: value.replace(/\D/, '') });
@@ -92,14 +92,17 @@ class Pricelist extends React.Component {
 							παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ
 							ρεύμα. Αγόρασε την τώρα.
 						</ProdText>
-
+						<label htmlFor="quantity" className="d-block">
+							Ποσότητα
+						</label>
 						<Input
+							id="quantity"
 							onChange={event =>
 								this.handleChange(event.target.value)
 							}
 							placeholder="Ποσότητα..."
 							type="text"
-							value={this.state.quantity || ''}
+							value={this.state.quantity}
 						/>
 					</div>
 				</div>
