@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import fp from '../images/fp.png';
+
 const LeftButtonRadius = '5px 0 0 5px';
 const RightButtonRadius = '0 5px 5px 0';
+
 const ButtonPacked = styled.button`
 	border: 1px solid #707070;
 	border-radius: ${props =>
-		props.packState ? LeftButtonRadius : RightButtonRadius}
-	border-right-width: ${props => (props.packState ? '0' : '1')};
-	border-left-width: ${props => (!props.packState ? '0' : '1')};
-	color: ${props => (props.packState ? '#fff' : '#587c34')}
-		background-color: ${props => (props.packState ? '#587c34' : '#fff')};
+		props.type === 'left' ? LeftButtonRadius : RightButtonRadius}
+	border-right-width: ${props => (props.type === 'left' ? '0' : '1')};
+	border-left-width: ${props => (props.type === 'right' ? '0' : '1')};
+	color: ${props => (props.active ? '#fff' : '#587c34')}
+		background-color: ${props => (props.active ? '#587c34' : '#fff')};
 	padding: 5px 6px 5px 6px;
 	&:hover {
 		cursor: pointer;
@@ -55,7 +57,8 @@ class Pricelist extends React.Component {
 			<div className="container">
 				<div className="package mt-5 row">
 					<ButtonPacked
-						packState={this.state.packed === 1}
+						type="left"
+						active={this.state.packed === 1}
 						onClick={() =>
 							this.setState({
 								packed: 1,
@@ -65,7 +68,8 @@ class Pricelist extends React.Component {
 						Πακεταρισμένο
 					</ButtonPacked>
 					<ButtonPacked
-						packState={this.state.packed === 2}
+						active={this.state.packed === 2}
+						type="right"
 						onClick={() =>
 							this.setState({
 								packed: 2,
@@ -95,7 +99,7 @@ class Pricelist extends React.Component {
 							}
 							placeholder="Ποσότητα..."
 							type="text"
-							value={this.state.quantity}
+							value={this.state.quantity || ''}
 						/>
 					</div>
 				</div>
