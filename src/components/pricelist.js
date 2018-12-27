@@ -1,29 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import fp from '../images/fp.png';
-import { ShoppingCartPlus } from '../icons/';
-
+const LeftButtonRadius = '5px 0 0 5px';
+const RightButtonRadius = '0 5px 5px 0';
 const ButtonPacked = styled.button`
 	border: 1px solid #707070;
-	border-radius: 5px 0px 0px 5px;
-	border-right: none;
+	border-radius: ${props =>
+		props.packState ? LeftButtonRadius : RightButtonRadius}
+	border-right-width: ${props => (props.packState ? '0' : '1')};
+	border-left-width: ${props => (!props.packState ? '0' : '1')};
 	color: ${props => (props.packState ? '#fff' : '#587c34')}
 		background-color: ${props => (props.packState ? '#587c34' : '#fff')};
-	padding: 5px 6px 5px 6px;
-	&:hover {
-		cursor: pointer;
-	}
-	&:focus {
-		outline: none;
-	}
-`;
-
-const ButtonUnpacked = styled.button`
-	border: 1px solid #707070;
-	border-radius: 0px 5px 5px 0px;
-	border-left: none;
-	color: ${props => (props.packState ? '#587c34' : '#fff')};
-	background-color: ${props => (props.packState ? '#fff' : '#587c34')};
 	padding: 5px 6px 5px 6px;
 	&:hover {
 		cursor: pointer;
@@ -58,7 +45,7 @@ class Pricelist extends React.Component {
 	constructor() {
 		super();
 
-		this.state = { packed: true, quantity: null };
+		this.state = { packed: 1, quantity: null };
 	}
 	handleChange(value) {
 		this.setState({ quantity: value.replace(/\D/, '') });
@@ -68,17 +55,25 @@ class Pricelist extends React.Component {
 			<div className="container">
 				<div className="package mt-5 row">
 					<ButtonPacked
-						packState={this.state.packed}
-						onClick={() => this.setState({ packed: true })}
+						packState={this.state.packed === 1}
+						onClick={() =>
+							this.setState({
+								packed: 1,
+							})
+						}
 					>
 						Πακεταρισμένο
 					</ButtonPacked>
-					<ButtonUnpacked
-						packState={this.state.packed}
-						onClick={() => this.setState({ packed: false })}
+					<ButtonPacked
+						packState={this.state.packed === 2}
+						onClick={() =>
+							this.setState({
+								packed: 2,
+							})
+						}
 					>
 						Απλή συσκευασία
-					</ButtonUnpacked>
+					</ButtonPacked>
 				</div>
 
 				<div className="row mt-4">
