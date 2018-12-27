@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import fp from '../images/fp.png';
+import { ShoppingCartPlus } from '../icons/';
 
 const LeftButtonRadius = '5px 0 0 5px';
 const RightButtonRadius = '0 5px 5px 0';
 
-const ButtonPacked = styled.button`
+const Button = styled.button`
 	border: 1px solid #707070;
 	border-radius: ${props =>
 		props.type === 'left' ? LeftButtonRadius : RightButtonRadius}
@@ -19,6 +20,20 @@ const ButtonPacked = styled.button`
 	}
 	&:focus {
 		outline: none;
+	}
+`;
+
+const CartButton = styled.button`
+	background-color: #fff;
+	border: 1px solid #587c34;
+	margin-left: 10px;
+	padding: 5px 6px 5px 6px;
+	color: #587c34;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		cursor: pointer;
 	}
 `;
 
@@ -43,21 +58,43 @@ const Input = styled.input`
 	text-align: center;
 `;
 
+const labelStyle = {
+	color: '#707070',
+	textDecoration: 'underline',
+};
+
 class Pricelist extends React.Component {
 	constructor() {
 		super();
 
-		this.state = { packed: 1, quantity: 0 };
+		this.state = { packed: 1, quantity: 0, cart: [] };
 	}
-	handleChange(value) {
-		this.setState({ quantity: value.replace(/\D/, '') });
-	}
+	handleSubmit = event => {
+		event.preventDefault();
+
+		const newCartItems = { prodId: 1001, qty: this.state.quantity };
+		const exists = this.state.cart.filter(
+			item => item.prodId === newCartItems.prodId,
+		)[0];
+		if (exists) {
+			const index = this.state.cart.indexOf(exists);
+			const tempCart = this.state.cart;
+			exists.qty += this.state.quantity;
+			tempCart[index] = exists;
+			return this.setState({ cart: tempCart });
+		}
+		return this.setState({ cart: [...this.state.cart, newCartItems] });
+	};
+	handleChange = value => {
+		const parsed = value.length === 0 ? 0 : value;
+		this.setState({ quantity: parseInt(parsed, 10) });
+	};
 	render() {
-		// console.log(typeof parseInt(this.state.quantity, 10));
+		console.log(this.state.cart);
 		return (
 			<div className="container">
 				<div className="package mt-5 row">
-					<ButtonPacked
+					<Button
 						type="left"
 						active={this.state.packed === 1}
 						onClick={() =>
@@ -67,8 +104,8 @@ class Pricelist extends React.Component {
 						}
 					>
 						Πακεταρισμένο
-					</ButtonPacked>
-					<ButtonPacked
+					</Button>
+					<Button
 						active={this.state.packed === 2}
 						type="right"
 						onClick={() =>
@@ -78,7 +115,7 @@ class Pricelist extends React.Component {
 						}
 					>
 						Απλή συσκευασία
-					</ButtonPacked>
+					</Button>
 				</div>
 
 				<div className="row mt-4">
@@ -93,18 +130,25 @@ class Pricelist extends React.Component {
 							παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ
 							ρεύμα. Αγόρασε την τώρα.
 						</ProdText>
-						<label htmlFor="quantity" className="d-block">
-							Ποσότητα
-						</label>
-						<Input
-							id="quantity"
-							onChange={event =>
-								this.handleChange(event.target.value)
-							}
-							placeholder="Ποσότητα..."
-							type="text"
-							value={this.state.quantity}
-						/>
+						<form onSubmit={this.handleSubmit}>
+							<label
+								htmlFor="quantity"
+								className="d-block"
+								style={labelStyle}
+							>
+								Ποσότητα (kg)
+							</label>
+							<Input
+								id="quantity"
+								onChange={event =>
+									this.handleChange(event.target.value)
+								}
+								placeholder="Ποσότητα..."
+								type="text"
+								value={this.state.quantity}
+							/>
+							<CartButton> Προσθήκη </CartButton>
+						</form>
 					</div>
 				</div>
 			</div>
