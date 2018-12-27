@@ -53,6 +53,7 @@ class Pricelist extends React.Component {
 		this.setState({ quantity: value.replace(/\D/, '') });
 	}
 	render() {
+		// console.log(typeof parseInt(this.state.quantity, 10));
 		return (
 			<div className="container">
 				<div className="package mt-5 row">
