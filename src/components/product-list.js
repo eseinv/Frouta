@@ -43,4 +43,19 @@ const ProductList = () => (
 	</div>
 );
 
+
+/*
+	One cool thing you can pass is a bool prop. Check this out:
+	<ProductBorder className="card" i={i = ProductList.length - 1}>
+	This will set props.i to TRUE when the condition is true, else {
+	it'll be false. In this specific case, no need to use it, but it would
+	eliminate the need for a function
+	}
+	pull bump
+*/
+
+ProductList.propTypes = {
+	history: PropTypes.object,
+};
+
 export { ProductList };
