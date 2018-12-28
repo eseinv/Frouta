@@ -23,7 +23,7 @@ class App extends React.Component {
 						/>
 
 						<Route exact path="/" component={ProductList} />
-						<Route path="/pricelist" component={Pricelist} />
+						<Route path="/pricelist/:id" component={Pricelist} />
 						<Route path="/contact" component={Contact} />
 					</div>
 				</Router>
