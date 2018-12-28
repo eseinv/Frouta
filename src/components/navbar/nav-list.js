@@ -31,7 +31,7 @@ const NavLi = () => {
 	const page = current.substring(current.length, 21);
 
 	return (
-		<div className="row h-100 align-items-center d-flex">
+		<div className="row h-100 align-items-center d-flex justify-content-between justify-content-lg-start">
 			<Button
 				className="ml-3 btn"
 				active={page === '/' ? 'true' : 'false'}
@@ -42,7 +42,7 @@ const NavLi = () => {
 
 			<Button
 				className="ml-3 btn"
-				active={page === '/pricelist' ? 'true' : 'false'}
+				active={page.includes('/pricelist') ? 'true' : 'false'}
 				to="/pricelist"
 			>
 				Τιμοκατάλογος

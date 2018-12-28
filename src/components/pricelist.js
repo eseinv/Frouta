@@ -38,10 +38,6 @@ const CartButton = styled.button`
 	}
 `;
 
-const ProdPic = styled.img`
-	max-width: 470px;
-`;
-
 const ProdName = styled.h4`
 	color: #707070;
 `;
@@ -133,11 +129,17 @@ class Pricelist extends React.Component {
 				</div>
 
 				<div className="row mt-4">
-					<div className="col-sm-12 col-md-3 offset-1">
-						<ProdPic src={fp} alt="Product Name" />
+					<div className="col-sm-12 col-lg-3 offset-lg-1">
+						<img
+							src={fp}
+							alt="Product Name"
+							className="img-fluid"
+						/>
 					</div>
-					<div className="col-sm-12 col-md-4 ml-2 mt-2">
-						<ProdName>{this.selectedProduct.name}</ProdName>
+					<div className="col-sm-12 col-lg-4">
+						<ProdName className="mt-2">
+							{this.selectedProduct.name}
+						</ProdName>
 						<ProdText>{this.selectedProduct.info}</ProdText>
 						<form onSubmit={e => this.handleSubmit(e)}>
 							<label

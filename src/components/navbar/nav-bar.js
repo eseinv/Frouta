@@ -5,12 +5,19 @@ import { NavLi } from './nav-list';
 import { NavBrand } from './nav-brand';
 import { NavActions } from './nav-actions';
 
-const Nav = styled.nav`
+const Container = styled.nav`
+	min-height: 80px;
+`;
+const Nav = styled.div`
 	background-color: #587c34;
-	height: 80px;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
+	background: transparent;
+	border: none;
+	&:focus {
+		outline: none;
+	}
 	&:hover {
 		color: #fff;
 		cursor: pointer;
@@ -18,22 +25,26 @@ const Button = styled.div`
 `;
 
 const NavBar = props => (
-	<div className="container-fluid">
-		<Nav className="row">
-			<div className="col-4">
-				<NavBrand />
-			</div>
-			<div className="col-5">
-				<NavLi />
-			</div>
-			<Button
-				onClick={() => props.toggleLog()}
-				className="col-3 d-flex h-100 align-items-center"
-			>
-				<NavActions user={props.logState} />
-			</Button>
-		</Nav>
-	</div>
+	<Container>
+		<div className="container-fluid">
+			<Nav className="row text-center text-lg-left">
+				<div className="col-12 col-lg-4 align-self-center">
+					<NavBrand />
+				</div>
+				<div className="col-12 col-lg-5">
+					<NavLi />
+				</div>
+				<div className="col-12 col-lg-3 align-self-center">
+					<Button
+						onClick={() => props.toggleLog()}
+						className="p-3 p-lg-0"
+					>
+						<NavActions user={props.logState} />
+					</Button>
+				</div>
+			</Nav>
+		</div>
+	</Container>
 );
 
 NavBar.propTypes = {
