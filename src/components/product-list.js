@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { MainProductList } from '../main-product-list';
 import fp from '../images/fp.png';
 
@@ -25,19 +26,24 @@ const ProductList = () => (
 	<div className="container">
 		<div className="row">
 			{MainProductList.map((product, index) => (
-				<div key={index} className="col-md-4 col-sm-6 text-justify p-3">
-					<ProductCard className="card border-0" i={index}>
-						<img
-							className="card-img-top w-25 mt-4 ml-4"
-							src={fp}
-							alt={product.name}
-						/>
-						<div className="card-body">
-							<H5 className="card-title">{product.name}</H5>
-							<P className="card-text">{product.info}</P>
-						</div>
-					</ProductCard>
-				</div>
+				<Link to={`/pricelist/${product.id}`}>
+					<div
+						key={index}
+						className="col-md-4 col-sm-6 text-justify p-3"
+					>
+						<ProductCard className="card border-0" i={index}>
+							<img
+								className="card-img-top w-25 mt-4 ml-4"
+								src={fp}
+								alt={product.name}
+							/>
+							<div className="card-body">
+								<H5 className="card-title">{product.name}</H5>
+								<P className="card-text">{product.info}</P>
+							</div>
+						</ProductCard>
+					</div>
+				</Link>
 			))}
 		</div>
 	</div>
