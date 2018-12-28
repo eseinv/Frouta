@@ -58,6 +58,7 @@ const ProductList = props => (
 	it'll be false. In this specific case, no need to use it, but it would
 	eliminate the need for a function
 	}
+	pull bump
 */
 
 ProductList.propTypes = {
