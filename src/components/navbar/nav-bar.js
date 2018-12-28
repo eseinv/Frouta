@@ -28,13 +28,13 @@ const NavBar = props => (
 	<Container>
 		<div className="container-fluid">
 			<Nav className="row text-center text-lg-left">
-				<div className="col-12 col-lg-4 align-self-center">
+				<div className="col-12 offset-md-1 col-md-2 offset-lg-0 col-lg-4 align-self-center">
 					<NavBrand />
 				</div>
-				<div className="col-12 col-lg-5">
+				<div className="col-12 offset-md-0 col-md-6 offset-lg-0 col-lg-5">
 					<NavLi />
 				</div>
-				<div className="col-12 col-lg-3 align-self-center">
+				<div className="col-12 col-md-3 col-lg-3 align-self-center">
 					<Button
 						onClick={() => props.toggleLog()}
 						className="p-3 p-lg-0"

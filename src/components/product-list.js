@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { MainProductList } from '../main-product-list';
 import fp from '../images/fp.png';
@@ -22,18 +21,11 @@ const P = styled.p`
 	color: #707070;
 `;
 
-const ProductList = props => (
+const ProductList = () => (
 	<div className="container">
 		<div className="row">
 			{MainProductList.map((product, index) => (
-				<div
-					role="presentation"
-					key={index}
-					className="col-md-4 col-sm-6 text-justify p-3"
-					onClick={() =>
-						props.history.push(`pricelist/${product.id}`)
-					}
-				>
+				<div key={index} className="col-md-4 col-sm-6 text-justify p-3">
 					<ProductCard className="card border-0" i={index}>
 						<img
 							className="card-img-top w-25 mt-4 ml-4"
@@ -50,18 +42,5 @@ const ProductList = props => (
 		</div>
 	</div>
 );
-
-/*
-	One cool thing you can pass is a bool prop. Check this out:
-	<ProductBorder className="card" i={i = ProductList.length - 1}>
-	This will set props.i to TRUE when the condition is true, else {
-	it'll be false. In this specific case, no need to use it, but it would
-	eliminate the need for a function
-	}
-*/
-
-ProductList.propTypes = {
-	history: PropTypes.object,
-};
 
 export { ProductList };

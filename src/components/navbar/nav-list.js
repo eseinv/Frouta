@@ -31,7 +31,7 @@ const NavLi = () => {
 	const page = current.substring(current.length, 21);
 
 	return (
-		<div className="row h-100 align-items-center d-flex justify-content-between justify-content-lg-start">
+		<div className="row h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
 			<Button
 				className="ml-3 btn"
 				active={page === '/' ? 'true' : 'false'}
