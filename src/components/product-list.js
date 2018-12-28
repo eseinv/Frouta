@@ -22,6 +22,8 @@ const P = styled.p`
 	color: #707070;
 `;
 
+const pushagain = () => false;
+
 const ProductList = props => (
 	<div className="container">
 		<div className="row">
