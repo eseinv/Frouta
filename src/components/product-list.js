@@ -30,9 +30,7 @@ const ProductList = props => (
 					role="presentation"
 					key={index}
 					className="col-md-4 col-sm-6 text-justify p-3"
-					onClick={() =>
-						props.history.push(`pricelist/${product.id}`)
-					}
+					onClick={() => props.history.push(`product/${product.id}`)}
 				>
 					<ProductCard className="card border-0" i={index}>
 						<img

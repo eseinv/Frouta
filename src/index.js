@@ -22,8 +22,8 @@ class App extends React.Component {
 							logState={this.state.logState}
 						/>
 
-						<Route exact path="/" component={ProductList} />
-						<Route path="/pricelist/:id" component={Pricelist} />
+						<Route exact path="/products" component={ProductList} />
+						<Route path="/product/:id" component={Pricelist} />
 						<Route path="/contact" component={Contact} />
 					</div>
 				</Router>
