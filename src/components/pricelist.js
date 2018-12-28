@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import fp from '../images/fp.png';
-import { ShoppingCartPlus } from '../icons/';
+import { MainProductList } from '../main-product-list';
 
 const LeftButtonRadius = '5px 0 0 5px';
 const RightButtonRadius = '0 5px 5px 0';
@@ -64,33 +65,46 @@ const labelStyle = {
 };
 
 class Pricelist extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		this.state = { packed: 1, quantity: 1, cart: [] };
 
-		this.state = { packed: 1, quantity: 0, cart: [] };
+		const selectedProductId = this.props.match.params.id;
+		const filterSelected = MainProductList.filter(
+			product => product.id === selectedProductId,
+		);
+		if (filterSelected) {
+			[this.selectedProduct] = filterSelected;
+		}
 	}
+
 	handleSubmit = event => {
 		event.preventDefault();
-
+		let newCart;
 		const newCartItems = { prodId: 1001, qty: this.state.quantity };
+
 		const exists = this.state.cart.filter(
 			item => item.prodId === newCartItems.prodId,
 		)[0];
+
 		if (exists) {
 			const index = this.state.cart.indexOf(exists);
 			const tempCart = this.state.cart;
 			exists.qty += this.state.quantity;
 			tempCart[index] = exists;
-			return this.setState({ cart: tempCart });
+			newCart = tempCart;
+		} else {
+			newCart = [...this.state.cart, newCartItems];
 		}
-		return this.setState({ cart: [...this.state.cart, newCartItems] });
+		return this.setState({ cart: newCart });
 	};
+
 	handleChange = value => {
 		const parsed = value.length === 0 ? 0 : value;
 		this.setState({ quantity: parseInt(parsed, 10) });
 	};
+
 	render() {
-		console.log(this.state.cart);
 		return (
 			<div className="container">
 				<div className="package mt-5 row">
@@ -123,14 +137,9 @@ class Pricelist extends React.Component {
 						<ProdPic src={fp} alt="Product Name" />
 					</div>
 					<div className="col-sm-12 col-md-4 ml-2 mt-2">
-						<ProdName>Πεστίλη μήλου</ProdName>
-						<ProdText>
-							Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που
-							καίει πολύ ρεύμα. Αγόρασε την τώρα. Η πεστίλη
-							παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ
-							ρεύμα. Αγόρασε την τώρα.
-						</ProdText>
-						<form onSubmit={this.handleSubmit}>
+						<ProdName>{this.selectedProduct.name}</ProdName>
+						<ProdText>{this.selectedProduct.info}</ProdText>
+						<form onSubmit={e => this.handleSubmit(e)}>
 							<label
 								htmlFor="quantity"
 								className="d-block"
@@ -155,5 +164,9 @@ class Pricelist extends React.Component {
 		);
 	}
 }
+
+Pricelist.propTypes = {
+	match: PropTypes.object,
+};
 
 export { Pricelist };
