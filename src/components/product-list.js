@@ -22,6 +22,10 @@ const P = styled.p`
 `;
 
 const ProductList = () => (
+
+const pushagain = () => false;
+
+const ProductList = props => (
 	<div className="container">
 		<div className="row">
 			{MainProductList.map((product, index) => (
