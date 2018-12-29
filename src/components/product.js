@@ -60,6 +60,12 @@ const labelStyle = {
 	textDecoration: 'underline',
 };
 
+const Cost = styled.p`
+	font-size: 12px;
+	margin-top: 10px;
+	color: #606060;
+`;
+
 class Product extends React.Component {
 	constructor(props) {
 		super(props);
@@ -160,6 +166,13 @@ class Product extends React.Component {
 							/>
 							<CartButton> Προσθήκη </CartButton>
 						</form>
+						<Cost>
+							Τιμή: {this.selectedProduct.unitPrice}
+							{'\u20AC'} x {this.state.quantity} kg ={' '}
+							{this.selectedProduct.unitPrice *
+								this.state.quantity}{' '}
+							{'\u20AC'}
+						</Cost>
 					</div>
 				</div>
 			</div>
