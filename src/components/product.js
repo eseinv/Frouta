@@ -60,7 +60,7 @@ const labelStyle = {
 	textDecoration: 'underline',
 };
 
-class Pricelist extends React.Component {
+class Product extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { packed: 1, quantity: 1, cart: [] };
@@ -167,8 +167,8 @@ class Pricelist extends React.Component {
 	}
 }
 
-Pricelist.propTypes = {
+Product.propTypes = {
 	match: PropTypes.object,
 };
 
-export { Pricelist };
+export { Product };
