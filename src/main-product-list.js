@@ -5,6 +5,7 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/ntomata.png',
+		unitPrice: 3,
 	},
 	{
 		id: '2',
@@ -12,6 +13,7 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/yabloko.png',
+		unitPrice: 2,
 	},
 	{
 		id: '3',
@@ -19,6 +21,7 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/soup.jpg',
+		unitPrice: 4,
 	},
 	{
 		id: '4',
@@ -26,6 +29,7 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/ntomata.png',
+		unitPrice: 3,
 	},
 	{
 		id: '5',
@@ -33,6 +37,7 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/yabloko.jpg',
+		unitPrice: 2,
 	},
 	{
 		id: '6',
@@ -40,5 +45,6 @@ export const MainProductList = [
 		info:
 			'Η πεστίλη παράγεται σε ένα πολύ μεγάλο φούρνο που καίει πολύ ρεύμα. Αγόρασε την τώρα.',
 		image: '../images/soup.jpg',
+		unitPrice: 1,
 	},
 ];
