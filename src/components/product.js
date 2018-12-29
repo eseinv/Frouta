@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
+import { CartButton } from './cart-button';
 
 const LeftButtonRadius = '5px 0 0 5px';
 const RightButtonRadius = '0 5px 5px 0';
@@ -24,7 +25,7 @@ const Button = styled.button`
 	}
 `;
 
-const CartButton = styled.button`
+const CartAdd = styled.button`
 	background-color: #fff;
 	border: 1px solid #587c34;
 	margin-top: 10px;
@@ -48,25 +49,29 @@ const ProdText = styled.p`
 `;
 
 const Input = styled.input`
-	width: 100px;
+	width: 40px;
 	border: 1px solid #373535;
 	border-radius: 3px;
 	background: #fff;
 	&:focus {
 		outline: none;
 	}
-	color: #707070;
+	color: #373535
 	text-align: center;
 	margin-bottom: 1rem;
 `;
 
 const DeadInput = styled(Input)`
+	width: 120px;
 	border-color: transparent;
 	background: none;
 	font-size: 28px;
 	font-weight: bold;
 	color: #1b1b1b;
 	text-align: left;
+	&:hover {
+		cursor: default;
+	}
 `;
 
 const labelStyle = {
@@ -78,7 +83,7 @@ class Product extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { packed: 1, quantity: 1, cart: [] };
-
+		this.handleCartChange = this.handleCartChange.bind(this);
 		const selectedProductId = this.props.match.params.id;
 		const filterSelected = MainProductList.filter(
 			product => product.id === selectedProductId,
@@ -110,8 +115,16 @@ class Product extends React.Component {
 	};
 
 	handleChange = value => {
-		const parsed = value.length === 0 ? 0 : value;
+		const parsed = value.length === 0 ? 1 : value;
 		this.setState({ quantity: parseInt(parsed, 10) });
+	};
+
+	handleCartChange = type => {
+		if (type === 'minus') {
+			if (this.state.quantity > 1) {
+				this.setState({ quantity: this.state.quantity - 1 });
+			}
+		} else this.setState({ quantity: this.state.quantity + 1 });
 	};
 
 	render() {
@@ -188,7 +201,14 @@ class Product extends React.Component {
 									>
 										Ποσότητα (kg)
 									</label>
+									<CartButton
+										type="minus"
+										handleCartChange={this.handleCartChange}
+									>
+										-
+									</CartButton>
 									<Input
+										className="mx-1"
 										id="quantity"
 										onChange={event =>
 											this.handleChange(
@@ -199,9 +219,15 @@ class Product extends React.Component {
 										type="text"
 										value={this.state.quantity}
 									/>
+									<CartButton
+										type="plus"
+										handleCartChange={this.handleCartChange}
+									>
+										+
+									</CartButton>
 								</div>
 								<div className="col-12">
-									<CartButton> Προσθήκη </CartButton>
+									<CartAdd> Προσθήκη </CartAdd>
 								</div>
 							</div>
 						</form>
