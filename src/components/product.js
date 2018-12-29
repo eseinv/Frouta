@@ -27,7 +27,8 @@ const Button = styled.button`
 const CartButton = styled.button`
 	background-color: #fff;
 	border: 1px solid #587c34;
-	margin-left: 10px;
+	margin-top: 10px;
+	width: 100px;
 	padding: 5px 6px 5px 6px;
 	color: #587c34;
 	&:focus {
@@ -47,24 +48,31 @@ const ProdText = styled.p`
 `;
 
 const Input = styled.input`
-	width: 25%;
-	border: none;
-	border-bottom: 3px solid #707070;
-	background-color: inherit;
+	width: 100px;
+	border: 1px solid #373535;
+	border-radius: 3px;
+	background: #fff;
+	&:focus {
+		outline: none;
+	}
 	color: #707070;
 	text-align: center;
+	margin-bottom: 1rem;
+`;
+
+const DeadInput = styled(Input)`
+	border-color: transparent;
+	background: none;
+	font-size: 28px;
+	font-weight: bold;
+	color: #1b1b1b;
+	text-align: left;
 `;
 
 const labelStyle = {
 	color: '#707070',
 	textDecoration: 'underline',
 };
-
-const Cost = styled.p`
-	font-size: 12px;
-	margin-top: 10px;
-	color: #606060;
-`;
 
 class Product extends React.Component {
 	constructor(props) {
@@ -148,31 +156,55 @@ class Product extends React.Component {
 						</ProdName>
 						<ProdText>{this.selectedProduct.info}</ProdText>
 						<form onSubmit={e => this.handleSubmit(e)}>
-							<label
-								htmlFor="quantity"
-								className="d-block"
-								style={labelStyle}
-							>
-								Ποσότητα (kg)
-							</label>
-							<Input
-								id="quantity"
-								onChange={event =>
-									this.handleChange(event.target.value)
-								}
-								placeholder="Ποσότητα..."
-								type="text"
-								value={this.state.quantity}
-							/>
-							<CartButton> Προσθήκη </CartButton>
+							<div className="row">
+								<div className="col-12">
+									<label
+										htmlFor="quantity"
+										className="d-block"
+										style={labelStyle}
+									>
+										Total Price
+									</label>
+									<DeadInput
+										id="quantity"
+										onChange={event =>
+											this.handleChange(
+												event.target.value,
+											)
+										}
+										placeholder="Ποσότητα..."
+										type="text"
+										value={`${this.selectedProduct
+											.unitPrice *
+											this.state.quantity} \u20AC`}
+										readOnly
+									/>
+								</div>
+								<div className="col-12">
+									<label
+										htmlFor="quantity"
+										className="d-block"
+										style={labelStyle}
+									>
+										Ποσότητα (kg)
+									</label>
+									<Input
+										id="quantity"
+										onChange={event =>
+											this.handleChange(
+												event.target.value,
+											)
+										}
+										placeholder="Ποσότητα..."
+										type="text"
+										value={this.state.quantity}
+									/>
+								</div>
+								<div className="col-12">
+									<CartButton> Προσθήκη </CartButton>
+								</div>
+							</div>
 						</form>
-						<Cost>
-							Τιμή: {this.selectedProduct.unitPrice}
-							{'\u20AC'} x {this.state.quantity} kg ={' '}
-							{this.selectedProduct.unitPrice *
-								this.state.quantity}{' '}
-							{'\u20AC'}
-						</Cost>
 					</div>
 				</div>
 			</div>
