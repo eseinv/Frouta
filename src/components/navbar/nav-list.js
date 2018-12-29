@@ -34,8 +34,10 @@ const NavLi = () => {
 		<div className="row h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
 			<Button
 				className="ml-3 btn"
-				active={page.includes('/product') ? 'true' : 'false'}
-				to="/products"
+				active={
+					page.includes('/product') || page === '/' ? 'true' : 'false'
+				}
+				to="/"
 			>
 				Προϊόντα
 			</Button>
