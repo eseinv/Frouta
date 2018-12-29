@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Pricelist } from './components/pricelist';
+import { Product } from './components/product';
 import { Contact } from './components/contact';
 import { NavBar } from './components/navbar/nav-bar';
 import { ProductList } from './components/product-list';
@@ -23,7 +23,7 @@ class App extends React.Component {
 						/>
 
 						<Route exact path="/products" component={ProductList} />
-						<Route path="/product/:id" component={Pricelist} />
+						<Route path="/product/:id" component={Product} />
 						<Route path="/contact" component={Contact} />
 					</div>
 				</Router>
