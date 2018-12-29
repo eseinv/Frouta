@@ -7,7 +7,7 @@ import fp from '../images/fp.png';
 const ProductCard = styled.div`
 	border-radius: 5px;
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0);
-	transition: box-shadow 0.3s ease;
+	transition: box-shadow 0.5s ease;
 	cursor: pointer;
 	&:hover {
 		box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.1);
