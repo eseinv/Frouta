@@ -66,9 +66,6 @@ const Input = styled.input`
 
 const ToggleSwitch = styled(Switch)`
 	background: '#bfbb7b';
-	&:active {
-		box-shadow: none;
-	}
 `;
 
 const DeadInput = styled(Input)`
