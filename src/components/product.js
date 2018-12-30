@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Switch from 'react-switch';
 import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
 import { CartButton } from './cart-button';
@@ -42,14 +43,16 @@ const CartAdd = styled.button`
 
 const ProdName = styled.h4`
 	color: #707070;
+	cursor: default;
 `;
 
 const ProdText = styled.p`
 	color: #707070;
+	cursor: default;
 `;
 
 const Input = styled.input`
-	width: 40px;
+	width: 35px;
 	border: 1px solid #373535;
 	border-radius: 3px;
 	background: #fff;
@@ -69,6 +72,7 @@ const DeadInput = styled(Input)`
 	font-weight: bold;
 	color: #1b1b1b;
 	text-align: left;
+	pointer-events: none;
 	&:hover {
 		cursor: default;
 	}
@@ -115,7 +119,7 @@ class Product extends React.Component {
 	};
 
 	handleChange = value => {
-		const parsed = value.length === 0 ? 1 : value;
+		const parsed = value.length === 0 || value === '0' ? 1 : value;
 		this.setState({ quantity: parseInt(parsed, 10) });
 	};
 
@@ -176,7 +180,7 @@ class Product extends React.Component {
 										className="d-block"
 										style={labelStyle}
 									>
-										Total Price
+										Συνολική τιμή
 									</label>
 									<DeadInput
 										id="quantity"
@@ -226,6 +230,7 @@ class Product extends React.Component {
 										+
 									</CartButton>
 								</div>
+								<Switch />
 								<div className="col-12">
 									<CartAdd> Προσθήκη </CartAdd>
 								</div>
