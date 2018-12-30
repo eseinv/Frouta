@@ -272,6 +272,7 @@ class Product extends React.Component {
 										uncheckedIcon={false}
 										checkedIcon={false}
 										boxShadow="0px 1px 5px rgba(0, 0, 0, 0.4)"
+										activeBoxShadow="0 1px 5px rgba(57,55,55, 1)"
 										height={17}
 										width={40}
 										className="react-switch"
