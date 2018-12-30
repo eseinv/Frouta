@@ -64,6 +64,10 @@ const Input = styled.input`
 	margin-bottom: 1rem;
 `;
 
+const ToggleSwitch = styled(Switch)`
+	background: '#bfbb7b';
+`;
+
 const DeadInput = styled(Input)`
 	width: 120px;
 	border-color: transparent;
@@ -86,7 +90,13 @@ const labelStyle = {
 class Product extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { packed: 1, quantity: 1, cart: [] };
+		this.state = {
+			packed: 1,
+			quantity: 1,
+			cart: [],
+			checkedSwitch: false,
+			extraPackagePrice: 0,
+		};
 		this.handleCartChange = this.handleCartChange.bind(this);
 		const selectedProductId = this.props.match.params.id;
 		const filterSelected = MainProductList.filter(
@@ -129,6 +139,15 @@ class Product extends React.Component {
 				this.setState({ quantity: this.state.quantity - 1 });
 			}
 		} else this.setState({ quantity: this.state.quantity + 1 });
+	};
+
+	handleSwitch = () => {
+		this.setState({
+			extraPackagePrice: this.state.checkedSwitch
+				? 0
+				: 0.2 * this.state.quantity,
+		});
+		this.setState({ checkedSwitch: !this.state.checkedSwitch });
 	};
 
 	render() {
@@ -184,16 +203,13 @@ class Product extends React.Component {
 									</label>
 									<DeadInput
 										id="quantity"
-										onChange={event =>
-											this.handleChange(
-												event.target.value,
-											)
-										}
 										placeholder="Ποσότητα..."
 										type="text"
 										value={`${this.selectedProduct
 											.unitPrice *
-											this.state.quantity} \u20AC`}
+											this.state.quantity +
+											this.state
+												.extraPackagePrice} \u20AC`}
 										readOnly
 									/>
 								</div>
@@ -230,8 +246,33 @@ class Product extends React.Component {
 										+
 									</CartButton>
 								</div>
-								<Switch />
 								<div className="col-12">
+									<label htmlFor="material-switch">
+										<span style={labelStyle}>
+											{' '}
+											Πακετάρισμα (0.2 {'\u20AC'} ανά
+											κιλό)
+										</span>
+									</label>
+								</div>
+								<div className="col-12">
+									<ToggleSwitch
+										checked={this.state.checkedSwitch}
+										onChange={this.handleSwitch}
+										offColor="#e2dfb2"
+										onColor="#bfbb7b"
+										onHandleColor="#587c34"
+										handleDiameter={20}
+										uncheckedIcon={false}
+										checkedIcon={false}
+										boxShadow="0px 1px 5px rgba(0, 0, 0, 0.4)"
+										height={17}
+										width={40}
+										className="react-switch"
+										id="material-switch"
+									/>
+								</div>
+								<div className="col-12 mt-2">
 									<CartAdd> Προσθήκη </CartAdd>
 								</div>
 							</div>
