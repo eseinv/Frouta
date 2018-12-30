@@ -141,16 +141,21 @@ class Product extends React.Component {
 		} else this.setState({ quantity: this.state.quantity + 1 });
 	};
 
-	handleSwitch = () => {
+	handleSwitch = e => {
+		const newPrice = this.state.checkedSwitch
+			? 0
+			: 0.2 * this.state.quantity;
 		this.setState({
-			extraPackagePrice: this.state.checkedSwitch
-				? 0
-				: 0.2 * this.state.quantity,
+			extraPackagePrice: newPrice,
+			checkedSwitch: e,
 		});
-		this.setState({ checkedSwitch: !this.state.checkedSwitch });
 	};
 
 	render() {
+		console.log('extra', this.state.extraPackagePrice);
+		const packPrice = this.state.extraPackagePrice
+			? 0.2 * this.state.quantity
+			: 0;
 		return (
 			<div className="container">
 				<div className="package mt-5 row">
@@ -208,8 +213,7 @@ class Product extends React.Component {
 										value={`${this.selectedProduct
 											.unitPrice *
 											this.state.quantity +
-											this.state
-												.extraPackagePrice} \u20AC`}
+											packPrice} \u20AC`}
 										readOnly
 									/>
 								</div>
@@ -258,7 +262,7 @@ class Product extends React.Component {
 								<div className="col-12">
 									<ToggleSwitch
 										checked={this.state.checkedSwitch}
-										onChange={this.handleSwitch}
+										onChange={st => this.handleSwitch(st)}
 										offColor="#e2dfb2"
 										onColor="#bfbb7b"
 										onHandleColor="#587c34"
