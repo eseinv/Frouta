@@ -66,6 +66,9 @@ const Input = styled.input`
 
 const ToggleSwitch = styled(Switch)`
 	background: '#bfbb7b';
+	&:active {
+		box-shadow: none;
+	}
 `;
 
 const DeadInput = styled(Input)`
@@ -152,10 +155,12 @@ class Product extends React.Component {
 	};
 
 	render() {
-		console.log('extra', this.state.extraPackagePrice);
-		const packPrice = this.state.extraPackagePrice
+		const extraPackPrice = this.state.extraPackagePrice
 			? 0.2 * this.state.quantity
 			: 0;
+		const totalPrice = `${this.selectedProduct.unitPrice *
+			this.state.quantity +
+			extraPackPrice} \u20AC`;
 		return (
 			<div className="container">
 				<div className="package mt-5 row">
@@ -210,10 +215,7 @@ class Product extends React.Component {
 										id="quantity"
 										placeholder="Ποσότητα..."
 										type="text"
-										value={`${this.selectedProduct
-											.unitPrice *
-											this.state.quantity +
-											packPrice} \u20AC`}
+										value={totalPrice}
 										readOnly
 									/>
 								</div>
