@@ -4,34 +4,34 @@ import styled from 'styled-components';
 import { SignInAltSolid } from '../../icons/sign-in-alt-solid';
 import { ShoppingCartSolid } from '../../icons/shopping-cart-solid';
 
-const Button = styled.div`
-	opacity: 0.9
-	color: #f7f8f8
+const CartAction = styled.span`
+	color: ${props => (props.active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
 	&:hover {
-		opacity: 1
 		color: #fff;
 	}
 `;
 
 const NavActions = props => {
-	if (props.user) {
+	const current = window.location.href;
+	const page = current.substring(current.length, 21);
+	if (!props.userLogged) {
 		return (
-			<Button>
-				<SignInAltSolid color="currentColor" />
-				<span> Log in </span>
-			</Button>
+			<div>
+				<SignInAltSolid color="#fff" />
+				<CartAction active={page === '/login'}>Log in</CartAction>
+			</div>
 		);
 	}
 	return (
-		<Button>
+		<div>
 			<ShoppingCartSolid color="currentColor" />
 			<span> Cart </span>
-		</Button>
+		</div>
 	);
 };
 
 NavActions.propTypes = {
-	user: PropTypes.bool,
+	userLogged: PropTypes.bool,
 };
 
 export { NavActions };
