@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { NavLi } from './nav-list';
 import { NavBrand } from './nav-brand';
 import { NavActions } from './nav-actions';
@@ -12,15 +13,18 @@ const Nav = styled.div`
 	background-color: #587c34;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
 	background: transparent;
 	border: none;
+	text-decoration: none;
+	color: #fff
 	&:focus {
 		outline: none;
 	}
 	&:hover {
 		color: #fff;
 		cursor: pointer;
+		text-decoration: none;
 	}
 `;
 
@@ -36,10 +40,10 @@ const NavBar = props => (
 				</div>
 				<div className="col-12 col-sm-3 col-md-3 col-lg-3 align-self-center">
 					<Button
-						onClick={() => props.toggleLog()}
+						to={props.userLogged ? '/checkout' : '/login'}
 						className="p-3 p-lg-0"
 					>
-						<NavActions user={props.logState} />
+						<NavActions logState={props.userLogged} />
 					</Button>
 				</div>
 			</Nav>
@@ -48,8 +52,7 @@ const NavBar = props => (
 );
 
 NavBar.propTypes = {
-	logState: PropTypes.bool,
-	toggleLog: PropTypes.func,
+	userLogged: PropTypes.bool,
 };
 
 export { NavBar };
