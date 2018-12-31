@@ -22,6 +22,8 @@ const P = styled.p`
 	color: #707070;
 `;
 
+const maxInfoChars = 116;
+
 const ProductList = props => (
 	<div className="container">
 		<div className="row">
@@ -40,7 +42,14 @@ const ProductList = props => (
 						/>
 						<div className="card-body">
 							<H5 className="card-title">{product.name}</H5>
-							<P className="card-text">{product.info}</P>
+							<P className="card-text">
+								{product.info.length > maxInfoChars
+									? `${product.info.substring(
+											0,
+											maxInfoChars - 3,
+									  )}...`
+									: product.info}
+							</P>
 						</div>
 					</ProductCard>
 				</div>
@@ -48,16 +57,6 @@ const ProductList = props => (
 		</div>
 	</div>
 );
-
-/*
-	One cool thing you can pass is a bool prop. Check this out:
-	<ProductBorder className="card" i={i = ProductList.length - 1}>
-	This will set props.i to TRUE when the condition is true, else {
-	it'll be false. In this specific case, no need to use it, but it would
-	eliminate the need for a function
-	}
-	pull bump
-*/
 
 ProductList.propTypes = {
 	history: PropTypes.object,
