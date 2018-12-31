@@ -6,26 +6,6 @@ import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
 import { CartButton } from './cart-button';
 
-const LeftButtonRadius = '5px 0 0 5px';
-const RightButtonRadius = '0 5px 5px 0';
-
-const Button = styled.button`
-	border: 1px solid #707070;
-	border-radius: ${props =>
-		props.type === 'left' ? LeftButtonRadius : RightButtonRadius}
-	border-right-width: ${props => (props.type === 'left' ? '0' : '1')};
-	border-left-width: ${props => (props.type === 'right' ? '0' : '1')};
-	color: ${props => (props.active ? '#fff' : '#587c34')}
-		background-color: ${props => (props.active ? '#587c34' : '#fff')};
-	padding: 5px 6px 5px 6px;
-	&:hover {
-		cursor: pointer;
-	}
-	&:focus {
-		outline: none;
-	}
-`;
-
 const CartAdd = styled.button`
 	background-color: #fff;
 	border: 1px solid #587c34;
@@ -91,7 +71,6 @@ class Product extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			packed: 1,
 			quantity: 1,
 			cart: [],
 			checkedSwitch: false,
@@ -159,8 +138,8 @@ class Product extends React.Component {
 			this.state.quantity +
 			extraPackPrice} \u20AC`;
 		return (
-			<div className="container">
-				<div className="package mt-5 row">
+			<div className="container mt-4">
+				{/* <div className="package mt-5 row">
 					<Button
 						type="left"
 						active={this.state.packed === 1}
@@ -183,7 +162,7 @@ class Product extends React.Component {
 					>
 						Απλή συσκευασία
 					</Button>
-				</div>
+				</div> */}
 
 				<div className="row mt-4">
 					<div className="col-sm-12 col-lg-3 offset-lg-1">
