@@ -139,31 +139,6 @@ class Product extends React.Component {
 			extraPackPrice} \u20AC`;
 		return (
 			<div className="container mt-4">
-				{/* <div className="package mt-5 row">
-					<Button
-						type="left"
-						active={this.state.packed === 1}
-						onClick={() =>
-							this.setState({
-								packed: 1,
-							})
-						}
-					>
-						Πακεταρισμένο
-					</Button>
-					<Button
-						active={this.state.packed === 2}
-						type="right"
-						onClick={() =>
-							this.setState({
-								packed: 2,
-							})
-						}
-					>
-						Απλή συσκευασία
-					</Button>
-				</div> */}
-
 				<div className="row mt-4">
 					<div className="col-sm-12 col-lg-3 offset-lg-1">
 						<img
