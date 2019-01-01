@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Users from '../user-list';
+import { Users } from '../user-list';
 
 const H3 = styled.h3`
 	color: #707070;
@@ -33,38 +33,84 @@ const LogButton = styled.button`
 	width: 130px;
 	background: #fff;
 	color: #587c34;
+	padding: 3px;
 	&:focus {
 		outline: none;
 	}
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
-const handleSubmit = event => {
-	event.preventDefault();
-};
+class Login extends React.Component {
+	state = { usernameField: '', passwordField: '' };
 
-const Login = () => (
-	<div className="container">
-		<div className="row">
-			<div className="col-12 mt-5 mb-3 text-center">
-				<H3>Login</H3>
+	handleInputChange = (value, fieldType) => {
+		if (fieldType === 'username') {
+			this.setState({ usernameField: value });
+		} else if (fieldType === 'password') {
+			this.setState({ passwordField: value });
+		}
+	};
+
+	handleSubmit = (event, userEntered, passEntered) => {
+		event.preventDefault();
+		const checkUser = Users.filter(
+			user =>
+				user.username === userEntered && user.password === passEntered,
+		);
+		console.log(checkUser[0]);
+	};
+
+	render() {
+		return (
+			<div className="container">
+				<div className="row">
+					<div className="col-12 mt-5 mb-3 text-center">
+						<H3>Login</H3>
+					</div>
+				</div>
+				<div className="row">
+					<form
+						className="col-12"
+						onSubmit={e => this.handleSubmit(e)}
+					>
+						<div className="text-center">
+							<label className="d-block" htmlFor="username" />
+							<Input
+								onChange={event =>
+									this.handleInputChange(
+										event.target.value,
+										'username',
+									)
+								}
+								value={this.state.usernameField}
+								type="text"
+								placeholder="Username"
+							/>
+						</div>
+						<div className="text-center mt-3">
+							<label className="d-block" htmlFor="password" />
+							<Input
+								onChange={event =>
+									this.handleInputChange(
+										event.target.value,
+										'password',
+									)
+								}
+								value={this.state.passwordField}
+								type="password"
+								placeholder="Password"
+							/>
+						</div>
+						<div className="col-12 text-center mt-4">
+							<LogButton>Login</LogButton>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
-		<div className="row">
-			<form className="col-12" onSubmit={e => handleSubmit(e)}>
-				<div className="text-center">
-					<label className="d-block" htmlFor="username" />
-					<Input type="text" placeholder="Username" />
-				</div>
-				<div className="text-center mt-3">
-					<label className="d-block" htmlFor="password" />
-					<Input type="password" placeholder="Password" />
-				</div>
-				<div className="col-12 text-center mt-4">
-					<LogButton>Login</LogButton>
-				</div>
-			</form>
-		</div>
-	</div>
-);
+		);
+	}
+}
 
 export { Login };
