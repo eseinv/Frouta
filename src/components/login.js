@@ -73,7 +73,13 @@ class Login extends React.Component {
 				<div className="row">
 					<form
 						className="col-12"
-						onSubmit={e => this.handleSubmit(e)}
+						onSubmit={e =>
+							this.handleSubmit(
+								e,
+								this.state.usernameField,
+								this.state.passwordField,
+							)
+						}
 					>
 						<div className="text-center">
 							<label className="d-block" htmlFor="username" />
