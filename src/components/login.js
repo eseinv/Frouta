@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Users } from '../user-list';
 
@@ -28,6 +27,13 @@ const Input = styled.input`
 	}
 `;
 
+const LogError = styled.div`
+	color: red;
+	font-size: 12px;
+	margin-top: 6px;
+	font-style: italic;
+`;
+
 const LogButton = styled.button`
 	border: 1px solid #587c34;
 	width: 130px;
@@ -43,7 +49,7 @@ const LogButton = styled.button`
 `;
 
 class Login extends React.Component {
-	state = { usernameField: '', passwordField: '' };
+	state = { usernameField: '', passwordField: '', logError: false };
 
 	handleInputChange = (value, fieldType) => {
 		if (fieldType === 'username') {
@@ -55,11 +61,16 @@ class Login extends React.Component {
 
 	handleSubmit = (event, userEntered, passEntered) => {
 		event.preventDefault();
+
 		const checkUser = Users.filter(
 			user =>
 				user.username === userEntered && user.password === passEntered,
 		);
-		console.log(checkUser[0]);
+		const [userFound] = checkUser;
+
+		if (userFound) {
+			this.setState({ logError: false });
+		} else this.setState({ logError: true });
 	};
 
 	render() {
@@ -109,6 +120,11 @@ class Login extends React.Component {
 								placeholder="Password"
 							/>
 						</div>
+						{this.state.logError === true && (
+							<LogError className="text-center">
+								Incorrect credentials
+							</LogError>
+						)}
 						<div className="col-12 text-center mt-4">
 							<LogButton>Login</LogButton>
 						</div>
