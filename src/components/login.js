@@ -14,7 +14,7 @@ const Input = styled.input`
 	border-top-width: 0;
 	border-left-width: 0;
 	border-right-width: 0;
-	background: #f6f8f8;
+	background: #fff;
 	color: #707070;
 
 	&:focus {
@@ -91,7 +91,7 @@ class Login extends React.Component {
 					</div>
 				</div>
 				<div className="row justify-content-around">
-					<div className="col-4">
+					<div className="col-3">
 						<form
 							onSubmit={e =>
 								this.handleSubmit(
@@ -114,7 +114,6 @@ class Login extends React.Component {
 									}
 									value={this.state.usernameField}
 									type="text"
-									placeholder="Username"
 									className="form-control"
 								/>
 							</div>
@@ -131,7 +130,6 @@ class Login extends React.Component {
 									}
 									value={this.state.passwordField}
 									type="password"
-									placeholder="Password"
 									className="form-control"
 								/>
 							</div>
