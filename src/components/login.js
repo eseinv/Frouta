@@ -10,10 +10,7 @@ const H3 = styled.h3`
 `;
 
 const Input = styled.input`
-	border: 3px solid #587c34;
-	border-top-width: 0;
-	border-left-width: 0;
-	border-right-width: 0;
+	border-bottom: 3px solid #587c34;
 	background: #fff;
 	color: #707070;
 
