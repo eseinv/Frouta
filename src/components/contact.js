@@ -32,23 +32,37 @@ const Contact = () => (
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-6 text-center">
+				<div className="col-6 text-right px-4">
 					<H5>Company HQ</H5>
 					<P>Black Action Street 4, NY</P>
+				</div>
+				<div className="col-6 text-left px-4">
 					<H5>Important Person</H5>
 					<P>youwantit@contact.hq</P>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-6 text-right px-4">
 					<H5>Landline</H5>
 					<P>555-SALES-PPL</P>
 				</div>
-				<div className="col-6 text-center">
+				<div className="col-6 text-left px-4">
 					<H5>Sales represantative</H5>
 					<P>jfletcher@contact.hq</P>
+				</div>
+			</div>
+
+			<div className="row">
+				<div className="col-6 text-right px-4">
 					<H5>Disputes</H5>
 					<P>sumtinwong@contact.hq</P>
+				</div>
+				<div className="col-6 text-left px-4">
 					<H5>Technical Issues</H5>
 					<P>bolimekura@contact.hq</P>
 				</div>
 			</div>
+
 			<div className="row">
 				<div className="col-12">
 					<P className="mt-4 text-center">
