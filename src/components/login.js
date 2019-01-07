@@ -13,9 +13,7 @@ const Input = styled.input`
 	border-bottom: 3px solid #587c34;
 	background: #fff;
 	color: #707070;
-
 	&:focus {
-		outline: none;
 		box-shadow: none;
 		border-top-color: transparent;
 		border-left-color: transparent;
