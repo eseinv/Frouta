@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Users } from '../user-list';
 
 const H3 = styled.h3`
@@ -63,7 +64,7 @@ class Login extends React.Component {
 		});
 	};
 
-	handleSubmit = (event, userEntered, passEntered) => {
+	handleFormSubmit = (event, userEntered, passEntered) => {
 		event.preventDefault();
 
 		const checkUser = Users.filter(
@@ -73,7 +74,10 @@ class Login extends React.Component {
 		const [userFound] = checkUser;
 
 		if (userFound) {
-			this.setState({ logError: false });
+			this.setState({ logError: false }, () =>
+				this.props.history.push(`/`),
+			);
+			this.props.logUserIn();
 		} else this.setState({ logError: true });
 	};
 
@@ -86,10 +90,10 @@ class Login extends React.Component {
 					</div>
 				</div>
 				<div className="row justify-content-around">
-					<div className="col-3">
+					<div className="col-sm-6 col-md-6 col-lg-4">
 						<form
 							onSubmit={e =>
-								this.handleSubmit(
+								this.handleFormSubmit(
 									e,
 									this.state.usernameField,
 									this.state.passwordField,
@@ -143,5 +147,10 @@ class Login extends React.Component {
 		);
 	}
 }
+
+Login.propTypes = {
+	logUserIn: PropTypes.func,
+	history: PropTypes.object,
+};
 
 export default Login;
