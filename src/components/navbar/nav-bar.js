@@ -28,23 +28,46 @@ const Button = styled(Link)`
 	}
 `;
 
+const LogOut = styled.button`
+	background: transparent;
+	border: none;
+	padding-left: 30px;
+	color: rgba(255, 255, 255, 0.5);
+	&:hover {
+		color: #fff;
+		cursor: pointer;
+	}
+	&:active {
+		outline: none;
+	}
+	transition: color 0.2s ease;
+`;
+
 const NavBar = props => (
 	<Container>
 		<div className="container-fluid">
 			<Nav className="row text-center text-lg-left">
-				<div className="col-12 col-sm-2 offset-md-1 col-md-2 offset-lg-0 col-lg-4 align-self-center">
+				<div className="col-sm-2 offset-md-1 col-md-2 offset-lg-0 col-lg-4 align-self-center">
 					<NavBrand />
 				</div>
-				<div className="col-12 col-sm-6 col-md-6 col-lg-5">
+				<div className="navlist col-sm-5 col-md-5 col-lg-5">
 					<NavLi />
 				</div>
-				<div className="col-12 col-sm-3 col-md-3 col-lg-3 align-self-center">
+				<div className="navactions col-sm-5 col-md-4 col-lg-3 align-self-center">
 					<Button
-						to={props.userLogged ? '/checkout' : '/login'}
+						to={props.userLogged ? '/cart' : '/login'}
 						className="p-3 p-lg-0"
 					>
-						<NavActions logState={props.userLogged} />
+						<NavActions
+							userLogged={props.userLogged}
+							logUserOut={props.logUserOut}
+						/>
 					</Button>
+					{props.userLogged && (
+						<LogOut onClick={() => props.logUserOut()}>
+							Log out
+						</LogOut>
+					)}
 				</div>
 			</Nav>
 		</div>
@@ -53,6 +76,7 @@ const NavBar = props => (
 
 NavBar.propTypes = {
 	userLogged: PropTypes.bool,
+	logUserOut: PropTypes.func,
 };
 
 export { NavBar };
