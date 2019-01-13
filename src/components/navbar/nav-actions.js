@@ -11,6 +11,10 @@ const CartAction = styled.span`
 	}
 `;
 
+const ActionWrap = styled.div`
+	display: inline-block;
+`;
+
 const NavActions = props => {
 	const current = window.location.href;
 	const page = current.substring(current.length, 21);
@@ -23,10 +27,12 @@ const NavActions = props => {
 		);
 	}
 	return (
-		<div>
-			<ShoppingCartSolid color="currentColor" />
-			<span> Cart </span>
-		</div>
+		<React.Fragment>
+			<ActionWrap>
+				<ShoppingCartSolid color="currentColor" />
+				<span> Cart </span>
+			</ActionWrap>
+		</React.Fragment>
 	);
 };
 
