@@ -42,14 +42,6 @@ const NavLi = () => {
 				Προϊόντα
 			</Button>
 
-			{/* <Button
-				className="ml-3 btn"
-				active={page.includes('/pricelist') ? 'true' : 'false'}
-				to="/pricelist"
-			>
-				Τιμοκατάλογος
-			</Button> */}
-
 			<Button
 				className="ml-3 btn"
 				active={page === '/contact' ? 'true' : 'false'}
