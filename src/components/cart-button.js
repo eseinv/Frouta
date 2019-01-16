@@ -19,6 +19,7 @@ const Button = styled.button`
 
 const CartButton = props => (
 	<Button
+		type="button"
 		onClick={() =>
 			props.handleCartChange(props.type === 'minus' ? 'minus' : 'plus')
 		}
