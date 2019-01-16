@@ -87,6 +87,13 @@ class Product extends React.Component {
 		}
 	}
 
+	componentWillMount() {
+		const savedCart = JSON.parse(localStorage.getItem('cart'));
+		if (savedCart !== null) {
+			this.setState({ cart: savedCart });
+		}
+	}
+
 	handleFormSubmit = event => {
 		event.preventDefault();
 
@@ -117,7 +124,10 @@ class Product extends React.Component {
 		} else {
 			newCart = [...this.state.cart, newItemToAdd];
 		}
-		return this.setState({ cart: newCart });
+		return this.setState(
+			{ cart: newCart },
+			localStorage.setItem('cart', JSON.stringify(newCart)),
+		);
 	};
 
 	handleInputChange = value => {
@@ -149,6 +159,7 @@ class Product extends React.Component {
 	};
 
 	render() {
+		this.state.cart.map(item => console.log(item));
 		const extraPackPrice = this.state.extraPackagePrice
 			? 0.2 * this.state.selectedQuantity
 			: 0;
