@@ -81,6 +81,7 @@ module.exports = {
 		'require-yield': 0,
 		'react/prop-types': 1,
 		'react/prefer-stateless-function': 1,
+		'no-console': 0,
 		'no-unused-vars': 1,
 		'linebreak-style': 0,
 		'jsx-a11y/alt-text': [
