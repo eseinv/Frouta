@@ -70,60 +70,78 @@ const labelStyle = {
 class Product extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			quantity: 1,
-			cart: [],
-			checkedSwitch: false,
-			extraPackagePrice: 0,
-		};
-		this.handleCartChange = this.handleCartChange.bind(this);
-		const selectedProductId = this.props.match.params.id;
+
+		this.selectedProductId = this.props.match.params.id;
 		const filterSelected = MainProductList.filter(
-			product => product.id === selectedProductId,
+			product => product.id === this.selectedProductId,
 		);
 		if (filterSelected) {
-			[this.selectedProduct] = filterSelected;
+			const [productFound] = filterSelected;
+			this.state = {
+				selectedProduct: productFound,
+				selectedQuantity: 1,
+				cart: [],
+				checkedSwitch: false,
+				extraPackagePrice: 0,
+			};
 		}
 	}
 
-	handleSubmit = event => {
+	handleFormSubmit = event => {
 		event.preventDefault();
+
 		let newCart;
-		const newCartItems = { prodId: 1001, qty: this.state.quantity };
+		const extraPackPrice = this.state.extraPackagePrice
+			? 0.2 * this.state.selectedQuantity
+			: 0;
+		const newItemToAdd = {
+			prodId: this.state.selectedProduct.id,
+			qty: this.state.selectedQuantity,
+			totalPrice:
+				this.state.selectedProduct.unitPrice *
+					this.state.selectedQuantity +
+				extraPackPrice,
+		};
 
 		const exists = this.state.cart.filter(
-			item => item.prodId === newCartItems.prodId,
+			item => item.prodId === newItemToAdd.prodId,
 		)[0];
 
 		if (exists) {
 			const index = this.state.cart.indexOf(exists);
 			const tempCart = this.state.cart;
-			exists.qty += this.state.quantity;
+			exists.qty += this.state.selectedQuantity;
+			exists.totalPrice += newItemToAdd.totalPrice;
 			tempCart[index] = exists;
 			newCart = tempCart;
 		} else {
-			newCart = [...this.state.cart, newCartItems];
+			newCart = [...this.state.cart, newItemToAdd];
 		}
 		return this.setState({ cart: newCart });
 	};
 
-	handleChange = value => {
-		const parsed = value.length === 0 || value === '0' ? 1 : value;
-		this.setState({ quantity: parseInt(parsed, 10) });
+	handleInputChange = value => {
+		const parsed = value.length === 0 || value === '0' ? 1 : value; // TODO remove ability to enter string after ctrl+a
+		this.setState({ selectedQuantity: parseInt(parsed, 10) });
 	};
 
 	handleCartChange = type => {
 		if (type === 'minus') {
-			if (this.state.quantity > 1) {
-				this.setState({ quantity: this.state.quantity - 1 });
+			if (this.state.selectedQuantity > 1) {
+				this.setState({
+					selectedQuantity: this.state.selectedQuantity - 1,
+				});
 			}
-		} else this.setState({ quantity: this.state.quantity + 1 });
+		} else
+			this.setState({
+				selectedQuantity: this.state.selectedQuantity + 1,
+			});
 	};
 
-	handleSwitch = e => {
+	handlePackageSwitch = e => {
 		const newPrice = this.state.checkedSwitch
 			? 0
-			: 0.2 * this.state.quantity;
+			: 0.2 * this.state.selectedQuantity;
 		this.setState({
 			extraPackagePrice: newPrice,
 			checkedSwitch: e,
@@ -132,10 +150,10 @@ class Product extends React.Component {
 
 	render() {
 		const extraPackPrice = this.state.extraPackagePrice
-			? 0.2 * this.state.quantity
+			? 0.2 * this.state.selectedQuantity
 			: 0;
-		const totalPrice = `${this.selectedProduct.unitPrice *
-			this.state.quantity +
+		const totalPrice = `${this.state.selectedProduct.unitPrice *
+			this.state.selectedQuantity +
 			extraPackPrice} \u20AC`;
 		return (
 			<div className="container mt-4">
@@ -149,10 +167,10 @@ class Product extends React.Component {
 					</div>
 					<div className="col-sm-12 col-lg-4">
 						<ProdName className="mt-2">
-							{this.selectedProduct.name}
+							{this.state.selectedProduct.name}
 						</ProdName>
-						<ProdText>{this.selectedProduct.info}</ProdText>
-						<form onSubmit={e => this.handleSubmit(e)}>
+						<ProdText>{this.state.selectedProduct.info}</ProdText>
+						<form onSubmit={e => this.handleFormSubmit(e)}>
 							<div className="row">
 								<div className="col-12">
 									<label
@@ -188,13 +206,13 @@ class Product extends React.Component {
 										className="mx-1"
 										id="quantity"
 										onChange={event =>
-											this.handleChange(
+											this.handleInputChange(
 												event.target.value,
 											)
 										}
 										placeholder="Ποσότητα..."
 										type="text"
-										value={this.state.quantity}
+										value={this.state.selectedQuantity}
 									/>
 									<CartButton
 										type="plus"
@@ -206,7 +224,6 @@ class Product extends React.Component {
 								<div className="col-12">
 									<label htmlFor="material-switch">
 										<span style={labelStyle}>
-											{' '}
 											Πακετάρισμα (0.2 {'\u20AC'} ανά
 											κιλό)
 										</span>
@@ -215,7 +232,9 @@ class Product extends React.Component {
 								<div className="col-12">
 									<ToggleSwitch
 										checked={this.state.checkedSwitch}
-										onChange={st => this.handleSwitch(st)}
+										onChange={st =>
+											this.handlePackageSwitch(st)
+										}
 										offColor="#e2dfb2"
 										onColor="#bfbb7b"
 										onHandleColor="#587c34"
