@@ -60,7 +60,6 @@ class App extends React.Component {
 							render={props => (
 								<Product
 									{...props}
-									getCart={this.getCart}
 									cart={this.state.cart}
 									setCart={this.setCart}
 								/>
