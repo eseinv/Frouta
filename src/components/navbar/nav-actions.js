@@ -22,7 +22,7 @@ const NavActions = props => {
 		return (
 			<div>
 				<SignInAltSolid color="#fff" />
-				<CartAction active={page === '/login'}>Log in</CartAction>
+				<CartAction active={page === '/login'}>Είσοδος</CartAction>
 			</div>
 		);
 	}
@@ -30,7 +30,7 @@ const NavActions = props => {
 		<React.Fragment>
 			<ActionWrap>
 				<ShoppingCartSolid color="currentColor" />
-				<span> Cart </span>
+				<span> Καλάθι </span>
 			</ActionWrap>
 		</React.Fragment>
 	);
