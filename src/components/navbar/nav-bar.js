@@ -58,14 +58,11 @@ const NavBar = props => (
 						to={props.userLogged ? '/cart' : '/login'}
 						className="p-3 p-lg-0"
 					>
-						<NavActions
-							userLogged={props.userLogged}
-							logUserOut={props.logUserOut}
-						/>
+						<NavActions userLogged={props.userLogged} />
 					</Button>
 					{props.userLogged && (
-						<LogOut onClick={() => props.logUserOut()}>
-							Log out
+						<LogOut onClick={() => props.changeLogState(false)}>
+							Έξοδος
 						</LogOut>
 					)}
 				</div>
@@ -76,7 +73,7 @@ const NavBar = props => (
 
 NavBar.propTypes = {
 	userLogged: PropTypes.bool,
-	logUserOut: PropTypes.func,
+	changeLogState: PropTypes.func,
 };
 
 export { NavBar };
