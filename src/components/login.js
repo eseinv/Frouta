@@ -77,7 +77,7 @@ class Login extends React.Component {
 			this.setState({ logError: false }, () =>
 				this.props.history.push(`/`),
 			);
-			this.props.logUserIn();
+			this.props.changeLogState(true);
 		} else this.setState({ logError: true });
 	};
 
@@ -149,7 +149,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-	logUserIn: PropTypes.func,
+	changeLogState: PropTypes.func,
 	history: PropTypes.object,
 };
 
