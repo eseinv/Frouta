@@ -80,17 +80,9 @@ class Product extends React.Component {
 			this.state = {
 				selectedProduct: productFound,
 				selectedQuantity: 1,
-				cart: [],
 				checkedSwitch: false,
 				extraPackagePrice: 0,
 			};
-		}
-	}
-
-	componentWillMount() {
-		const savedCart = JSON.parse(localStorage.getItem('cart'));
-		if (savedCart !== null) {
-			this.setState({ cart: savedCart });
 		}
 	}
 
@@ -110,24 +102,21 @@ class Product extends React.Component {
 				extraPackPrice,
 		};
 
-		const exists = this.state.cart.filter(
+		const check = this.props.cart.filter(
 			item => item.prodId === newItemToAdd.prodId,
 		)[0];
 
-		if (exists) {
-			const index = this.state.cart.indexOf(exists);
-			const tempCart = this.state.cart;
-			exists.qty += this.state.selectedQuantity;
-			exists.totalPrice += newItemToAdd.totalPrice;
-			tempCart[index] = exists;
+		if (check) {
+			const index = this.props.cart.indexOf(check);
+			const tempCart = this.props.cart;
+			check.qty += this.state.selectedQuantity;
+			check.totalPrice += newItemToAdd.totalPrice;
+			tempCart[index] = check;
 			newCart = tempCart;
 		} else {
-			newCart = [...this.state.cart, newItemToAdd];
+			newCart = [...this.props.cart, newItemToAdd];
 		}
-		return this.setState(
-			{ cart: newCart },
-			localStorage.setItem('cart', JSON.stringify(newCart)),
-		);
+		return this.props.setCart(newCart);
 	};
 
 	handleInputChange = value => {
@@ -159,7 +148,6 @@ class Product extends React.Component {
 	};
 
 	render() {
-		this.state.cart.map(item => console.log(item));
 		const extraPackPrice = this.state.extraPackagePrice
 			? 0.2 * this.state.selectedQuantity
 			: 0;
@@ -274,6 +262,8 @@ class Product extends React.Component {
 
 Product.propTypes = {
 	match: PropTypes.object,
+	cart: PropTypes.array,
+	setCart: PropTypes.func,
 };
 
 export { Product };
