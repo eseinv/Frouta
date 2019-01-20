@@ -5,6 +5,7 @@ import Switch from 'react-switch';
 import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
 import { CartButton } from './cart-button';
+import { Input } from './input';
 
 const CartAdd = styled.button`
 	background-color: #fff;
@@ -18,6 +19,8 @@ const CartAdd = styled.button`
 	}
 	&:hover {
 		cursor: pointer;
+		color: #fff;
+		background-color: #587c34;
 	}
 `;
 
@@ -29,19 +32,6 @@ const ProdName = styled.h4`
 const ProdText = styled.p`
 	color: #707070;
 	cursor: default;
-`;
-
-const Input = styled.input`
-	width: 35px;
-	border: 1px solid #373535;
-	border-radius: 3px;
-	background: #fff;
-	&:focus {
-		outline: none;
-	}
-	color: #373535
-	text-align: center;
-	margin-bottom: 1rem;
 `;
 
 const ToggleSwitch = styled(Switch)`
@@ -94,16 +84,20 @@ class Product extends React.Component {
 			? 0.2 * this.state.selectedQuantity
 			: 0;
 		const newItemToAdd = {
-			prodId: this.state.selectedProduct.id,
+			id: this.state.selectedProduct.id,
 			qty: this.state.selectedQuantity,
+			unitPrice: this.state.selectedProduct.unitPrice,
 			totalPrice:
 				this.state.selectedProduct.unitPrice *
 					this.state.selectedQuantity +
 				extraPackPrice,
+			name: this.state.selectedProduct.name,
+			info: this.state.selectedProduct.info,
+			image: this.state.selectedProduct.image,
 		};
 
 		const check = this.props.cart.filter(
-			item => item.prodId === newItemToAdd.prodId,
+			item => item.id === newItemToAdd.id,
 		)[0];
 
 		if (check) {
@@ -266,4 +260,4 @@ Product.propTypes = {
 	setCart: PropTypes.func,
 };
 
-export { Product };
+export default Product;
