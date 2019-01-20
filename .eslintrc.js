@@ -21,9 +21,7 @@ module.exports = {
 	},
 	rules: {
 		'prettier/prettier': [0, prettierOptions],
-
 		'arrow-body-style': [1, 'as-needed'],
-
 		'class-methods-use-this': 0,
 		'comma-dangle': [1, 'always-multiline'],
 		'import/imports-first': 0,
