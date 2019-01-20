@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Product } from './components/product';
+import Product from './components/product';
 import { Contact } from './components/contact';
 import { NavBar } from './components/navbar/nav-bar';
 import { ProductList } from './components/product-list';
 import { Footer } from './components/footer';
 import Login from './components/login';
+import Cart from './components/cart/index';
 
 class App extends React.Component {
 	state = { userLogged: false, cart: [] };
@@ -43,6 +44,7 @@ class App extends React.Component {
 	render() {
 		console.log('Cart items:');
 		this.state.cart.map(item => console.log(item));
+		console.log('--------------------------------');
 
 		return (
 			<div>
@@ -66,6 +68,16 @@ class App extends React.Component {
 							)}
 						/>
 						<Route path="/contact" component={Contact} />
+						<Route
+							path="/cart"
+							render={props => (
+								<Cart
+									{...props}
+									userLogged={this.state.logged}
+									cart={this.state.cart}
+								/>
+							)}
+						/>
 						<Route
 							path="/login"
 							render={props => (
