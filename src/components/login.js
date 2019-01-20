@@ -89,7 +89,7 @@ class Login extends React.Component {
 						<H3>Login</H3>
 					</div>
 				</div>
-				<div className="row justify-content-around">
+				<div className="row justify-content-center">
 					<div className="col-sm-6 col-md-6 col-lg-4">
 						<form
 							onSubmit={e =>
@@ -134,7 +134,7 @@ class Login extends React.Component {
 							</div>
 							{this.state.logError === true && (
 								<LogError className="text-center">
-									Incorrect credentials
+									Λανθασμένα στοιχεία εισόδου
 								</LogError>
 							)}
 							<LogButton className="btn-block mt-4 py-2">
