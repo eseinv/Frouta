@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Switch from 'react-switch';
+// import Switch from 'react-switch';
 import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
 import { CartButton } from './cart-button';
@@ -34,9 +34,9 @@ const ProdText = styled.p`
 	cursor: default;
 `;
 
-const ToggleSwitch = styled(Switch)`
-	background: '#bfbb7b';
-`;
+// const ToggleSwitch = styled(Switch)`
+// 	background: '#bfbb7b';
+// `;
 
 const DeadInput = styled(Input)`
 	width: 120px;
@@ -70,8 +70,8 @@ class Product extends React.Component {
 			this.state = {
 				selectedProduct: productFound,
 				selectedQuantity: 1,
-				checkedSwitch: false,
-				extraPackagePrice: 0,
+				//  checkedSwitch: false,
+				//  extraPackagePrice: 0,
 			};
 		}
 	}
@@ -80,17 +80,17 @@ class Product extends React.Component {
 		event.preventDefault();
 
 		let newCart;
-		const extraPackPrice = this.state.extraPackagePrice
-			? 0.2 * this.state.selectedQuantity
-			: 0;
+		// const extraPackPrice = this.state.extraPackagePrice
+		// 	? 0.2 * this.state.selectedQuantity
+		// 	: 0;
 		const newItemToAdd = {
 			id: this.state.selectedProduct.id,
 			qty: this.state.selectedQuantity,
 			unitPrice: this.state.selectedProduct.unitPrice,
 			totalPrice:
 				this.state.selectedProduct.unitPrice *
-					this.state.selectedQuantity +
-				extraPackPrice,
+				this.state.selectedQuantity,
+			//	+ extraPackPrice,
 			name: this.state.selectedProduct.name,
 			info: this.state.selectedProduct.info,
 			image: this.state.selectedProduct.image,
@@ -131,23 +131,22 @@ class Product extends React.Component {
 			});
 	};
 
-	handlePackageSwitch = e => {
-		const newPrice = this.state.checkedSwitch
-			? 0
-			: 0.2 * this.state.selectedQuantity;
-		this.setState({
-			extraPackagePrice: newPrice,
-			checkedSwitch: e,
-		});
-	};
+	// handlePackageSwitch = e => {
+	// 	const newPrice = this.state.checkedSwitch
+	// 		? 0
+	// 		: 0.2 * this.state.selectedQuantity;
+	// 	this.setState({
+	// 		extraPackagePrice: newPrice,
+	// 		checkedSwitch: e,
+	// 	});
+	// };
 
 	render() {
-		const extraPackPrice = this.state.extraPackagePrice
-			? 0.2 * this.state.selectedQuantity
-			: 0;
+		// const extraPackPrice = this.state.extraPackagePrice
+		// 	? 0.2 * this.state.selectedQuantity
+		// 	: 0;
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
-			this.state.selectedQuantity +
-			extraPackPrice} \u20AC`;
+			this.state.selectedQuantity} \u20AC`;
 		return (
 			<div className="container mt-4">
 				<div className="row mt-4">
@@ -214,15 +213,15 @@ class Product extends React.Component {
 										+
 									</CartButton>
 								</div>
-								<div className="col-12">
+								{/* <div className="col-12">
 									<label htmlFor="material-switch">
 										<span style={labelStyle}>
 											Πακετάρισμα (0.2 {'\u20AC'} ανά
 											κιλό)
 										</span>
 									</label>
-								</div>
-								<div className="col-12">
+								</div> */}
+								{/* <div className="col-12">
 									<ToggleSwitch
 										checked={this.state.checkedSwitch}
 										onChange={st =>
@@ -241,8 +240,8 @@ class Product extends React.Component {
 										className="react-switch"
 										id="material-switch"
 									/>
-								</div>
-								<div className="col-12 mt-2">
+								</div> */}
+								<div className="col-12">
 									<CartAdd> Προσθήκη </CartAdd>
 								</div>
 							</div>
