@@ -10,18 +10,20 @@ import Login from './components/login';
 import Cart from './components/cart/index';
 
 class App extends React.Component {
-	state = { userLogged: false, cart: [] };
+	constructor(props) {
+		super(props);
 
+		this.state = { userLogged: false, cart: [] };
+	}
 	changeLogState = logged => {
 		if (logged) {
-			this.setState({ userLogged: true }, () =>
+			return this.setState({ userLogged: true }, () =>
 				localStorage.setItem('userLogged', 'true'),
 			);
-		} else {
-			this.setState({ userLogged: false }, () =>
-				localStorage.removeItem('userLogged'),
-			);
 		}
+		return this.setState({ userLogged: false }, () =>
+			localStorage.removeItem('userLogged'),
+		);
 	};
 
 	setCart = newCart =>
@@ -29,6 +31,14 @@ class App extends React.Component {
 			{ cart: newCart },
 			localStorage.setItem('cart', JSON.stringify(newCart)),
 		);
+
+	deleteItem = product => {
+		const tempCart = this.state.cart;
+		tempCart.splice(tempCart.indexOf(product), 1);
+		this.setState({ cart: tempCart }, () =>
+			localStorage.setItem('cart', JSON.stringify(tempCart)),
+		);
+	};
 
 	componentWillMount() {
 		const savedLogState = localStorage.getItem('userLogged');
@@ -42,9 +52,9 @@ class App extends React.Component {
 	}
 
 	render() {
-		console.log('Cart items:');
-		this.state.cart.map(item => console.log(item));
-		console.log('--------------------------------');
+		// console.log('Cart items:');
+		// this.state.cart.map(item => console.log(item));
+		// console.log('--------------------------------');
 
 		return (
 			<div>
@@ -75,6 +85,9 @@ class App extends React.Component {
 									{...props}
 									userLogged={this.state.logged}
 									cart={this.state.cart}
+									deleteItem={this.deleteItem}
+									handleCartChange={this.handleCartChange}
+									setCart={this.setCart}
 								/>
 							)}
 						/>
