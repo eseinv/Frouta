@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import fp from '../../images/fp.png';
 import { Input } from '../input';
-import { CartButton } from '../cart-button';
 
 const TextDiv = styled.div`
 	pointer-events: none;
@@ -26,21 +25,53 @@ const Del = styled.div`
 	}
 `;
 
+const Button = styled.button`
+	border: 1px solid #373535;
+	border-radius: 3px;
+	background-color: #F6F8F8
+	font-weight: bold
+	width: 40px
+	height: 27px;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
 class CartItems extends React.Component {
 	state = { cart: this.props.cart };
 
-	deleteItem = product => {
-		const tempCart = this.state.cart;
-		tempCart.splice(tempCart.indexOf(product), 1);
-		this.setState({ cart: tempCart });
+	handleCartChange = (type, id) => {
+		const tempCart = JSON.parse(JSON.stringify(this.state.cart));
+		const [productToEdit] = tempCart.filter(product => product.id === id);
+		const productInCart = tempCart[tempCart.indexOf(productToEdit)];
+
+		if (type === 'minus') {
+			if (productInCart.qty > 1) {
+				productInCart.qty -= 1;
+				productInCart.totalPrice -= productInCart.unitPrice;
+				this.props.setCart(tempCart);
+				this.setState({ cart: tempCart });
+			}
+		} else {
+			productInCart.qty += 1;
+			productInCart.totalPrice += productInCart.unitPrice;
+			this.props.setCart(tempCart);
+			this.setState({ cart: tempCart });
+		}
 	};
 
+	handleInputChange;
+
 	render() {
-		const [cart] = [this.state.cart];
-		console.log(cart);
+		if (this.props.cart.length === 0) {
+			return <h4 className="mt-5">Το καλάθι σας είναι άδειο</h4>;
+		}
 		return (
 			<div>
-				{cart.map(product => (
+				{this.state.cart.map(product => (
 					<div key={product.id}>
 						<div className="card my-2">
 							<div className="card-body">
@@ -57,40 +88,53 @@ class CartItems extends React.Component {
 											{product.name}
 										</H5>
 										<div className="pl-3">
-											<P style={{ marginBottom: 0 }}>
-												Τιμή κιλού: {product.unitPrice}
+											<P
+												style={{
+													marginBottom: '0.5rem',
+												}}
+											>
+												<strong>
+													Τιμή κιλού:{' '}
+													{product.unitPrice}
+												</strong>
+												&euro;
 											</P>
 											<P style={{ marginBottom: 0 }}>
 												Ποσότητα
 											</P>
-											<CartButton
+											<Button
 												type="minus"
 												onClick={() =>
 													this.handleCartChange(
-														product.qty,
+														'minus',
+														product.id,
+														this.props.cart,
+														product.unitPrice,
 													)
 												}
 											>
 												-
-											</CartButton>
+											</Button>
 											<Input
 												value={product.qty}
 												readOnly
 											/>
-											<CartButton
+											<Button
 												type="plus"
 												onClick={() =>
 													this.handleCartChange(
-														product.qty,
+														'plus',
+														product.id,
 													)
 												}
 											>
 												+
-											</CartButton>
+											</Button>
 										</div>
 									</div>
 									<TextDiv className="col-2 d-flex align-items-center justify-content-center">
-										<h4 className="card-text">
+										<h4 className="card-text text-center">
+											<p>Σύνολο</p>
 											<strong>
 												{product.totalPrice}
 											</strong>
@@ -98,7 +142,9 @@ class CartItems extends React.Component {
 										</h4>
 									</TextDiv>
 									<Del
-										onClick={() => this.deleteItem(product)}
+										onClick={() =>
+											this.props.deleteItem(product)
+										}
 										className="col-1 d-flex align-items-center justify-content-center"
 									>
 										x
@@ -115,6 +161,8 @@ class CartItems extends React.Component {
 
 CartItems.propTypes = {
 	cart: PropTypes.array,
+	deleteItem: PropTypes.func,
+	setCart: PropTypes.func,
 };
 
 export default CartItems;
