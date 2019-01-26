@@ -17,9 +17,9 @@ class Cart extends React.Component {
 					<div className="col-7">
 						<CartItems
 							cart={this.props.cart}
-							deleteItem={this.props.deleteItem}
-							handleCartChange={this.props.handleCartChange}
 							setCart={this.props.setCart}
+							handleCartChange={this.props.handleCartChange}
+							deleteItem={this.props.deleteItem}
 						/>
 					</div>
 					<div className="col-5 sticky-top">
