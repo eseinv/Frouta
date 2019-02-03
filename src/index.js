@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'react-image-gallery/styles/css/image-gallery.css';
 import Product from './components/product';
 import { Contact } from './components/contact';
 import { NavBar } from './components/navbar/nav-bar';
@@ -8,12 +9,13 @@ import { ProductList } from './components/product-list';
 import { Footer } from './components/footer';
 import Login from './components/login';
 import Cart from './components/cart/index';
+import { Gallery } from './components/image-gallery';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { userLogged: false, cart: [] };
+		this.state = { userLogged: false, cart: [], images: [] };
 	}
 	changeLogState = logged => {
 		if (logged) {
@@ -40,15 +42,36 @@ class App extends React.Component {
 		);
 	};
 
+	makeGallery = (x, y) => {
+		const images = [
+			{
+				original: `http://lorempixel.com/${x}/${y}/nature/1`,
+				thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+			},
+			{
+				original: `http://lorempixel.com/${x}/${y}/nature/2`,
+				thumbnail: 'http://lorempixel.com/250/150/nature/2/',
+			},
+			{
+				original: `http://lorempixel.com/${x}/${y}/nature/3`,
+				thumbnail: 'http://lorempixel.com/250/150/nature/3/',
+			},
+		];
+		if (images.length > 0) this.setState({ images });
+	};
+
 	componentWillMount() {
 		const savedLogState = localStorage.getItem('userLogged');
 		if (savedLogState === 'true') {
 			this.setState({ userLogged: true });
 		}
+
 		const savedCart = JSON.parse(localStorage.getItem('cart'));
 		if (savedCart !== null) {
 			this.setState({ cart: savedCart });
 		}
+
+		this.makeGallery(1200, 600);
 	}
 
 	render() {
@@ -65,7 +88,16 @@ class App extends React.Component {
 							changeLogState={this.changeLogState}
 							cart={this.state.cart}
 						/>
-
+						<Route
+							exact
+							path="/"
+							render={props => (
+								<Gallery
+									{...props}
+									images={this.state.images}
+								/>
+							)}
+						/>
 						<Route exact path="/" component={ProductList} />
 						<Route
 							path="/product/:id"
