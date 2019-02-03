@@ -18,6 +18,10 @@ const CartAdd = styled.button`
 		outline: none;
 	}
 	&:hover {
+		box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.3);
+		cursor: pointer;
+	}
+	&:active {
 		cursor: pointer;
 		color: #fff;
 		background-color: #587c34;
