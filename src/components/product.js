@@ -1,32 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-// import Switch from 'react-switch';
+import {
+	NotificationContainer,
+	NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import fp from '../images/fp.png';
 import { MainProductList } from '../main-product-list';
 import { CartButton } from './cart-button';
 import { Input } from './input';
-
-const CartAdd = styled.button`
-	background-color: #fff;
-	border: 1px solid #587c34;
-	margin-top: 10px;
-	width: 100px;
-	padding: 5px 6px 5px 6px;
-	color: #587c34;
-	&:focus {
-		outline: none;
-	}
-	&:hover {
-		box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.3);
-		cursor: pointer;
-	}
-	&:active {
-		cursor: pointer;
-		color: #fff;
-		background-color: #587c34;
-	}
-`;
+import { FormButton } from './form-button';
 
 const ProdName = styled.h4`
 	color: #707070;
@@ -37,10 +21,6 @@ const ProdText = styled.p`
 	color: #707070;
 	cursor: default;
 `;
-
-// const ToggleSwitch = styled(Switch)`
-// 	background: '#bfbb7b';
-// `;
 
 const DeadInput = styled(Input)`
 	width: 120px;
@@ -74,8 +54,6 @@ class Product extends React.Component {
 			this.state = {
 				selectedProduct: productFound,
 				selectedQuantity: 1,
-				//  checkedSwitch: false,
-				//  extraPackagePrice: 0,
 			};
 		}
 	}
@@ -84,9 +62,7 @@ class Product extends React.Component {
 		event.preventDefault();
 
 		let newCart;
-		// const extraPackPrice = this.state.extraPackagePrice
-		// 	? 0.2 * this.state.selectedQuantity
-		// 	: 0;
+
 		const newItemToAdd = {
 			id: this.state.selectedProduct.id,
 			qty: this.state.selectedQuantity,
@@ -135,20 +111,28 @@ class Product extends React.Component {
 			});
 	};
 
-	// handlePackageSwitch = e => {
-	// 	const newPrice = this.state.checkedSwitch
-	// 		? 0
-	// 		: 0.2 * this.state.selectedQuantity;
-	// 	this.setState({
-	// 		extraPackagePrice: newPrice,
-	// 		checkedSwitch: e,
-	// 	});
-	// };
+	createNotification = (type, props) => () => {
+		switch (type) {
+			case 'info':
+				NotificationManager.info(
+					'Το προϊόν προστέθηκε στο καλάθι',
+					'',
+					2000,
+				);
+				break;
+			case 'success':
+				NotificationManager.success(
+					'Το προϊόν προστέθηκε στο καλάθι',
+					'',
+					3000,
+					() => props.history.push('/cart'),
+				);
+				break;
+			// no default
+		}
+	};
 
 	render() {
-		// const extraPackPrice = this.state.extraPackagePrice
-		// 	? 0.2 * this.state.selectedQuantity
-		// 	: 0;
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
 		return (
@@ -217,37 +201,19 @@ class Product extends React.Component {
 										+
 									</CartButton>
 								</div>
-								{/* <div className="col-12">
-									<label htmlFor="material-switch">
-										<span style={labelStyle}>
-											Πακετάρισμα (0.2 {'\u20AC'} ανά
-											κιλό)
-										</span>
-									</label>
-								</div> */}
-								{/* <div className="col-12">
-									<ToggleSwitch
-										checked={this.state.checkedSwitch}
-										onChange={st =>
-											this.handlePackageSwitch(st)
-										}
-										offColor="#e2dfb2"
-										onColor="#bfbb7b"
-										onHandleColor="#587c34"
-										handleDiameter={20}
-										uncheckedIcon={false}
-										checkedIcon={false}
-										boxShadow="0px 1px 5px rgba(0, 0, 0, 0.4)"
-										activeBoxShadow="0 1px 5px rgba(57,55,55, 1)"
-										height={17}
-										width={40}
-										className="react-switch"
-										id="material-switch"
-									/>
-								</div> */}
+
 								<div className="col-12">
-									<CartAdd> Προσθήκη </CartAdd>
+									<FormButton
+										width={100}
+										onClick={this.createNotification(
+											'success',
+											this.props,
+										)}
+									>
+										Προσθήκη
+									</FormButton>
 								</div>
+								<NotificationContainer />
 							</div>
 						</form>
 					</div>
