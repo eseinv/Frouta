@@ -49,6 +49,14 @@ const NavLi = () => {
 			>
 				Επικοινωνία
 			</Button>
+
+			<Button
+				className="ml-3 btn"
+				active={page === '/info' ? 'true' : 'false'}
+				to="/info"
+			>
+				Η Πεστίλη
+			</Button>
 		</div>
 	);
 };
