@@ -9,10 +9,11 @@ const Gallery = props => (
 			infinite
 			showThumbnails={false}
 			showPlayButton={false}
+			showFullscreenButton={false}
 			showBullets
 			autoPlay
 			showNav={false}
-			slideDuration={3000}
+			slideDuration={2700}
 		/>
 	</div>
 );
