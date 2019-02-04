@@ -99,9 +99,7 @@ class CartItems extends React.Component {
 												</strong>
 												&euro;
 											</P>
-											<P style={{ marginBottom: 0 }}>
-												Ποσότητα
-											</P>
+											<P className="mb-0">Ποσότητα</P>
 											<Button
 												type="minus"
 												onClick={() =>
@@ -134,7 +132,9 @@ class CartItems extends React.Component {
 									</div>
 									<TextDiv className="col-2 d-flex align-items-center justify-content-center">
 										<h4 className="card-text text-center">
-											<p>Σύνολο</p>
+											<p className="font-weight-light">
+												Σύνολο
+											</p>
 											<strong>
 												{product.totalPrice}
 											</strong>
