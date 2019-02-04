@@ -124,7 +124,7 @@ class Product extends React.Component {
 				NotificationManager.success(
 					'Το προϊόν προστέθηκε στο καλάθι',
 					'',
-					3000,
+					2000,
 					() => props.history.push('/cart'),
 				);
 				break;
