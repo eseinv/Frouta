@@ -10,6 +10,7 @@ import { Footer } from './components/footer';
 import Login from './components/login';
 import Cart from './components/cart/index';
 import { Gallery } from './components/image-gallery';
+import { PastilaInfo } from './components/pastila-info';
 
 class App extends React.Component {
 	constructor(props) {
@@ -110,6 +111,7 @@ class App extends React.Component {
 							)}
 						/>
 						<Route path="/contact" component={Contact} />
+						<Route path="/info" component={PastilaInfo} />
 						<Route
 							path="/cart"
 							render={props => (
