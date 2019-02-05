@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import { FormButton } from '../form-button';
 
 class CartCheckout extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { finalCartPrice: 0 };
-	}
+	state = { finalCartPrice: 0 };
 
 	updatePrices = prices => {
 		this.setState({ finalCartPrice: prices });
 	};
 
-	render() {
+	calculateTotal = () => {
 		const priceArray = [];
 		this.props.cart.map((cartItem, index) =>
 			priceArray.push(this.props.cart[index].totalPrice),
@@ -21,6 +18,16 @@ class CartCheckout extends React.Component {
 		if (prices !== this.state.finalCartPrice) {
 			this.setState({ finalCartPrice: prices });
 		}
+	};
+
+	componentDidMount() {
+		this.calculateTotal();
+	}
+	componentDidUpdate() {
+		this.calculateTotal();
+	}
+
+	render() {
 		return (
 			<div className="sticky-top text-center h3 p-3 mt-2 card">
 				<div className="row">
