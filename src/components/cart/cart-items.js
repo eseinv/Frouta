@@ -41,10 +41,10 @@ const Button = styled.button`
 `;
 
 class CartItems extends React.Component {
-	state = { cart: this.props.cart };
+	/* Change to functional component */
 
 	handleCartChange = (type, id) => {
-		const tempCart = this.state.cart;
+		const tempCart = this.props.cart;
 		const [productToEdit] = tempCart.filter(product => product.id === id);
 		const productInCart = tempCart[tempCart.indexOf(productToEdit)];
 
@@ -53,17 +53,13 @@ class CartItems extends React.Component {
 				productInCart.qty -= 1;
 				productInCart.totalPrice -= productInCart.unitPrice;
 				this.props.setCart(tempCart);
-				this.setState({ cart: tempCart });
 			}
 		} else {
 			productInCart.qty += 1;
 			productInCart.totalPrice += productInCart.unitPrice;
 			this.props.setCart(tempCart);
-			this.setState({ cart: tempCart });
 		}
 	};
-
-	handleInputChange;
 
 	render() {
 		if (this.props.cart.length === 0) {
@@ -71,7 +67,8 @@ class CartItems extends React.Component {
 		}
 		return (
 			<div>
-				{this.state.cart.map(product => (
+				{/* <SingleCartItem /> inside map instead of the whole thing */}
+				{this.props.cart.map(product => (
 					<div key={product.id}>
 						<div className="card my-2">
 							<div className="card-body">
@@ -106,8 +103,6 @@ class CartItems extends React.Component {
 													this.handleCartChange(
 														'minus',
 														product.id,
-														this.props.cart,
-														product.unitPrice,
 													)
 												}
 											>
