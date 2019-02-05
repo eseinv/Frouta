@@ -36,10 +36,10 @@ const DeadInput = styled(Input)`
 	}
 `;
 
-const labelStyle = {
-	color: '#707070',
-	textDecoration: 'underline',
-};
+const Label = styled.label`
+color: '#707070',
+textDecoration: 'underline',
+`;
 
 class Product extends React.Component {
 	constructor(props) {
@@ -153,13 +153,12 @@ class Product extends React.Component {
 						<form onSubmit={e => this.handleFormSubmit(e)}>
 							<div className="row">
 								<div className="col-12">
-									<label
+									<Label
 										htmlFor="quantity"
 										className="d-block"
-										style={labelStyle}
 									>
 										Συνολική τιμή
-									</label>
+									</Label>
 									<DeadInput
 										id="quantity"
 										placeholder="Ποσότητα..."
@@ -169,13 +168,12 @@ class Product extends React.Component {
 									/>
 								</div>
 								<div className="col-12">
-									<label
+									<Label
 										htmlFor="quantity"
 										className="d-block"
-										style={labelStyle}
 									>
 										Ποσότητα (kg)
-									</label>
+									</Label>
 									<CartButton
 										type="minus"
 										handleCartChange={this.handleCartChange}
