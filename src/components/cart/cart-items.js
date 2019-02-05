@@ -16,7 +16,7 @@ const H5 = styled.h5`
 	pointer-events: none;
 `;
 
-const Del = styled.div`
+const Del = styled.button`
 	font-size: 1.2rem;
 	&:hover {
 		cursor: pointer;
@@ -44,7 +44,7 @@ class CartItems extends React.Component {
 	state = { cart: this.props.cart };
 
 	handleCartChange = (type, id) => {
-		const tempCart = JSON.parse(JSON.stringify(this.state.cart));
+		const tempCart = this.state.cart;
 		const [productToEdit] = tempCart.filter(product => product.id === id);
 		const productInCart = tempCart[tempCart.indexOf(productToEdit)];
 
@@ -141,14 +141,16 @@ class CartItems extends React.Component {
 											&euro;
 										</h4>
 									</TextDiv>
-									<Del
-										onClick={() =>
-											this.props.deleteItem(product)
-										}
-										className="col-1 d-flex align-items-center justify-content-center"
-									>
-										x
-									</Del>
+									<div className="col-1 d-flex align-items-center justify-content-center">
+										<Del
+											className="btn"
+											onClick={() =>
+												this.props.deleteItem(product)
+											}
+										>
+											x
+										</Del>
+									</div>
 								</div>
 							</div>
 						</div>
