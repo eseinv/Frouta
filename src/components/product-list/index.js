@@ -1,26 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { MainProductList } from '../main-product-list';
-import fp from '../images/fp.png';
-
-const ProductCard = styled.div`
-	border-radius: 5px;
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0);
-	transition: box-shadow 0.5s ease;
-	cursor: pointer;
-	&:hover {
-		box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.1);
-	}
-`;
-
-const H5 = styled.h5`
-	color: #707070;
-`;
-
-const P = styled.p`
-	color: #707070;
-`;
+import { MainProductList } from '../../data/main-product-list';
+import fp from '../../images/fp.png';
+import { ProductCard, H5, P } from './style';
 
 const maxInfoChars = 116;
 

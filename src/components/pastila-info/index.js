@@ -1,26 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const H3 = styled.h3`
-	color: #707070;
-	&:hover {
-		cursor: default;
-	}
-`;
-
-const H5 = styled.h5`
-	color: #707070;
-	&:hover {
-		cursor: default;
-	}
-`;
-
-const P = styled.p`
-	color: #373535;
-	&:hover {
-		cursor: default;
-	}
-`;
+import { H3, H5, P } from './style';
 
 export const PastilaInfo = () => (
 	<div className="container mt-3 text-justify">

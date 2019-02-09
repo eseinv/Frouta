@@ -1,45 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
 	NotificationContainer,
 	NotificationManager,
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import fp from '../images/fp.png';
-import { MainProductList } from '../main-product-list';
-import { CartButton } from './cart-button';
-import { Input } from './input';
-import { FormButton } from './form-button';
-
-const ProdName = styled.h4`
-	color: #707070;
-	cursor: default;
-`;
-
-const ProdText = styled.p`
-	color: #707070;
-	cursor: default;
-`;
-
-const DeadInput = styled(Input)`
-	width: 120px;
-	border-color: transparent;
-	background: none;
-	font-size: 28px;
-	font-weight: bold;
-	color: #1b1b1b;
-	text-align: left;
-	pointer-events: none;
-	&:hover {
-		cursor: default;
-	}
-`;
-
-const Label = styled.label`
-color: '#707070',
-textDecoration: 'underline',
-`;
+import fp from '../../images/fp.png';
+import { MainProductList } from '../../data/main-product-list';
+import { CartButton } from '../styled/cart-button';
+import { FormButton } from '../styled/form-button';
+import { Input, DeadInput, ProdName, ProdText, Label } from './style';
 
 class Product extends React.Component {
 	constructor(props) {

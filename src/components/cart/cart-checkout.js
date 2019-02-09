@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormButton } from '../form-button';
+import { FormButton } from '../styled/form-button';
 
 class CartCheckout extends React.Component {
 	state = { finalCartPrice: 0 };

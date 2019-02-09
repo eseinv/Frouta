@@ -1,18 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Facebook } from '../icons/';
-import { Skype } from '../icons/';
-import { Phone } from '../icons/';
-
-const Hr = styled.hr`
-	color: #587c34;
-`;
-
-const ContactText = styled.p`
-	color: #707070;
-	font-size: 18px;
-	letter-spacing: 1.1px;
-`;
+import { Facebook } from '../../icons/';
+import { Skype } from '../../icons/';
+import { Phone } from '../../icons/';
+import { Hr, ContactText } from './style';
 
 const Footer = () => (
 	<div className="container mt-5 pb-5">

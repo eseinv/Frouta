@@ -3,8 +3,6 @@
 
 export { SignInAltSolid } from './sign-in-alt-solid';
 export { ShoppingCartSolid } from './shopping-cart-solid';
-export { ShoppingCartPlus } from './shopping-cart-plus';
 export { Facebook } from './facebook';
 export { Skype } from './skype';
 export { Phone } from './phone';
-export { Delete } from './delete';

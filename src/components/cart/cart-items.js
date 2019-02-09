@@ -1,44 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import fp from '../../images/fp.png';
-import { Input } from '../input';
-
-const TextDiv = styled.div`
-	pointer-events: none;
-`;
-
-const P = styled.p`
-	pointer-events: none;
-`;
-
-const H5 = styled.h5`
-	pointer-events: none;
-`;
-
-const Del = styled.button`
-	font-size: 1.2rem;
-	&:hover {
-		cursor: pointer;
-		background-color: #dc3545;
-		opacity: 1;
-	}
-`;
-
-const Button = styled.button`
-	border: 1px solid #373535;
-	border-radius: 3px;
-	background-color: #F6F8F8
-	font-weight: bold
-	width: 40px
-	height: 27px;
-	&:focus {
-		outline: none;
-	}
-	&:hover {
-		cursor: pointer;
-	}
-`;
+import { DisabledInput, TextDiv, P, H5, Del, Button } from './style';
 
 class CartItems extends React.Component {
 	/* Change to functional component */
@@ -108,7 +71,7 @@ class CartItems extends React.Component {
 											>
 												-
 											</Button>
-											<Input
+											<DisabledInput
 												value={product.qty}
 												readOnly
 											/>

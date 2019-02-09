@@ -1,27 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import map from '../images/contact_map.png';
-
-const H3 = styled.h3`
-	color: #707070;
-	&:hover {
-		cursor: default;
-	}
-`;
-
-const H5 = styled.h5`
-	color: #707070;
-	&:hover {
-		cursor: default;
-	}
-`;
-
-const P = styled.p`
-	color: #373535;
-	&:hover {
-		cursor: default;
-	}
-`;
+import map from '../../images/contact_map.png';
+import { H3, H5, P } from './style';
 
 const Contact = () => (
 	<div>

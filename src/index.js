@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import Product from './components/product';
-import { Contact } from './components/contact';
-import { NavBar } from './components/navbar/nav-bar';
-import { ProductList } from './components/product-list';
-import { Footer } from './components/footer';
-import Login from './components/login';
+import Login from './components/login/';
 import Cart from './components/cart/index';
-import { Gallery } from './components/image-gallery';
-import { PastilaInfo } from './components/pastila-info';
+import Product from './components/product/';
+import { Contact } from './components/contact/';
+import { NavBar } from './components/navbar/';
+import { ProductList } from './components/product-list/';
+import { Footer } from './components/footer/';
+import { Gallery } from './components/image-gallery/';
+import { PastilaInfo } from './components/pastila-info/';
 
 class App extends React.Component {
 	constructor(props) {
