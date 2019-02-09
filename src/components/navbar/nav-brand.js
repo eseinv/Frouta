@@ -1,12 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 // import fp from '../../images/fp.png';
 import fp from '../../images/fp-logo-2x.png';
 import fpMobile from '../../images/FINAL_fp_logo@2x.png';
-
-const Fp = styled.img`
-	max-width: 90%;
-`;
+import { Fp } from './style';
 
 const NavBrand = () => (
 	<div className="ml-4 p-2">
