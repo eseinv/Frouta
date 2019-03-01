@@ -76,10 +76,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		// console.log('Cart items:');
-		// this.state.cart.map(item => console.log(item));
-		// console.log('--------------------------------');
-
 		return (
 			<div>
 				<Router>
