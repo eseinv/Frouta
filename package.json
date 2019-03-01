@@ -51,6 +51,7 @@
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.6.1",
     "react-image-gallery": "^0.8.12",
+    "react-loader-spinner": "^2.3.0",
     "react-notifications": "^1.4.3",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
