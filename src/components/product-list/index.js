@@ -54,11 +54,7 @@ class ProductList extends React.Component {
 								this.props.history.push(`product/${product.id}`)
 							}
 						>
-							<EachProduct
-								productPicture={fp}
-								productName={product.name}
-								productInfo={product.info}
-							/>
+							<EachProduct product={product} />
 						</div>
 					))}
 				</div>
