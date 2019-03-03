@@ -5,33 +5,64 @@ import {
 	NotificationManager,
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import Loader from 'react-loader-spinner';
 import fp from '../../images/fp.png';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
 import { Input, DeadInput, ProdName, ProdText, Label } from './style';
 
-class Product extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { selectedProduct: [], selectedQuantity: 0 };
+// const sProdArray = [
+// 	{
+// 		name: 'something',
+// 		price: 123,
+// 	},
+// 	{
+// 		name: 'something',
+// 		price: 123,
+// 	},
+// ];
 
+// const sProdObject = {
+// 	name: 'something',
+// 	price: 123,
+// };
+
+// sProdArray.name === 'undefined';
+// sProdArray[0].name === 'something';
+
+// sProdObject.name === 'something';
+
+class Product extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			selectedProduct: '',
+			selectedQuantity: 0,
+			loading: true,
+		};
+	}
+
+	fetchData = () => {
 		const selectedProductId = this.props.match.params.id;
-		fetch(`http://homestead.test/product/${selectedProductId}`, {
+		return fetch(`http://homestead.test/product/${selectedProductId}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		})
 			.then(result => result.json())
-			.then(product => this.saveProduct(product))
+			.then(product =>
+				this.setState({
+					selectedProduct: product,
+					selectedQuantity: 1,
+					loading: false,
+				}),
+			)
 			.catch(error => console.error('Error:', error));
-	}
-
-	saveProduct = product => {
-		this.setState({ selectedProduct: product, selectedQuantity: 1 });
-		console.log('fetched product:', product);
 	};
-
+	componentDidMount() {
+		this.fetchData();
+	}
 	handleFormSubmit = event => {
 		event.preventDefault();
 
@@ -110,89 +141,98 @@ class Product extends React.Component {
 		console.log('product in state:', this.state.selectedProduct);
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
-		return (
-			<div className="container mt-4">
-				<div className="row mt-4">
-					<div className="col-sm-12 col-lg-3 offset-lg-1">
-						<img
-							src={fp}
-							alt="Product Name"
-							className="img-fluid"
-						/>
-					</div>
-					<div className="col-sm-12 col-lg-4">
-						<ProdName className="mt-2">
-							{this.state.selectedProduct.name}
-						</ProdName>
-						<ProdText>{this.state.selectedProduct.info}</ProdText>
-						<form onSubmit={e => this.handleFormSubmit(e)}>
-							<div className="row">
-								<div className="col-12">
-									<Label
-										htmlFor="quantity"
-										className="d-block"
-									>
-										Συνολική τιμή
-									</Label>
-									<DeadInput
-										id="quantity"
-										placeholder="Ποσότητα..."
-										type="text"
-										value={totalPrice}
-										readOnly
-									/>
-								</div>
-								<div className="col-12">
-									<Label
-										htmlFor="quantity"
-										className="d-block"
-									>
-										Ποσότητα (kg)
-									</Label>
-									<CartButton
-										type="minus"
-										handleCartChange={this.handleCartChange}
-									>
-										-
-									</CartButton>
-									<Input
-										className="mx-1"
-										id="quantity"
-										onChange={event =>
-											this.handleInputChange(
-												event.target.value,
-											)
-										}
-										placeholder="Ποσότητα..."
-										type="text"
-										value={this.state.selectedQuantity}
-									/>
-									<CartButton
-										type="plus"
-										handleCartChange={this.handleCartChange}
-									>
-										+
-									</CartButton>
-								</div>
+		if (!this.state.loading) {
+			return (
+				<div className="container mt-4">
+					<div className="row mt-4">
+						<div className="col-sm-12 col-lg-3 offset-lg-1">
+							<img
+								src={fp}
+								alt="Product Name"
+								className="img-fluid"
+							/>
+						</div>
+						<div className="col-sm-12 col-lg-4">
+							<ProdName className="mt-2">
+								{this.state.selectedProduct.name}
+							</ProdName>
+							<ProdText>
+								{this.state.selectedProduct.info}
+							</ProdText>
+							<form onSubmit={e => this.handleFormSubmit(e)}>
+								<div className="row">
+									<div className="col-12">
+										<Label
+											htmlFor="quantity"
+											className="d-block"
+										>
+											Συνολική τιμή
+										</Label>
+										<DeadInput
+											id="quantity"
+											placeholder="Ποσότητα..."
+											type="text"
+											value={totalPrice}
+											readOnly
+										/>
+									</div>
+									<div className="col-12">
+										<Label
+											htmlFor="quantity"
+											className="d-block"
+										>
+											Ποσότητα (kg)
+										</Label>
+										<CartButton
+											type="minus"
+											handleCartChange={
+												this.handleCartChange
+											}
+										>
+											-
+										</CartButton>
+										<Input
+											className="mx-1"
+											id="quantity"
+											onChange={event =>
+												this.handleInputChange(
+													event.target.value,
+												)
+											}
+											placeholder="Ποσότητα..."
+											type="text"
+											value={this.state.selectedQuantity}
+										/>
+										<CartButton
+											type="plus"
+											handleCartChange={
+												this.handleCartChange
+											}
+										>
+											+
+										</CartButton>
+									</div>
 
-								<div className="col-12">
-									<FormButton
-										width={100}
-										onClick={this.createNotification(
-											'success',
-											this.props,
-										)}
-									>
-										Προσθήκη
-									</FormButton>
+									<div className="col-12">
+										<FormButton
+											width={100}
+											onClick={this.createNotification(
+												'success',
+												this.props,
+											)}
+										>
+											Προσθήκη
+										</FormButton>
+									</div>
+									<NotificationContainer />
 								</div>
-								<NotificationContainer />
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		);
+			);
+		}
+		return <Loader type="Oval" color="#27ae60" height={80} width={80} />;
 	}
 }
 
