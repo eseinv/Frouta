@@ -6,31 +6,9 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Loader from 'react-loader-spinner';
-import fp from '../../images/fp.png';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
 import { Input, DeadInput, ProdName, ProdText, Label } from './style';
-
-// const sProdArray = [
-// 	{
-// 		name: 'something',
-// 		price: 123,
-// 	},
-// 	{
-// 		name: 'something',
-// 		price: 123,
-// 	},
-// ];
-
-// const sProdObject = {
-// 	name: 'something',
-// 	price: 123,
-// };
-
-// sProdArray.name === 'undefined';
-// sProdArray[0].name === 'something';
-
-// sProdObject.name === 'something';
 
 class Product extends React.Component {
 	constructor() {
@@ -138,7 +116,6 @@ class Product extends React.Component {
 	};
 
 	render() {
-		console.log('product in state:', this.state.selectedProduct);
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
 		if (!this.state.loading) {
@@ -147,7 +124,9 @@ class Product extends React.Component {
 					<div className="row mt-4">
 						<div className="col-sm-12 col-lg-3 offset-lg-1">
 							<img
-								src={fp}
+								src={`http://homestead.test/images/${
+									this.state.selectedProduct.image
+								}`}
 								alt="Product Name"
 								className="img-fluid"
 							/>
@@ -232,7 +211,19 @@ class Product extends React.Component {
 				</div>
 			);
 		}
-		return <Loader type="Oval" color="#27ae60" height={80} width={80} />;
+		return (
+			<React.Fragment>
+				<div className="d-flex justify-content-center mt-4">
+					<Loader
+						type="Oval"
+						color="#27ae60"
+						height={80}
+						width={80}
+					/>
+				</div>
+				<p className="text-center">Παρακαλώ περιμένετε</p>
+			</React.Fragment>
+		);
 	}
 }
 
