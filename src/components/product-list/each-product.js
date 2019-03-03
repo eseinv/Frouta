@@ -10,7 +10,7 @@ const EachProduct = props => {
 		<ProductCard className="card border-0">
 			<img
 				className="card-img-top w-25 mt-4 ml-4"
-				src={`http://homestead.test/${product.image}`}
+				src={`http://homestead.test/images/${product.image}`}
 				alt={product.name}
 			/>
 			<div className="card-body">
@@ -25,6 +25,8 @@ const EachProduct = props => {
 	);
 };
 
-EachProduct.propTypes = {};
+EachProduct.propTypes = {
+	product: PropTypes.object,
+};
 
 export { EachProduct };
