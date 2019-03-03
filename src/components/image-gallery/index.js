@@ -22,7 +22,7 @@ class Gallery extends React.Component {
 								width={80}
 							/>
 						</div>
-						<p className="text-center">Loading gallery</p>
+						<p className="text-center">Οι φωτογραφίες φορτώνουν</p>
 					</div>
 				) : null}
 				<ImagesLoaded done={this.isLoaded}>
