@@ -30,7 +30,7 @@ class ProductList extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				{!this.state.loading ? (
+				{this.state.loading ? (
 					<div>
 						<div className="d-flex justify-content-center">
 							<Loader
@@ -40,7 +40,7 @@ class ProductList extends React.Component {
 								width={80}
 							/>
 						</div>
-						<p className="text-center">Loading</p>
+						<p className="text-center">Τα προϊόντα φορτώνουν</p>
 					</div>
 				) : null}
 
