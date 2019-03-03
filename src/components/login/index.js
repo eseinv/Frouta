@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Users } from '../../data/user-list';
 import { H3, Input, LogError, LogButton } from './style';
 
 class Login extends React.Component {
-	state = { usernameField: '', passwordField: '', logError: false };
+	state = {
+		usernameField: '',
+		passwordField: '',
+		response: { type: '', message: '' },
+	};
 
 	handleInputChange = (value, fieldType) => {
 		const target = `${fieldType}Field`;
@@ -15,20 +18,42 @@ class Login extends React.Component {
 
 	handleFormSubmit = (event, userEntered, passEntered) => {
 		event.preventDefault();
-
-		const checkUser = Users.filter(
-			user =>
-				user.username === userEntered && user.password === passEntered,
-		);
-		const [userFound] = checkUser;
-
-		if (userFound) {
-			this.setState({ logError: false }, () =>
-				this.props.history.push(`/`),
-			);
-			this.props.changeLogState(true);
-		} else this.setState({ logError: true });
+		const logInfo = {
+			email: userEntered,
+			password: passEntered,
+		};
+		fetch('http://homestead.test/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(logInfo),
+		})
+			.then(result => result.json())
+			.then(response => this.handleResponse(response))
+			.catch(error => console.error('Error:', error));
 	};
+
+	handleResponse(response) {
+		if (response.token) {
+			localStorage.setItem('token', response.token);
+			this.props.changeLogState(true);
+			this.props.history.push('/');
+		}
+		if (response.email) {
+			this.setState({
+				response: { error: true, message: 'Enter a valid email' },
+			});
+		}
+		if (response.error) {
+			this.setState({
+				response: {
+					error: true,
+					message: 'Incorrect username or password',
+				},
+			});
+		}
+	}
 
 	render() {
 		return (
@@ -81,9 +106,9 @@ class Login extends React.Component {
 									className="form-control"
 								/>
 							</div>
-							{this.state.logError === true && (
+							{this.state.response.error && (
 								<LogError className="text-center">
-									Λανθασμένα στοιχεία εισόδου
+									{this.state.response.message}
 								</LogError>
 							)}
 							<LogButton className="btn-block mt-4 py-2">
@@ -98,8 +123,8 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-	changeLogState: PropTypes.func,
 	history: PropTypes.object,
+	changeLogState: PropTypes.func,
 };
 
 export default Login;
