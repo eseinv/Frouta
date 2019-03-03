@@ -24,8 +24,10 @@ class App extends React.Component {
 				localStorage.setItem('userLogged', 'true'),
 			);
 		}
-		return this.setState({ userLogged: false }, () =>
-			localStorage.removeItem('userLogged'),
+		return this.setState(
+			{ userLogged: false },
+			() => localStorage.removeItem('userLogged'),
+			localStorage.removeItem('token'),
 		);
 	};
 
