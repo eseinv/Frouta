@@ -22,7 +22,7 @@ const NavBar = props => (
 					>
 						<NavActions userLogged={props.userLogged} />
 					</Button>
-					{props.userLogged && (
+					{props.userLogged && localStorage.getItem('token') && (
 						<LogOut onClick={() => props.changeLogState(false)}>
 							Έξοδος
 						</LogOut>
