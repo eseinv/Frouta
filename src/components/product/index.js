@@ -6,7 +6,6 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import fp from '../../images/fp.png';
-import { MainProductList } from '../../data/main-product-list';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
 import { Input, DeadInput, ProdName, ProdText, Label } from './style';
@@ -14,19 +13,24 @@ import { Input, DeadInput, ProdName, ProdText, Label } from './style';
 class Product extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = { selectedProduct: [], selectedQuantity: 0 };
 
-		this.selectedProductId = this.props.match.params.id;
-		const filterSelected = MainProductList.filter(
-			product => product.id === this.selectedProductId,
-		);
-		if (filterSelected) {
-			const [productFound] = filterSelected;
-			this.state = {
-				selectedProduct: productFound,
-				selectedQuantity: 1,
-			};
-		}
+		const selectedProductId = this.props.match.params.id;
+		fetch(`http://homestead.test/product/${selectedProductId}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then(result => result.json())
+			.then(product => this.saveProduct(product))
+			.catch(error => console.error('Error:', error));
 	}
+
+	saveProduct = product => {
+		this.setState({ selectedProduct: product, selectedQuantity: 1 });
+		console.log('fetched product:', product);
+	};
 
 	handleFormSubmit = event => {
 		event.preventDefault();
@@ -103,6 +107,7 @@ class Product extends React.Component {
 	};
 
 	render() {
+		console.log('product in state:', this.state.selectedProduct);
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
 		return (
