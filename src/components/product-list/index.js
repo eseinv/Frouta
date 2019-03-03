@@ -2,7 +2,6 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import { EachProduct } from './each-product';
-import fp from '../../images/fp.png';
 
 class ProductList extends React.Component {
 	state = { products: [], loading: true };
