@@ -4,7 +4,6 @@ import { ProductCard, H5, P } from './style';
 const maxInfoChars = 116;
 
 const EachProduct = props => {
-	console.log(props);
 	const { product } = props;
 	return (
 		<ProductCard className="card border-0">
