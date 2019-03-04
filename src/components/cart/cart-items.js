@@ -26,23 +26,35 @@ class CartItems extends React.Component {
 			.catch(error => console.error('Error:', error));
 	};
 
-	updateProductQuantity = () => {
+	updateProductQuantity = (cartId, newQuantity) => {
+		console.log('new qty:', newQuantity);
 		const token = localStorage.getItem('token');
-		const userId = getIdFromToken(token);
-		return fetch(`http://homestead.test/cart/${userId}`, {
+		return fetch(`http://homestead.test/cart/${cartId}`, {
 			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: {
+				quantity: newQuantity,
+			},
+		})
+			.then(result => result.json())
+			.then(result => console.log(result))
+			.catch(error => console.error('Error:', error));
+	};
+
+	deleteProductFromCart = cartId => {
+		const token = localStorage.getItem('token');
+		return fetch(`http://homestead.test/cart/${cartId}`, {
+			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`,
 			},
 		})
 			.then(result => result.json())
-			.then(fetchedCartInfo =>
-				this.setState({
-					fetchedCartInfo,
-					loading: false,
-				}),
-			)
+			.then(() => this.fetchData())
 			.catch(error => console.error('Error:', error));
 	};
 
@@ -54,17 +66,22 @@ class CartItems extends React.Component {
 		const tempCart = this.state.fetchedCartInfo;
 		const [productToEdit] = tempCart.filter(product => product.id === id);
 		const productInCart = tempCart[tempCart.indexOf(productToEdit)];
-
 		if (type === 'minus') {
-			if (productInCart.qty > 1) {
-				productInCart.qty -= 1;
+			if (productInCart.quantity > 1) {
+				productInCart.quantity -= 1;
 				productInCart.totalPrice -= productInCart.unitPrice;
-				//	TODO update request with debounce
+				this.updateProductQuantity(
+					productInCart.id,
+					productInCart.quantity,
+				);
 			}
 		} else {
-			productInCart.qty += 1;
+			productInCart.quantity += 1;
 			productInCart.totalPrice += productInCart.unitPrice;
-			//	TODO update request with debounce
+			this.updateProductQuantity(
+				productInCart.id,
+				productInCart.quantity,
+			);
 		}
 	};
 
@@ -150,9 +167,10 @@ class CartItems extends React.Component {
 										<div className="col-1 d-flex align-items-center justify-content-center">
 											<Del
 												className="btn"
-												onClick={
-													console.log('deleted')
-													//	TODO delete request
+												onClick={() =>
+													this.deleteProductFromCart(
+														product.id,
+													)
 												}
 											>
 												x

@@ -106,7 +106,6 @@ class Product extends React.Component {
 	};
 
 	render() {
-		console.log(this.state.selectedProduct);
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
 		if (!this.state.loading) {
