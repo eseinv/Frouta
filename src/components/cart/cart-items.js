@@ -35,9 +35,9 @@ class CartItems extends React.Component {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`,
 			},
-			body: {
+			body: JSON.stringify({
 				quantity: newQuantity,
-			},
+			}),
 		})
 			.then(result => result.json())
 			.then(result => console.log(result))
