@@ -42,14 +42,17 @@ class Login extends React.Component {
 		}
 		if (response.email) {
 			this.setState({
-				response: { error: true, message: 'Enter a valid email' },
+				response: {
+					error: true,
+					message: 'Εισάγετε ένα πραγματικό email',
+				},
 			});
 		}
 		if (response.error) {
 			this.setState({
 				response: {
 					error: true,
-					message: 'Incorrect username or password',
+					message: 'Λάθος email ή κωδικός',
 				},
 			});
 		}
@@ -60,7 +63,7 @@ class Login extends React.Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-12 mt-5 mb-3 text-center">
-						<H3>Login</H3>
+						<H3>Είσοδος</H3>
 					</div>
 				</div>
 				<div className="row justify-content-center">
