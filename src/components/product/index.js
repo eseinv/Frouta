@@ -6,6 +6,7 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Loader from 'react-loader-spinner';
+import { getIdFromToken } from '../../data/decode-token';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
 import { Input, DeadInput, ProdName, ProdText, Label } from './style';
@@ -14,7 +15,7 @@ class Product extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			selectedProduct: '',
+			selectedProduct: {},
 			selectedQuantity: 0,
 			loading: true,
 		};
@@ -43,37 +44,26 @@ class Product extends React.Component {
 	}
 	handleFormSubmit = event => {
 		event.preventDefault();
-
-		let newCart;
-
+		const userId = getIdFromToken(localStorage.getItem('token'));
 		const newItemToAdd = {
-			id: this.state.selectedProduct.id,
-			qty: this.state.selectedQuantity,
-			unitPrice: this.state.selectedProduct.unitPrice,
-			totalPrice:
-				this.state.selectedProduct.unitPrice *
-				this.state.selectedQuantity,
-			//	+ extraPackPrice,
+			productId: this.state.selectedProduct.id,
+			quantity: this.state.selectedQuantity,
+			userId,
 			name: this.state.selectedProduct.name,
 			info: this.state.selectedProduct.info,
 			image: this.state.selectedProduct.image,
+			unitPrice: this.state.selectedProduct.unitPrice,
 		};
-
-		const check = this.props.cart.filter(
-			item => item.id === newItemToAdd.id,
-		)[0];
-
-		if (check) {
-			const index = this.props.cart.indexOf(check);
-			const tempCart = this.props.cart;
-			check.qty += this.state.selectedQuantity;
-			check.totalPrice += newItemToAdd.totalPrice;
-			tempCart[index] = check;
-			newCart = tempCart;
-		} else {
-			newCart = [...this.props.cart, newItemToAdd];
-		}
-		return this.props.setCart(newCart);
+		fetch(`http://homestead.test/cart/${userId}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+			body: JSON.stringify(newItemToAdd),
+		})
+			.then(result => result.json())
+			.catch(error => console.error('Error:', error));
 	};
 
 	handleInputChange = value => {
@@ -116,6 +106,7 @@ class Product extends React.Component {
 	};
 
 	render() {
+		console.log(this.state.selectedProduct);
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
 		if (!this.state.loading) {
@@ -229,8 +220,6 @@ class Product extends React.Component {
 
 Product.propTypes = {
 	match: PropTypes.object,
-	cart: PropTypes.array,
-	setCart: PropTypes.func,
 };
 
 export default Product;
