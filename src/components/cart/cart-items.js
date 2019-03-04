@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
+import { getIdFromToken } from '../../data/decode-token';
 import { DisabledInput, TextDiv, P, H5, Del, Button } from './style';
 
 class CartItems extends React.Component {
 	state = { loading: true, fetchedCartInfo: [] };
 
 	fetchData = () => {
-		const userId = 1;
 		const token = localStorage.getItem('token');
+		const userId = getIdFromToken(token);
 		return fetch(`http://homestead.test/cart/${userId}`, {
 			method: 'GET',
 			headers: {
@@ -18,24 +18,40 @@ class CartItems extends React.Component {
 		})
 			.then(result => result.json())
 			.then(fetchedCartInfo =>
-				this.setState(
-					{
-						fetchedCartInfo,
-						loading: false,
-					},
-					console.log(fetchedCartInfo),
-				),
+				this.setState({
+					fetchedCartInfo,
+					loading: false,
+				}),
+			)
+			.catch(error => console.error('Error:', error));
+	};
+
+	updateProductQuantity = () => {
+		const token = localStorage.getItem('token');
+		const userId = getIdFromToken(token);
+		return fetch(`http://homestead.test/cart/${userId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+			.then(result => result.json())
+			.then(fetchedCartInfo =>
+				this.setState({
+					fetchedCartInfo,
+					loading: false,
+				}),
 			)
 			.catch(error => console.error('Error:', error));
 	};
 
 	componentDidMount() {
 		this.fetchData();
-		//	console.log(this.state.fetchedCartInfo);
 	}
 
 	handleCartChange = (type, id) => {
-		const tempCart = this.props.cart;
+		const tempCart = this.state.fetchedCartInfo;
 		const [productToEdit] = tempCart.filter(product => product.id === id);
 		const productInCart = tempCart[tempCart.indexOf(productToEdit)];
 
@@ -43,18 +59,18 @@ class CartItems extends React.Component {
 			if (productInCart.qty > 1) {
 				productInCart.qty -= 1;
 				productInCart.totalPrice -= productInCart.unitPrice;
-				this.props.setCart(tempCart);
+				//	TODO update request with debounce
 			}
 		} else {
 			productInCart.qty += 1;
 			productInCart.totalPrice += productInCart.unitPrice;
-			this.props.setCart(tempCart);
+			//	TODO update request with debounce
 		}
 	};
 
 	render() {
 		if (!this.state.loading) {
-			if (this.props.cart.length === 0) {
+			if (this.state.fetchedCartInfo.length === 0) {
 				return <h4 className="mt-5">Το καλάθι σας είναι άδειο</h4>;
 			}
 			return (
@@ -65,7 +81,7 @@ class CartItems extends React.Component {
 							<div className="card my-2">
 								<div className="card-body">
 									<div className="row">
-										<div className="col-3">
+										<div className="col-3 d-flex align-self-center">
 											<img
 												className="img-fluid"
 												src={`http://homestead.test/images/${
@@ -134,10 +150,9 @@ class CartItems extends React.Component {
 										<div className="col-1 d-flex align-items-center justify-content-center">
 											<Del
 												className="btn"
-												onClick={() =>
-													this.props.deleteItem(
-														product,
-													)
+												onClick={
+													console.log('deleted')
+													//	TODO delete request
 												}
 											>
 												x
@@ -161,16 +176,10 @@ class CartItems extends React.Component {
 						width={80}
 					/>
 				</div>
-				<p className="text-center">Παρακαλώ περιμένετε</p>
+				<p className="text-center">Το καλάθι σας φορτώνει</p>
 			</React.Fragment>
 		);
 	}
 }
-
-CartItems.propTypes = {
-	cart: PropTypes.array,
-	deleteItem: PropTypes.func,
-	setCart: PropTypes.func,
-};
 
 export default CartItems;
