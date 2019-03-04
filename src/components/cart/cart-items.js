@@ -40,7 +40,7 @@ class CartItems extends React.Component {
 			}),
 		})
 			.then(result => result.json())
-			.then(result => console.log(result))
+			.then(() => this.fetchData())
 			.catch(error => console.error('Error:', error));
 	};
 
