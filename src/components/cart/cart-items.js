@@ -8,22 +8,25 @@ class CartItems extends React.Component {
 
 	fetchData = () => {
 		const token = localStorage.getItem('token');
-		const userId = getIdFromToken(token);
-		return fetch(`http://homestead.test/cart/${userId}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then(result => result.json())
-			.then(fetchedCartInfo =>
-				this.setState({
-					fetchedCartInfo,
-					loading: false,
-				}),
-			)
-			.catch(error => console.error('Error:', error));
+		if (token) {
+			const userId = getIdFromToken(token);
+			return fetch(`http://homestead.test/cart/${userId}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then(result => result.json())
+				.then(fetchedCartInfo =>
+					this.setState({
+						fetchedCartInfo,
+						loading: false,
+					}),
+				)
+				.catch(error => console.error('Error:', error));
+		}
+		return null;
 	};
 
 	updateProductQuantity = (cartId, newQuantity) => {

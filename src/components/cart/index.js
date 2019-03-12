@@ -10,6 +10,13 @@ class Cart extends React.Component {
 		this.state = {};
 	}
 
+	componentDidMount() {
+		const token = localStorage.getItem('token');
+		if (!token) {
+			this.props.history.replace('/login');
+		}
+	}
+
 	render() {
 		return (
 			<div className="container">
@@ -36,5 +43,6 @@ Cart.propTypes = {
 	deleteItem: PropTypes.func,
 	handleCartChange: PropTypes.func,
 	setCart: PropTypes.func,
+	history: PropTypes.object,
 };
 export default Cart;
