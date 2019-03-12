@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 import { H3, Input, LogError, LogButton } from './style';
 
 class Login extends React.Component {
@@ -7,6 +8,7 @@ class Login extends React.Component {
 		usernameField: '',
 		passwordField: '',
 		response: { type: '', message: '' },
+		loading: false,
 	};
 
 	handleInputChange = (value, fieldType) => {
@@ -18,6 +20,7 @@ class Login extends React.Component {
 
 	handleFormSubmit = (event, userEntered, passEntered) => {
 		event.preventDefault();
+		this.setState({ loading: true });
 		const logInfo = {
 			email: userEntered,
 			password: passEntered,
@@ -35,6 +38,7 @@ class Login extends React.Component {
 	};
 
 	handleResponse(response) {
+		this.setState({ loading: false });
 		if (response.token) {
 			localStorage.setItem('token', response.token);
 			this.props.changeLogState(true);
@@ -109,6 +113,21 @@ class Login extends React.Component {
 									className="form-control"
 								/>
 							</div>
+							{this.state.loading && (
+								<React.Fragment>
+									<div className="d-flex justify-content-center mt-4">
+										<Loader
+											type="Oval"
+											color="#27ae60"
+											height={40}
+											width={40}
+										/>
+									</div>
+									<p className="text-center">
+										Έλεγχος στοιχείων
+									</p>
+								</React.Fragment>
+							)}
 							{this.state.response.error && (
 								<LogError className="text-center">
 									{this.state.response.message}
