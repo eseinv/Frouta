@@ -30,7 +30,6 @@ class CartItems extends React.Component {
 	};
 
 	updateProductQuantity = (cartId, newQuantity) => {
-		console.log('new qty:', newQuantity);
 		const token = localStorage.getItem('token');
 		return fetch(`http://homestead.test/cart/${cartId}`, {
 			method: 'PUT',
