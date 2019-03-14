@@ -41,3 +41,7 @@ export const Button = styled.button`
 		cursor: pointer;
 	}
 `;
+
+export const PMB = styled(P)`
+	margin-bottom: 0.5rem;
+`;

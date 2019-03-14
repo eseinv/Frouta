@@ -1,36 +1,125 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartItems from './cart-items';
+import Loader from 'react-loader-spinner';
+import { CartItems } from './cart-items';
 import CartCheckout from './cart-checkout';
+import { getIdFromToken } from '../../data/decode-token';
 
 class Cart extends React.Component {
-	constructor(props) {
-		super(props);
+	state = {
+		fetchedCartInfo: [],
+		loading: true,
+	};
 
-		this.state = {};
-	}
+	fetchData = () => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const userId = getIdFromToken(token);
+			return fetch(`http://homestead.test/cart/${userId}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then(result => result.json())
+				.then(fetchedCartInfo =>
+					this.setState({
+						fetchedCartInfo,
+						loading: false,
+					}),
+				)
+				.catch(error => console.error('Error:', error));
+		}
+		return null;
+	};
+
+	updateQty = (cartId, newQuantity) => {
+		const token = localStorage.getItem('token');
+		return fetch(`http://homestead.test/cart/${cartId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({
+				quantity: newQuantity,
+			}),
+		})
+			.then(result => result.json())
+			.then(() => this.fetchData())
+			.catch(error => console.error('Error:', error));
+	};
+
+	deleteProd = cartId => {
+		const token = localStorage.getItem('token');
+		return fetch(`http://homestead.test/cart/${cartId}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+			.then(result => result.json())
+			.then(() => this.fetchData())
+			.catch(error => console.error('Error:', error));
+	};
+
+	handleChange = (type, id) => {
+		const tempCart = this.state.fetchedCartInfo;
+		const [productToEdit] = tempCart.filter(product => product.id === id);
+		const temp = tempCart[tempCart.indexOf(productToEdit)];
+		if (type === 'minus') {
+			if (temp.quantity > 1) {
+				temp.quantity -= 1;
+				temp.totalPrice -= temp.unitPrice;
+				this.updateQty(temp.id, temp.quantity);
+			}
+		} else {
+			temp.quantity += 1;
+			temp.totalPrice += temp.unitPrice;
+			this.updateQty(temp.id, temp.quantity);
+		}
+	};
 
 	componentDidMount() {
 		const token = localStorage.getItem('token');
 		if (!token) {
-			this.props.history.replace('/login');
+			return this.props.history.replace('/login');
 		}
+		return this.fetchData();
 	}
-
+	/* https://medium.com/@soorajchandran/introduction-to-higher-order-components-hoc-in-react-383c9343a3aa
+	READ ME */
 	render() {
+		if (this.state.loading) {
+			return (
+				<React.Fragment>
+					<div className="d-flex justify-content-center mt-4">
+						<Loader
+							type="Oval"
+							color="#27ae60"
+							height={80}
+							width={80}
+						/>
+					</div>
+					<p className="text-center">Το καλάθι σας φορτώνει</p>
+				</React.Fragment>
+			);
+		}
 		return (
 			<div className="container">
 				<div className="row">
 					<div className="col-7">
 						<CartItems
-							cart={this.props.cart}
+							cart={this.state.fetchedCartInfo}
 							setCart={this.props.setCart}
-							handleCartChange={this.props.handleCartChange}
-							deleteItem={this.props.deleteItem}
+							handleChange={this.handleChange}
+							deleteProd={this.deleteProd}
 						/>
 					</div>
 					<div className="col-5 sticky-top">
-						<CartCheckout cart={this.props.cart} />
+						<CartCheckout cart={this.state.fetchedCartInfo} />
 					</div>
 				</div>
 			</div>
@@ -39,9 +128,6 @@ class Cart extends React.Component {
 }
 
 Cart.propTypes = {
-	cart: PropTypes.array,
-	deleteItem: PropTypes.func,
-	handleCartChange: PropTypes.func,
 	setCart: PropTypes.func,
 	history: PropTypes.object,
 };
