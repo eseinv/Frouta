@@ -183,15 +183,28 @@ class Product extends React.Component {
 									</div>
 
 									<div className="col-12">
-										<FormButton
-											width={100}
-											onClick={this.createNotification(
-												'success',
-												this.props,
-											)}
-										>
-											Προσθήκη
-										</FormButton>
+										{this.props.userLogged ? (
+											<FormButton
+												width={100}
+												onClick={this.createNotification(
+													'success',
+													this.props,
+												)}
+											>
+												Προσθήκη
+											</FormButton>
+										) : (
+											<FormButton
+												width={100}
+												onClick={() =>
+													this.props.history.push(
+														'/login',
+													)
+												}
+											>
+												<strong>Είσοδος</strong>
+											</FormButton>
+										)}
 									</div>
 									<NotificationContainer />
 								</div>
@@ -219,6 +232,8 @@ class Product extends React.Component {
 
 Product.propTypes = {
 	match: PropTypes.object,
+	history: PropTypes.object,
+	userLogged: PropTypes.bool,
 };
 
 export default Product;
