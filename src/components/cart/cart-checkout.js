@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getIdFromToken } from '../../data/decode-token';
 import { FormButton } from '../styled/form-button';
 
 const calculateTotal = cart => {
@@ -10,6 +11,21 @@ const calculateTotal = cart => {
 	const prices = priceArray.reduce((sum, price) => sum + price, 0);
 	return prices;
 };
+
+const confirmCart = () => {
+	const token = localStorage.getItem('token');
+	const userId = getIdFromToken(token);
+	return fetch(`http://homestead.test/cart/user/${userId}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then(result => result.json())
+		.catch(error => console.error('Error:', error));
+};
+
 const CartCheckout = props => (
 	<div className="sticky-top text-center h3 p-3 mt-2 card">
 		<div className="row">
@@ -24,7 +40,11 @@ const CartCheckout = props => (
 		</div>
 		<div className="row">
 			<div className="col-12">
-				<FormButton width={200} className="text-center h4">
+				<FormButton
+					onClick={() => confirmCart()}
+					width={200}
+					className="text-center h4"
+				>
 					Επιβεβαίωση
 				</FormButton>
 			</div>
