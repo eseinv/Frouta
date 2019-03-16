@@ -50,3 +50,7 @@ export const LogButton = styled.button`
 			linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
 	}
 `;
+
+export const RegButton = styled.button`
+	background: transparent;
+`;
