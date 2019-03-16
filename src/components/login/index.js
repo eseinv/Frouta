@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
-import { H3, Input, LogError, LogButton } from './style';
+import { H3, Input, LogError, LogButton, RegButton } from './style';
 
 class Login extends React.Component {
 	state = {
@@ -37,7 +37,7 @@ class Login extends React.Component {
 			.catch(error => console.error('Error:', error));
 	};
 
-	handleResponse(response) {
+	handleResponse = response => {
 		this.setState({ loading: false });
 		if (response.token) {
 			localStorage.setItem('token', response.token);
@@ -60,7 +60,11 @@ class Login extends React.Component {
 				},
 			});
 		}
-	}
+	};
+
+	goRegister = () => {
+		this.props.history.push('/register');
+	};
 
 	render() {
 		return (
@@ -102,6 +106,7 @@ class Login extends React.Component {
 									Password
 								</label>
 								<Input
+									required
 									onChange={event =>
 										this.handleInputChange(
 											event.target.value,
@@ -137,6 +142,17 @@ class Login extends React.Component {
 								Log in
 							</LogButton>
 						</form>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12 p-3 d-flex align-items-center justify-content-center">
+						Δεν έχετε λογαριασμό;
+						<RegButton
+							className="btn text-primary"
+							onClick={this.goRegister}
+						>
+							Πατήστε εδώ
+						</RegButton>
 					</div>
 				</div>
 			</div>
