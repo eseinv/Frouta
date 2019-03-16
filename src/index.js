@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import Login from './components/login/';
+import Register from './components/register/';
+import Orders from './components/orders/';
 import Cart from './components/cart/index';
 import Product from './components/product/';
 import { Contact } from './components/contact/';
@@ -105,6 +107,7 @@ class App extends React.Component {
 									{...props}
 									cart={this.state.cart}
 									setCart={this.setCart}
+									userLogged={this.state.userLogged}
 								/>
 							)}
 						/>
@@ -133,6 +136,8 @@ class App extends React.Component {
 								/>
 							)}
 						/>
+						<Route path="/register" component={Register} />
+						<Route path="/orders" component={Orders} />
 					</div>
 				</Router>
 				<Footer />
