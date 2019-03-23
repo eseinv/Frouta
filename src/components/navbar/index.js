@@ -23,9 +23,14 @@ const NavBar = props => (
 						<NavActions userLogged={props.userLogged} />
 					</Button>
 					{props.userLogged && localStorage.getItem('token') && (
-						<LogOut onClick={() => props.changeLogState(false)}>
-							Έξοδος
-						</LogOut>
+						<React.Fragment>
+							<Button to="/menu" className="ml-3 p-3 p-lg-0">
+								<span>Μενού</span>
+							</Button>
+							<LogOut onClick={() => props.changeLogState(false)}>
+								Έξοδος
+							</LogOut>
+						</React.Fragment>
 					)}
 				</div>
 			</Nav>
