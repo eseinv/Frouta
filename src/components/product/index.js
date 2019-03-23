@@ -114,7 +114,7 @@ class Product extends React.Component {
 					<div className="row mt-4">
 						<div className="col-sm-12 col-lg-3 offset-lg-1">
 							<img
-								src={`http://homestead.test/images/${
+								src={`http://homestead.test/images/products/${
 									this.state.selectedProduct.image
 								}`}
 								alt="Product Name"
