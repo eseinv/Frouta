@@ -107,7 +107,7 @@ class Orders extends React.Component {
 															<div className="col-10">
 																<img
 																	className="img-fluid"
-																	src={`http://homestead.test/images/${
+																	src={`http://homestead.test/images/products/${
 																		product.image
 																	}`}
 																	alt={
@@ -123,8 +123,17 @@ class Orders extends React.Component {
 															<div className="pl-3">
 																<PMB>
 																	<strong>
-																		Τιμή
-																		κιλού:
+																		{product.name ===
+																		'Πεστίλη μήλου χύμα' ? (
+																			<span>
+																				Τιμή
+																				κιλού:{' '}
+																			</span>
+																		) : (
+																			<span>
+																				Τιμή:{' '}
+																			</span>
+																		)}
 																		{
 																			product.unitPrice
 																		}
