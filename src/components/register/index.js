@@ -20,6 +20,10 @@ class Register extends React.Component {
 			email: emailEntered,
 			password: passEntered,
 			type: 'customer',
+			country: '',
+			street: '',
+			postal: '',
+			phone: '',
 		};
 		fetch('http://homestead.test/register', {
 			method: 'POST',
