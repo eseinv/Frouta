@@ -5,6 +5,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import Login from './components/login/';
 import Register from './components/register/';
 import Orders from './components/orders/';
+import Menu from './components/menu/';
 import Cart from './components/cart/index';
 import Product from './components/product/';
 import { Contact } from './components/contact/';
@@ -13,6 +14,7 @@ import { ProductList } from './components/product-list/';
 import { Footer } from './components/footer/';
 import { Gallery } from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
+import { Images } from './data/images';
 
 class App extends React.Component {
 	constructor(props) {
@@ -47,21 +49,8 @@ class App extends React.Component {
 		);
 	};
 
-	makeGallery = (x, y) => {
-		const images = [
-			{
-				original: `http://lorempixel.com/${x}/${y}/nature/1`,
-				thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-			},
-			{
-				original: `http://lorempixel.com/${x}/${y}/nature/2`,
-				thumbnail: 'http://lorempixel.com/250/150/nature/2/',
-			},
-			{
-				original: `http://lorempixel.com/${x}/${y}/nature/3`,
-				thumbnail: 'http://lorempixel.com/250/150/nature/3/',
-			},
-		];
+	makeGallery = () => {
+		const images = Images;
 		if (images.length > 0) this.setState({ images });
 	};
 
@@ -76,7 +65,7 @@ class App extends React.Component {
 			this.setState({ cart: savedCart });
 		}
 
-		this.makeGallery(1200, 600);
+		this.makeGallery();
 	}
 
 	render() {
@@ -138,6 +127,7 @@ class App extends React.Component {
 						/>
 						<Route path="/register" component={Register} />
 						<Route path="/orders" component={Orders} />
+						<Route path="/menu" component={Menu} />
 					</div>
 				</Router>
 				<Footer />
