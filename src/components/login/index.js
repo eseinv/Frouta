@@ -87,7 +87,7 @@ class Login extends React.Component {
 						>
 							<div className="form-group">
 								<label className="d-block" htmlFor="username">
-									Username
+									Email
 								</label>
 								<Input
 									onChange={event =>
@@ -103,7 +103,7 @@ class Login extends React.Component {
 							</div>
 							<div className="form-group">
 								<label className="d-block" htmlFor="password">
-									Password
+									Κωδικός
 								</label>
 								<Input
 									required
