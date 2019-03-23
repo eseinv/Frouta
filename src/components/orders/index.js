@@ -64,78 +64,105 @@ class Orders extends React.Component {
 		}
 		return (
 			<div className="container">
-				<div className="row">
+				<div className="row my-3">
 					<div className="col-12">
 						<Input />
 					</div>
 				</div>
-				{this.state.cart.map((product, index) => (
-					<div key={index} className="row">
-						<div className="col-12">
-							<div className="card my-2">
-								<div className="card-body">
+				{this.state.userList.map((user, index) => (
+					<div key={index} className="mt-2">
+						<hr />
+						<div>
+							<H5> {user.id} </H5>
+							<H5> {user.name} </H5>
+							<H5> {user.email} </H5>
+							<H5>
+								{user.country}, {user.street}, {user.postal}
+							</H5>
+							<H5> {user.phone} </H5>
+						</div>
+						{this.state.cart.map(
+							product =>
+								product.userId === user.id && (
 									<div className="row">
-										<div className="col-3 d-flex align-items-center">
-											<div className="col-2">
-												{product.confirmed ? (
-													<img
-														src={checked}
-														alt="checked"
-													/>
-												) : (
-													<span>-</span>
-												)}
-											</div>
-											<div className="col-10">
-												<img
-													className="img-fluid"
-													src={`http://homestead.test/images/${
-														product.image
-													}`}
-													alt={product.name}
-												/>
-											</div>
-										</div>
-										<div className="col-3">
-											<H5 className="card-title d-inline pl-3 d-block">
-												{product.name}
-											</H5>
-											<div className="pl-3">
-												<PMB>
-													<strong>
-														Τιμή κιλού:
-														{product.unitPrice}
-													</strong>
-													&euro;
-												</PMB>
-												<P className="mb-0">Ποσότητα</P>
+										<div className="col-10">
+											<div className="card my-2">
+												<div className="card-body">
+													<div className="row">
+														<div className="col-3 d-flex align-items-center">
+															<div className="col-2">
+																{product.confirmed ? (
+																	<img
+																		src={
+																			checked
+																		}
+																		alt="checked"
+																	/>
+																) : (
+																	<span>
+																		-
+																	</span>
+																)}
+															</div>
+															<div className="col-10">
+																<img
+																	className="img-fluid"
+																	src={`http://homestead.test/images/${
+																		product.image
+																	}`}
+																	alt={
+																		product.name
+																	}
+																/>
+															</div>
+														</div>
+														<div className="col-5">
+															<H5 className="card-title d-inline pl-3 d-block">
+																{product.name}
+															</H5>
+															<div className="pl-3">
+																<PMB>
+																	<strong>
+																		Τιμή
+																		κιλού:
+																		{
+																			product.unitPrice
+																		}
+																	</strong>
+																	&euro;
+																</PMB>
+																<P className="mb-0">
+																	Ποσότητα
+																</P>
 
-												<DisabledInput
-													value={product.quantity}
-													readOnly
-												/>
+																<DisabledInput
+																	value={
+																		product.quantity
+																	}
+																	readOnly
+																/>
+															</div>
+														</div>
+														<TextDiv className="col-2 d-flex align-items-center justify-content-center">
+															<h4 className="card-text text-center">
+																<p className="font-weight-light">
+																	Σύνολο
+																</p>
+																<strong>
+																	{product.unitPrice *
+																		product.quantity}
+																</strong>
+																&euro;
+															</h4>
+														</TextDiv>
+														<div className="col-1 d-flex align-items-center justify-content-center" />
+													</div>
+												</div>
 											</div>
-										</div>
-										<TextDiv className="col-2 d-flex align-items-center justify-content-center">
-											<h4 className="card-text text-center">
-												<p className="font-weight-light">
-													Σύνολο
-												</p>
-												<strong>
-													{product.unitPrice *
-														product.quantity}
-												</strong>
-												&euro;
-											</h4>
-										</TextDiv>
-										<div className="col-1 d-flex align-items-center justify-content-center" />
-										<div className="col-2">
-											{product.userId}
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
+								),
+						)}
 					</div>
 				))}
 			</div>
