@@ -11,7 +11,7 @@ const SingleCartItem = props => {
 					<div className="col-3 d-flex align-self-center">
 						<img
 							className="img-fluid"
-							src={`http://homestead.test/images/${image}`}
+							src={`http://homestead.test/images/products/${image}`}
 							alt={name}
 						/>
 					</div>
