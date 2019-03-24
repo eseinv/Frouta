@@ -121,11 +121,11 @@ class Product extends React.Component {
 								className="img-fluid"
 							/>
 						</div>
-						<div className="col-sm-12 col-lg-4">
+						<div className="col-sm-12 col-lg-6">
 							<ProdName className="mt-2">
 								{this.state.selectedProduct.name}
 							</ProdName>
-							<ProdText>
+							<ProdText className="text-justify">
 								{this.state.selectedProduct.info}
 							</ProdText>
 							<form onSubmit={e => this.handleFormSubmit(e)}>
@@ -150,7 +150,7 @@ class Product extends React.Component {
 											htmlFor="quantity"
 											className="d-block"
 										>
-											Ποσότητα (kg)
+											Ποσότητα
 										</Label>
 										<CartButton
 											type="minus"
