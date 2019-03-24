@@ -53,6 +53,6 @@ const CartCheckout = props => (
 );
 
 CartCheckout.propTypes = {
-	cart: PropTypes.object,
+	cart: PropTypes.array,
 };
 export default CartCheckout;

@@ -3,13 +3,13 @@ export const Images = [
 		original: `http://homestead.test/images/gallery/1.jpg`,
 	},
 	{
-		original: `http://homestead.test/images/gallery/5.jpg`,
-	},
-	{
-		original: `http://homestead.test/images/gallery/3.jpg`,
-	},
-	{
 		original: `http://homestead.test/images/gallery/8.jpg`,
+	},
+	{
+		original: `http://homestead.test/images/gallery/7.jpg`,
+	},
+	{
+		original: `http://homestead.test/images/gallery/5.jpg`,
 	},
 	{
 		original: `http://homestead.test/images/gallery/2.jpg`,
@@ -18,7 +18,7 @@ export const Images = [
 		original: `http://homestead.test/images/gallery/6.jpg`,
 	},
 	{
-		original: `http://homestead.test/images/gallery/7.jpg`,
+		original: `http://homestead.test/images/gallery/3.jpg`,
 	},
 	{
 		original: `http://homestead.test/images/gallery/4.jpg`,

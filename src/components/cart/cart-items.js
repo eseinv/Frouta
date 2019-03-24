@@ -13,7 +13,7 @@ const CartItems = props =>
 	));
 
 CartItems.propTypes = {
-	cart: PropTypes.object,
+	cart: PropTypes.array,
 	handleChange: PropTypes.func,
 	deleteProd: PropTypes.func,
 };
