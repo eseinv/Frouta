@@ -88,7 +88,7 @@ class Register extends React.Component {
 						>
 							<div className="form-group">
 								<label className="d-block" htmlFor="username">
-									Ονοματεπώνυμο
+									Όνομα χρήστη
 								</label>
 								<Input
 									required

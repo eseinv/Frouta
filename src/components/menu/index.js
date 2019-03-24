@@ -104,7 +104,7 @@ class Menu extends React.Component {
 					<div className="col-sm-6 col-md-6 col-lg-4">
 						<div className="form-group">
 							<label className="d-block" htmlFor="name">
-								Ονοματεπώνυμο
+								Όνομα
 							</label>
 							<Input
 								onChange={event =>
