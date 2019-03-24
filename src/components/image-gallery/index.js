@@ -11,7 +11,7 @@ class Gallery extends React.Component {
 	};
 	render() {
 		return (
-			<div className="container mt-2 mb-4">
+			<div className="container mt-2 mb-4 px-5">
 				{this.state.loading ? (
 					<div>
 						<div className="d-flex justify-content-center">
