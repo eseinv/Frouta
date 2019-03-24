@@ -109,8 +109,8 @@ class Cart extends React.Component {
 		}
 		return (
 			<div className="container">
-				<div className="row">
-					<div className="col-7">
+				<div className="row mt-4">
+					<div className="col-md-7 col-sm-12">
 						<CartItems
 							cart={this.state.fetchedCartInfo}
 							setCart={this.props.setCart}
@@ -118,7 +118,7 @@ class Cart extends React.Component {
 							deleteProd={this.deleteProd}
 						/>
 					</div>
-					<div className="col-5 sticky-top">
+					<div className="col-md-5 col-sm-12 sticky-top">
 						<CartCheckout cart={this.state.fetchedCartInfo} />
 					</div>
 				</div>
