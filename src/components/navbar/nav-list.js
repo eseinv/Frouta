@@ -19,6 +19,14 @@ const NavLi = () => {
 
 			<ButtonLink
 				className="ml-3 btn"
+				active={page === '/partners' ? 'true' : 'false'}
+				to="/partners"
+			>
+				Συνεργάτες
+			</ButtonLink>
+
+			<ButtonLink
+				className="ml-3 btn"
 				active={page === '/contact' ? 'true' : 'false'}
 				to="/contact"
 			>
