@@ -1,7 +1,9 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import checked from '../../icons/checked.png';
+import { getIdFromToken } from '../../data/decode-token';
 import { DisabledInput, TextDiv, PMB, P, H5 } from '../cart/style';
 
 const Input = styled.input`
@@ -42,11 +44,15 @@ class Orders extends React.Component {
 	};
 
 	componentDidMount() {
-		this.fetchCartData();
+		const token = localStorage.getItem('token');
+		const userId = getIdFromToken(token);
+		if (userId !== 1 && userId !== 2) {
+			this.props.history.replace('/');
+		}
+		return this.fetchCartData();
 	}
 
 	render() {
-		console.log(this.state.userList);
 		if (this.state.loading) {
 			return (
 				<React.Fragment>
@@ -84,7 +90,7 @@ class Orders extends React.Component {
 						{this.state.cart.map(
 							product =>
 								product.userId === user.id && (
-									<div className="row">
+									<div key={product.name} className="row">
 										<div className="col-10">
 											<div className="card my-2">
 												<div className="card-body">
@@ -178,5 +184,9 @@ class Orders extends React.Component {
 		);
 	}
 }
+
+Orders.propTypes = {
+	history: PropTypes.object,
+};
 
 export default Orders;
