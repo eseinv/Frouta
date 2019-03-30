@@ -15,15 +15,24 @@ const Footer = () => (
 			</div>
 		</div>
 		<div className="row offset-sm-4 offset-md-4 offset-lg-5">
-			<div className="col-xs-4 col-sm-2 col-md-2 col-lg-1">
-				<Facebook color="#00a062" />
-			</div>
-			<div className="col-xs-4 col-sm-2 col-md-2 col-lg-1 ">
-				<Skype color="#00a062" />
-			</div>
-			<div className="col-xs-4 col-sm-2 col-md-2 col-lg-1 ">
-				<Phone color="#00a062" />
-			</div>
+			<button className="btn col-4 col-xs-4 col-sm-2 col-md-2 col-lg-1">
+				<a
+					href="https://www.facebook.com/farmapalatia/"
+					target="_blank"
+				>
+					<Facebook color="#00a062" />
+				</a>
+			</button>
+			<button className="btn col-4 col-xs-4 col-sm-2 col-md-2 col-lg-1">
+				<a href="skype:s_khodar?chat">
+					<Skype color="#00a062" />
+				</a>
+			</button>
+			<button className="btn col-4 col-xs-4 col-sm-2 col-md-2 col-lg-1">
+				<a href="viber://chat?number=+306945296507">
+					<Phone color="#00a062" />
+				</a>
+			</button>
 		</div>
 	</div>
 );
