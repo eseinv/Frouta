@@ -11,8 +11,8 @@ const Contact = () => (
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-12 text-center border mb-4">
-					<P>Μηλιές Πηλίου, Νομός Θεσσαλίας</P>
+				<div className="col-12 text-center border-top mb-4">
+					<P>Μηλιές Πηλίου, Νομός Θεσσαλίας, T.K. 370 10</P>
 					<P>Τηλέφωνο: 6945296507</P>
 				</div>
 			</div>
