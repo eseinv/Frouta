@@ -12,21 +12,21 @@ const Partners = () => (
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
@@ -37,21 +37,21 @@ const Partners = () => (
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
 					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-					alt="Product Name"
+					alt="Partner"
 					className="img-fluid"
 				/>
 			</div>
