@@ -15,7 +15,7 @@ class Cart extends React.Component {
 		const token = localStorage.getItem('token');
 		if (token) {
 			const userId = getIdFromToken(token);
-			return fetch(`http://homestead.test/cart/${userId}`, {
+			return fetch(`https://api.farmapalatia.gr/cart/${userId}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class Cart extends React.Component {
 
 	updateQty = (cartId, newQuantity) => {
 		const token = localStorage.getItem('token');
-		return fetch(`http://homestead.test/cart/${cartId}`, {
+		return fetch(`https://api.farmapalatia.gr/cart/${cartId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ class Cart extends React.Component {
 
 	deleteProd = cartId => {
 		const token = localStorage.getItem('token');
-		return fetch(`http://homestead.test/cart/${cartId}`, {
+		return fetch(`https://api.farmapalatia.gr/cart/${cartId}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',

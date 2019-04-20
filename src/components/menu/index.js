@@ -10,7 +10,7 @@ class Menu extends React.Component {
 	fetchData = () => {
 		const token = localStorage.getItem('token');
 		const userId = getIdFromToken(token);
-		return fetch(`http://homestead.test/user/${userId}`, {
+		return fetch(`https://api.farmapalatia.gr/user/${userId}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ class Menu extends React.Component {
 			postal: this.state.user.postal,
 			phone: this.state.user.phone,
 		};
-		fetch(`http://homestead.test/user/${userId}`, {
+		fetch(`https://api.farmapalatia.gr/user/${userId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

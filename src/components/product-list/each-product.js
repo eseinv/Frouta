@@ -9,7 +9,9 @@ const EachProduct = props => {
 		<ProductCard className="card border-0">
 			<img
 				className="card-img-top w-75 mt-4 ml-5"
-				src={`http://homestead.test/images/products/${product.image}`}
+				src={`https://api.farmapalatia.gr/images/products/${
+					product.image
+				}`}
 				alt={product.name}
 			/>
 			<div className="card-body">

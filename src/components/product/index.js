@@ -23,12 +23,15 @@ class Product extends React.Component {
 
 	fetchData = () => {
 		const selectedProductId = this.props.match.params.id;
-		return fetch(`http://homestead.test/product/${selectedProductId}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
+		return fetch(
+			`https://api.farmapalatia.gr/product/${selectedProductId}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
 			},
-		})
+		)
 			.then(result => result.json())
 			.then(product =>
 				this.setState({
@@ -54,7 +57,7 @@ class Product extends React.Component {
 			image: this.state.selectedProduct.image,
 			unitPrice: this.state.selectedProduct.unitPrice,
 		};
-		fetch(`http://homestead.test/cart/${userId}`, {
+		fetch(`https://api.farmapalatia.gr/cart/${userId}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -114,7 +117,7 @@ class Product extends React.Component {
 					<div className="row mt-4">
 						<div className="col-sm-12 col-lg-3 offset-lg-1">
 							<img
-								src={`http://homestead.test/images/products/${
+								src={`https://api.farmapalatia.gr/images/products/${
 									this.state.selectedProduct.image
 								}`}
 								alt="Product Name"

@@ -25,7 +25,7 @@ class Login extends React.Component {
 			email: userEntered,
 			password: passEntered,
 		};
-		fetch('http://homestead.test/login', {
+		fetch('https://api.farmapalatia.gr/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

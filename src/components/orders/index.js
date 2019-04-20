@@ -15,7 +15,7 @@ class Orders extends React.Component {
 
 	fetchCartData = () => {
 		const token = localStorage.getItem('token');
-		fetch(`http://homestead.test/cart/${this.state.userToShow}`, {
+		fetch(`https://api.farmapalatia.gr/cart/${this.state.userToShow}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ class Orders extends React.Component {
 
 	fetchUserData = () => {
 		const token = localStorage.getItem('token');
-		fetch(`http://homestead.test/user/`, {
+		fetch(`https://api.farmapalatia.gr/user/`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
