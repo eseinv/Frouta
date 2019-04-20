@@ -6,7 +6,7 @@ import { EachProduct } from './each-product';
 class ProductList extends React.Component {
 	state = { products: [], loading: true };
 	componentDidMount() {
-		fetch('http://homestead.test/product', {
+		fetch('https://api.farmapalatia.gr/product', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

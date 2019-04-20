@@ -25,7 +25,7 @@ class Register extends React.Component {
 			postal: '',
 			phone: '',
 		};
-		fetch('http://homestead.test/register', {
+		fetch('https://api.farmapalatia.gr/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

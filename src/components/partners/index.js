@@ -11,21 +11,21 @@ const Partners = () => (
 		<div className="row mt-4">
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>
@@ -36,21 +36,21 @@ const Partners = () => (
 		<div className="row mt-3">
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>
 			</div>
 			<div className="col-12 col-md-4">
 				<img
-					src="http://homestead.test/images/partners/partner.jpg"
+					src="https://api.farmapalatia.gr/images/partners/partner.jpg"
 					alt="Product Name"
 					className="img-fluid"
 				/>

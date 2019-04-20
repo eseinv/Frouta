@@ -113,7 +113,7 @@ class Orders extends React.Component {
 															<div className="col-10">
 																<img
 																	className="img-fluid"
-																	src={`http://homestead.test/images/products/${
+																	src={`https://api.farmapalatia.gr/images/products/${
 																		product.image
 																	}`}
 																	alt={
