@@ -153,7 +153,7 @@ class Register extends React.Component {
 							)}
 							{!!this.state.error && (
 								<LogError className="text-center">
-									Έγινε κάποιο σφάλμα. Έχετε ήδη λογαριασμό;
+									Έγινε κάποιο σφάλμα! Έχετε ήδη λογαριασμό;
 								</LogError>
 							)}
 							<LogButton className="btn-block mt-4 py-2">
