@@ -47,4 +47,4 @@ Gallery.propTypes = {
 	images: PropTypes.array,
 };
 
-export { Gallery };
+export default Gallery;
