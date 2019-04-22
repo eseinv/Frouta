@@ -15,8 +15,8 @@ const calculateTotal = cart => {
 const confirmCart = () => {
 	const token = localStorage.getItem('token');
 	const userId = getIdFromToken(token);
-	return fetch(`http://homestead.test/cart/user/${userId}`, {
-		method: 'PUT',
+	return fetch(`https://api.farmapalatia.gr/cart/user/${userId}`, {
+		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,
