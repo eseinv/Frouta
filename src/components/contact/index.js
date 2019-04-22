@@ -1,5 +1,4 @@
 import React from 'react';
-import map from '../../images/contact_map.png';
 import { H3, H5, P } from './style';
 
 const Contact = () => (
@@ -23,7 +22,7 @@ const Contact = () => (
 						<H5 className="text-center">Βρείτε μας εδώ</H5>
 						<img
 							className="img-fluid mx-auto d-block"
-							src={map}
+							src="https://api.farmapalatia.gr/images/contact_map.png"
 							alt="map"
 						/>
 					</div>
