@@ -38,8 +38,7 @@ class Orders extends React.Component {
 			},
 		})
 			.then(result => result.json())
-			.then(userList => this.setState({ userList }))
-			.then(this.setState({ loading: false }))
+			.then(userList => this.setState({ userList, loading: false }))
 			.catch(error => console.error('Error:', error));
 	};
 
