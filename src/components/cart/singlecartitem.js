@@ -21,7 +21,7 @@ const SingleCartItem = props => {
 						</H5>
 						<div className="pl-3">
 							<PMB>
-								<strong>Τιμή κιλού: {unitPrice}</strong>
+								<strong>Τιμή: {unitPrice}</strong>
 								&euro;
 							</PMB>
 							<P className="mb-0">Ποσότητα</P>
