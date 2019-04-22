@@ -8,12 +8,12 @@ import Orders from './components/orders/';
 import Menu from './components/menu/';
 import Cart from './components/cart/index';
 import Product from './components/product/';
-import { Partners } from './components/partners/';
+import Partners from './components/partners/';
 import { Contact } from './components/contact/';
 import { NavBar } from './components/navbar/';
 import { ProductList } from './components/product-list/';
 import { Footer } from './components/footer/';
-import { Gallery } from './components/image-gallery/';
+import Gallery from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
 import { Images } from './data/images';
 
