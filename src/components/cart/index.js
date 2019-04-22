@@ -37,7 +37,7 @@ class Cart extends React.Component {
 	updateQty = (cartId, newQuantity) => {
 		const token = localStorage.getItem('token');
 		return fetch(`https://api.farmapalatia.gr/cart/${cartId}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`,

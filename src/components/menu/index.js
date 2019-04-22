@@ -39,7 +39,7 @@ class Menu extends React.Component {
 			phone: this.state.user.phone,
 		};
 		fetch(`https://api.farmapalatia.gr/user/${userId}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`,
