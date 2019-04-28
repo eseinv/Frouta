@@ -7,15 +7,15 @@ import { getIdFromToken } from '../../data/decode-token';
 import { DisabledInput, TextDiv, PMB, P, H5 } from '../cart/style';
 
 const Input = styled.input`
-	opacity: 1;
+	opacity: 0;
 `;
 
 class Orders extends React.Component {
-	state = { loading: true, userToShow: '', cart: [], userList: [] };
+	state = { loading: true, cart: [], userList: [] };
 
 	fetchCartData = () => {
 		const token = localStorage.getItem('token');
-		fetch(`https://api.farmapalatia.gr/cart/${this.state.userToShow}`, {
+		fetch(`https://api.farmapalatia.gr/cart`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ class Orders extends React.Component {
 
 	fetchUserData = () => {
 		const token = localStorage.getItem('token');
-		fetch(`https://api.farmapalatia.gr/user/`, {
+		fetch(`https://api.farmapalatia.gr/user`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -78,7 +78,6 @@ class Orders extends React.Component {
 					<div key={index} className="mt-2">
 						<hr />
 						<div>
-							<H5> {user.id} </H5>
 							<H5> {user.name} </H5>
 							<H5> {user.email} </H5>
 							<H5>
@@ -90,7 +89,7 @@ class Orders extends React.Component {
 							product =>
 								product.userId === user.id && (
 									<div key={product.name} className="row">
-										<div className="col-10">
+										<div className="col-sm-12 col-md-12 col-lg-10">
 											<div className="card my-2">
 												<div className="card-body">
 													<div className="row">
@@ -98,6 +97,7 @@ class Orders extends React.Component {
 															<div className="col-2">
 																{product.confirmed ? (
 																	<img
+																		className="img-responsive"
 																		src={
 																			checked
 																		}
@@ -111,7 +111,7 @@ class Orders extends React.Component {
 															</div>
 															<div className="col-10">
 																<img
-																	className="img-fluid"
+																	className="pl-1 img-fluid"
 																	src={`https://api.farmapalatia.gr/images/products/${
 																		product.image
 																	}`}
