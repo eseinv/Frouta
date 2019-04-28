@@ -139,7 +139,7 @@ class Login extends React.Component {
 								</LogError>
 							)}
 							<LogButton className="btn-block mt-4 py-2">
-								Log in
+								Είσοδος
 							</LogButton>
 						</form>
 					</div>
