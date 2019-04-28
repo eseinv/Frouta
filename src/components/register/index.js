@@ -157,7 +157,7 @@ class Register extends React.Component {
 								</LogError>
 							)}
 							<LogButton className="btn-block mt-4 py-2">
-								Δημιουργία
+								Δημιουργία λογαριασμού
 							</LogButton>
 						</form>
 					</div>
