@@ -1,13 +1,38 @@
 import React from 'react';
-import ImagesLoaded from 'react-images-loaded';
 import Loader from 'react-loader-spinner';
+import { EachPartner } from './each-partner';
 import { H3 } from '../contact/style';
 
 class Partners extends React.Component {
-	state = { loading: true };
+	state = { loading: true, partners: [] };
 	isLoaded = () => {
 		this.setState({ loading: false });
 	};
+	componentDidMount() {
+		const token = localStorage.getItem('token');
+		if (token) {
+			fetch('https://api.farmapalatia.gr/partner', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then(result => result.json())
+				.then(items => this.savePartners(items))
+				.catch(error => console.error('Error:', error))
+				.then(() => this.setLoading(false));
+		}
+	}
+
+	savePartners = partners => {
+		this.setState({ partners });
+	};
+
+	setLoading = load => {
+		this.setState({ loading: load });
+	};
+
 	render() {
 		return (
 			<div className="container">
@@ -29,56 +54,18 @@ class Partners extends React.Component {
 						<p className="text-center">Παρακαλώ περιμένετε</p>
 					</div>
 				) : null}
-				<ImagesLoaded done={this.isLoaded}>
-					<div className="row mt-4">
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
-						</div>
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
-						</div>
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
-						</div>
-					</div>
-					<hr />
 
-					<div className="row mt-3">
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
+				<div className="row">
+					{this.state.partners.map((partner, index) => (
+						<div
+							role="presentation"
+							key={index}
+							className="col-md-6 col-sm-12 text-justify p-3"
+						>
+							<EachPartner partner={partner} />
 						</div>
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
-						</div>
-						<div className="col-12 col-md-4">
-							<img
-								src="https://api.farmapalatia.gr/images/partners/partner.jpg"
-								alt="Partner"
-								className="img-fluid"
-							/>
-						</div>
-					</div>
-				</ImagesLoaded>
+					))}
+				</div>
 			</div>
 		);
 	}
