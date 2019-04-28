@@ -9,7 +9,7 @@ const NavBar = props => (
 	<Container>
 		<div className="container-fluid">
 			<Nav className="row text-center text-lg-left">
-				<div className="col-sm-2 offset-md-1 col-md-2 offset-lg-0 col-lg-4 align-self-center">
+				<div className="col-sm-2 offset-md-0 col-md-2 offset-lg-0 col-lg-4 align-self-center">
 					<NavBrand />
 				</div>
 				<div className="navlist col-sm-5 col-md-5 col-lg-5">
