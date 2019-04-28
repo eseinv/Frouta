@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3, H5, P } from './style';
+import { H3, H5, P, Subtitle } from './style';
 
 const Contact = () => (
 	<div>
@@ -11,6 +11,12 @@ const Contact = () => (
 			</div>
 			<div className="row">
 				<div className="col-12 text-center border-top mb-4">
+					<H5>
+						<em>FARMA PALATIA</em>
+					</H5>
+					<Subtitle>
+						<em>Εργαστήριο αποξηραμένων φρούτων</em>
+					</Subtitle>
 					<P>Μηλιές Πηλίου, Νομός Θεσσαλίας, T.K. 370 10</P>
 					<P>Τηλέφωνο: 6945296507</P>
 				</div>
@@ -19,7 +25,7 @@ const Contact = () => (
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-12">
-						<H5 className="text-center">Βρείτε μας εδώ</H5>
+						<H5 className="text-center">Βρισκόμαστε εδώ</H5>
 						<img
 							className="img-fluid mx-auto d-block"
 							src="https://api.farmapalatia.gr/images/contact_map.png"
