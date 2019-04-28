@@ -16,8 +16,9 @@ const ActionWrap = styled.div`
 `;
 
 const NavActions = props => {
-	const current = window.location.href;
-	const page = current.substring(current.length, 21);
+	const url = window.location.href;
+	const baseUrl = `${window.location.protocol}//${window.location.host}`;
+	const page = url.substring(baseUrl.length);
 	if (!props.userLogged) {
 		return (
 			<div>
