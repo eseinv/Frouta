@@ -15,7 +15,7 @@ const EachProduct = props => {
 				alt={product.name}
 			/>
 			<div className="card-body">
-				<H5 className="card-title">{product.name}</H5>
+				<H5 className="card-title text-justify-left">{product.name}</H5>
 				<P className="card-text">
 					{product.info.length > maxInfoChars
 						? `${product.info.substring(0, maxInfoChars - 3)}...`

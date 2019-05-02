@@ -6,3 +6,5 @@ export { ShoppingCartSolid } from './shopping-cart-solid';
 export { Facebook } from './facebook';
 export { Skype } from './skype';
 export { Phone } from './phone';
+export { Logout } from './logout';
+export { Menu } from './menu';

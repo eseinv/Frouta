@@ -1,12 +1,13 @@
 import React from 'react';
-import { ButtonLink } from './style';
+import { ButtonLink, NavListWrap } from './style';
 
 const NavLi = () => {
-	const current = window.location.href;
-	const page = current.substring(current.length, 21);
+	const url = window.location.href;
+	const baseUrl = `${window.location.protocol}//${window.location.host}`;
+	const page = url.substring(baseUrl.length);
 
 	return (
-		<div className="row h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
+		<NavListWrap className="row h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
 			<ButtonLink
 				className="ml-3 btn"
 				active={
@@ -30,7 +31,7 @@ const NavLi = () => {
 				active={page === '/contact' ? 'true' : 'false'}
 				to="/contact"
 			>
-				Επικοινωνία
+				Φάρμα
 			</ButtonLink>
 
 			<ButtonLink
@@ -38,9 +39,9 @@ const NavLi = () => {
 				active={page === '/info' ? 'true' : 'false'}
 				to="/info"
 			>
-				Η Πεστίλη
+				Πεστίλη
 			</ButtonLink>
-		</div>
+		</NavListWrap>
 	);
 };
 

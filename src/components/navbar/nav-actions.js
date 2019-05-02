@@ -23,7 +23,12 @@ const NavActions = props => {
 		return (
 			<div>
 				<SignInAltSolid color="#fff" />
-				<CartAction active={page === '/login'}>Είσοδος</CartAction>
+				<CartAction
+					active={page === '/login'}
+					className="d-xs-none d-sm-none d-md-none d-lg-inline-block"
+				>
+					Είσοδος
+				</CartAction>
 			</div>
 		);
 	}

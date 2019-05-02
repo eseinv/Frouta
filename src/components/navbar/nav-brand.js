@@ -1,15 +1,15 @@
 import React from 'react';
-import { Fp } from './style';
+import { FpBig, FpSmall } from './style';
 
 const NavBrand = () => (
 	<div className="ml-4 p-2">
-		<Fp
-			className="img-fluid d-none d-lg-block"
+		<FpBig
+			className="img-fluid"
 			src="https://api.farmapalatia.gr/images/fp-logo-2x.png"
 			alt="fp-logo-brand"
 		/>
-		<Fp
-			className="img-fluid mt-2 d-lg-none"
+		<FpSmall
+			className="img-fluid mt-2"
 			src="https://api.farmapalatia.gr/images/FINAL_fp_logo@2x.png"
 			alt="fp-logo-brand"
 		/>

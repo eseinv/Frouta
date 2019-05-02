@@ -89,8 +89,7 @@ class Cart extends React.Component {
 		}
 		return this.fetchData();
 	}
-	/* https://medium.com/@soorajchandran/introduction-to-higher-order-components-hoc-in-react-383c9343a3aa
-	READ ME */
+
 	render() {
 		if (this.state.loading) {
 			return (

@@ -10,7 +10,7 @@ const SingleCartItem = props => {
 				<div className="row">
 					<div className="col-3 d-flex align-self-center">
 						<img
-							className="img-fluid"
+							className="img-responsive"
 							src={`https://api.farmapalatia.gr/images/products/${image}`}
 							alt={name}
 						/>
@@ -42,7 +42,9 @@ const SingleCartItem = props => {
 					</div>
 					<TextDiv className="col-2 d-flex align-items-center justify-content-center">
 						<h4 className="card-text text-center">
-							<p className="font-weight-light">Σύνολο</p>
+							<p className="font-weight-light small">
+								<b>Σύνολο</b>
+							</p>
 							<strong>{unitPrice * quantity}</strong>
 							&euro;
 						</h4>

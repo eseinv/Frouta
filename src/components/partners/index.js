@@ -9,20 +9,16 @@ class Partners extends React.Component {
 		this.setState({ loading: false });
 	};
 	componentDidMount() {
-		const token = localStorage.getItem('token');
-		if (token) {
-			fetch('https://api.farmapalatia.gr/partner', {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then(result => result.json())
-				.then(items => this.savePartners(items))
-				.catch(error => console.error('Error:', error))
-				.then(() => this.setLoading(false));
-		}
+		fetch('https://api.farmapalatia.gr/partner', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then(result => result.json())
+			.then(items => this.savePartners(items))
+			.catch(error => console.error('Error:', error))
+			.then(() => this.setLoading(false));
 	}
 
 	savePartners = partners => {

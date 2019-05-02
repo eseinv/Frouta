@@ -63,6 +63,21 @@ export const LogOut = styled.button`
 	transition: color 0.2s ease;
 `;
 
+export const LogOutBurger = styled.button`
+	background: transparent;
+	border: none;
+	color: rgba(255, 255, 255, 0.5);
+	padding-top: 0.5rem;
+	&:hover {
+		color: #fff;
+		cursor: pointer;
+	}
+	&:active {
+		outline: none;
+	}
+	transition: color 0.2s ease;
+`;
+
 export const CartAction = styled.span`
 	color: ${props => (props.active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
 	&:hover {
@@ -74,6 +89,99 @@ export const ActionWrap = styled.div`
 	display: inline-block;
 `;
 
-export const Fp = styled.img`
+export const FpBig = styled.img`
 	max-width: 90%;
+	@media only screen and (max-width: 1022px) {
+		display: none;
+	}
+`;
+export const FpSmall = styled.img`
+	max-width: 35%;
+	@media only screen and (min-width: 1022px) {
+		display: none;
+	}
+	@media only screen and (min-width: 1022px) {
+		max-width: 40%;
+	}
+`;
+
+export const NavActionsWrap = styled.div`
+	@media only screen and (max-width: 1055px) {
+		display: none;
+	}
+`;
+
+export const NavActionsBurger = styled.div`
+	background: #587c34;
+	position: absolute;
+	top: 54.7667px;
+	right: 10px;
+	z-index: 9999;
+	padding: 7px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 1px solid #fff;
+	border-top-width: 0;
+	@media only screen and (min-width: 1055px) {
+		display: none;
+	}
+`;
+
+export const BurgerButton = styled.button`
+	position: absolute;
+	top: 0.5rem;
+	right: 30px;
+	background: #587c34;
+	color: #fff;
+	background: transparent;
+	&:focus {
+		outline: none;
+	}
+	@media only screen and (min-width: 1055px) {
+		display: none;
+		top: 0.5rem;
+	}
+	@media only screen and (min-width: 729px) {
+		top: 1rem;
+	}
+	@media only screen and (min-width: 991px) {
+		top: 1.5rem;
+	}
+	@media only screen and (min-width: 1022px) {
+		top: 0.5rem;
+	}
+`;
+
+export const LoginButton = styled(Link)`
+	position: absolute;
+	top: 0.5rem;
+	right: 30px;
+	background: #587c34;
+	color: #fff;
+	background: transparent;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: #fff;
+	}
+	@media only screen and (min-width: 1055px) {
+		display: none;
+		top: 0.5rem;
+	}
+	@media only screen and (min-width: 729px) {
+		top: 1rem;
+	}
+	@media only screen and (min-width: 991px) {
+		top: 1.5rem;
+	}
+	@media only screen and (min-width: 1022px) {
+		top: 0.5rem;
+	}
+`;
+
+export const NavListWrap = styled.div`
+	@media only screen and (min-width: 1022px) {
+		font-size: 50px;
+	}
 `;
