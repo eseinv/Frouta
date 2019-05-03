@@ -8,15 +8,15 @@ const SingleCartItem = props => {
 		<div className="card my-2">
 			<div className="card-body">
 				<div className="row">
-					<div className="col-3 d-flex align-self-center">
+					<div className="col-sm-12 col-md-12 col-lg-3">
 						<img
-							className="img-responsive"
+							className="img-fluid"
 							src={`https://api.farmapalatia.gr/images/products/${image}`}
 							alt={name}
 						/>
 					</div>
-					<div className="col-6">
-						<H5 className="card-title d-inline pl-3 d-block">
+					<div className="col-sm-12 col-md-12 col-lg-5">
+						<H5 className="card-title d-inline pl-2 pt-1 d-block">
 							{name}
 						</H5>
 						<div className="pl-3">
@@ -40,18 +40,20 @@ const SingleCartItem = props => {
 							</Button>
 						</div>
 					</div>
-					<TextDiv className="col-2 d-flex align-items-center justify-content-center">
-						<h4 className="card-text text-center">
-							<p className="font-weight-light small">
+					<TextDiv className="col-sm-12 col-md-12 col-lg-3">
+						<h4>
+							<span className="font-weight-light small d-block pt-2 pl-3">
 								<b>Σύνολο</b>
-							</p>
-							<strong>{unitPrice * quantity}</strong>
-							&euro;
+							</span>
+							<strong className="d-block pl-3">
+								{unitPrice * quantity}
+								&euro;
+							</strong>
 						</h4>
 					</TextDiv>
-					<div className="col-1 d-flex align-items-center justify-content-center">
+					<div className="col-sm-12 col-md-12 col-lg-1 d-flex">
 						<Del
-							className="btn"
+							className="btn align-self-center"
 							onClick={() => props.deleteProd(id)}
 						>
 							x
