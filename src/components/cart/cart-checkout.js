@@ -47,7 +47,7 @@ const CartCheckout = props => (
 				>
 					Επιβεβαίωση
 				</FormButton>
-				<p className="h5 border">
+				<p className="h5 border text-left p-2">
 					Αφού πατήσετε επιβεβαίωση, καλέστε στο{' '}
 					<strong>6945296507</strong> για να επεξεργαστεί η παραγγελία
 					σας
