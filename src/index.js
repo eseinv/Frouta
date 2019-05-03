@@ -50,8 +50,22 @@ class App extends React.Component {
 		);
 	};
 
+	shuffle = images => {
+		let i;
+		let j;
+		let temp;
+		const shuffledImages = images;
+		for (i = shuffledImages.length - 1; i > 0; i -= 1) {
+			j = Math.floor(Math.random() * (i + 1));
+			temp = shuffledImages[i];
+			shuffledImages[i] = shuffledImages[j];
+			shuffledImages[j] = temp;
+		}
+		return shuffledImages;
+	};
+
 	makeGallery = () => {
-		const images = Images;
+		const images = this.shuffle(Images);
 		if (images.length > 0) this.setState({ images });
 	};
 
