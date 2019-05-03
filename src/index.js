@@ -16,6 +16,7 @@ import { Footer } from './components/footer/';
 import Gallery from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
 import { Images } from './data/images';
+import { shuffle } from './data/shuffler';
 
 class App extends React.Component {
 	constructor(props) {
@@ -50,22 +51,8 @@ class App extends React.Component {
 		);
 	};
 
-	shuffle = images => {
-		let i;
-		let j;
-		let temp;
-		const shuffledImages = images;
-		for (i = shuffledImages.length - 1; i > 0; i -= 1) {
-			j = Math.floor(Math.random() * (i + 1));
-			temp = shuffledImages[i];
-			shuffledImages[i] = shuffledImages[j];
-			shuffledImages[j] = temp;
-		}
-		return shuffledImages;
-	};
-
 	makeGallery = () => {
-		const images = this.shuffle(Images);
+		const images = shuffle(Images);
 		if (images.length > 0) this.setState({ images });
 	};
 
