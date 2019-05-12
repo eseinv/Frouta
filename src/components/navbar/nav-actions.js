@@ -5,9 +5,9 @@ import { SignInAltSolid } from '../../icons/sign-in-alt-solid';
 import { ShoppingCartSolid } from '../../icons/shopping-cart-solid';
 
 const CartAction = styled.span`
-	color: ${props => (props.active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
+	color: ${props => (props.active ? '#62534b' : '62534bd9')};
 	&:hover {
-		color: #fff;
+		color: #62534b;
 	}
 `;
 
@@ -22,7 +22,7 @@ const NavActions = props => {
 	if (!props.userLogged) {
 		return (
 			<div>
-				<SignInAltSolid color="#fff" />
+				<SignInAltSolid color="#62534bd9" />
 				<CartAction
 					active={page === '/login'}
 					className="d-xs-none d-sm-none d-md-none d-lg-inline-block"

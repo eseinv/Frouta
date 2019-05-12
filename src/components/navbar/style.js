@@ -5,19 +5,19 @@ export const Button = styled(Link)`
 	background: transparent;
 	border: none;
 	text-decoration: none;
-	color: #fff
+	color: #62534bd9
 	&:focus {
 		outline: none;
 	}
 	&:hover {
-		color: #fff;
+		color: #62534b;
 		cursor: pointer;
 		text-decoration: none;
 	}
 `;
 
-const active = 'rgba(255,255,255, 1)';
-const inactive = 'rgba(255,255,255, 0.5)';
+const active = '#62534b';
+const inactive = '#62534bd9';
 
 export const ButtonLink = styled(Link)`
 	position: relative;
@@ -30,11 +30,11 @@ export const ButtonLink = styled(Link)`
 		width: 100%;
 		height: 3px;
 		opacity: ${props => (props.active === 'true' ? 1 : 0)};
-		background: #fff;
+		background: #62534b;
 		transition: opacity 0.2s ease;
 	}
 	&:hover {
-		color: #fff;
+		color: #62534b;
 	}
 	&:focus {
 		box-shadow: none;
@@ -45,16 +45,16 @@ export const Container = styled.nav`
 	min-height: 80px;
 `;
 export const Nav = styled.div`
-	background-color: #587c34;
+	background-image: linear-gradient(to right, #ececec38, #ececec);
 `;
 
 export const LogOut = styled.button`
 	background: transparent;
 	border: none;
 	padding-left: 30px;
-	color: rgba(255, 255, 255, 0.5);
+	color: #62534bd9;
 	&:hover {
-		color: #fff;
+		color: #62534b;
 		cursor: pointer;
 	}
 	&:active {
@@ -69,7 +69,7 @@ export const LogOutBurger = styled.button`
 	color: rgba(255, 255, 255, 0.5);
 	padding-top: 0.5rem;
 	&:hover {
-		color: #fff;
+		color: #62534b;
 		cursor: pointer;
 	}
 	&:active {
@@ -79,9 +79,9 @@ export const LogOutBurger = styled.button`
 `;
 
 export const CartAction = styled.span`
-	color: ${props => (props.active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
+	color: ${props => (props.active ? '#62534b' : '62534bd9')};
 	&:hover {
-		color: #fff;
+		color: #62534b;
 	}
 `;
 
