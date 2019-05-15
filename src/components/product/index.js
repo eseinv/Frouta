@@ -6,10 +6,20 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Loader from 'react-loader-spinner';
+import { MainImage } from './main-image';
+import { SmallImage } from './small-image';
 import { getIdFromToken } from '../../data/decode-token';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
-import { Input, DeadInput, ProdName, ProdText, Label } from './style';
+import {
+	Input,
+	DeadInput,
+	ProdName,
+	ProdText,
+	Label,
+	PreviewWrap,
+	PreviewButton,
+} from './style';
 
 class Product extends React.Component {
 	constructor() {
@@ -17,6 +27,7 @@ class Product extends React.Component {
 		this.state = {
 			selectedProduct: {},
 			selectedQuantity: 0,
+			activeImage: `https://api.farmapalatia.gr/images/fp.png2`,
 			loading: true,
 		};
 	}
@@ -36,15 +47,16 @@ class Product extends React.Component {
 			.then(product =>
 				this.setState({
 					selectedProduct: product,
+					activeImage: `https://api.farmapalatia.gr/images/products/${
+						product.images[0].path
+					}`,
 					selectedQuantity: 1,
 					loading: false,
 				}),
 			)
 			.catch(error => console.error('Error:', error));
 	};
-	componentDidMount() {
-		this.fetchData();
-	}
+
 	handleFormSubmit = event => {
 		event.preventDefault();
 		const userId = getIdFromToken(localStorage.getItem('token'));
@@ -108,6 +120,14 @@ class Product extends React.Component {
 		}
 	};
 
+	setActiveImage = activeImage => {
+		this.setState({ activeImage });
+	};
+
+	componentDidMount() {
+		this.fetchData();
+	}
+
 	render() {
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
@@ -115,14 +135,36 @@ class Product extends React.Component {
 			return (
 				<div className="container mt-4">
 					<div className="row mt-4">
-						<div className="col-sm-12 col-lg-3 offset-lg-1">
-							<img
-								src={`https://api.farmapalatia.gr/images/products/${
-									this.state.selectedProduct.image
-								}`}
-								alt="Product Name"
-								className="img-fluid"
-							/>
+						<div className="col-sm-12 col-lg-4 offset-lg-1">
+							<MainImage image={this.state.activeImage} />
+							<PreviewWrap className="d-flex justify-content-between flex-wrap">
+								{this.state.selectedProduct.images.map(
+									(image, index) => (
+										<PreviewButton
+											key={index}
+											onClick={() =>
+												this.setActiveImage(
+													`https://api.farmapalatia.gr/images/products/${
+														image.path
+													}`,
+												)
+											}
+										>
+											<SmallImage
+												active={
+													this.state.activeImage ===
+													`https://api.farmapalatia.gr/images/products/${
+														image.path
+													}`
+												}
+												image={`https://api.farmapalatia.gr/images/products/${
+													image.path
+												}`}
+											/>
+										</PreviewButton>
+									),
+								)}
+							</PreviewWrap>
 						</div>
 						<div className="col-sm-12 col-lg-6">
 							<ProdName className="mt-2">
