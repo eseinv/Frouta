@@ -27,7 +27,7 @@ class Product extends React.Component {
 		this.state = {
 			selectedProduct: {},
 			selectedQuantity: 0,
-			activeImage: `https://api.farmapalatia.gr/images/fp.png2`,
+			activeImage: `https://api.farmapalatia.gr/images/fp.png`,
 			loading: true,
 		};
 	}
