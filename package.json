@@ -51,6 +51,7 @@
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.8.6",
     "react-image-gallery": "^0.8.16",
+    "react-image-magnify": "^2.7.4",
     "react-images-loaded": "^2.0.0",
     "react-loader-spinner": "^2.3.0",
     "react-notifications": "^1.4.3",

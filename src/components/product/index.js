@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactImageMagnify from 'react-image-magnify';
 import {
 	NotificationContainer,
 	NotificationManager,
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Loader from 'react-loader-spinner';
-import { MainImage } from './main-image';
 import { SmallImage } from './small-image';
 import { getIdFromToken } from '../../data/decode-token';
 import { CartButton } from '../styled/cart-button';
@@ -136,7 +136,24 @@ class Product extends React.Component {
 				<div className="container mt-4">
 					<div className="row mt-4">
 						<div className="col-sm-12 col-lg-4 offset-lg-1">
-							<MainImage image={this.state.activeImage} />
+							<ReactImageMagnify
+								{...{
+									enlargedImagePosition: 'over',
+									enlargedImageContainerStyle: {
+										zIndex: 99999,
+									},
+									smallImage: {
+										alt: this.state.selectedProduct.name,
+										isFluidWidth: true,
+										src: this.state.activeImage,
+									},
+									largeImage: {
+										src: this.state.activeImage,
+										width: 1200,
+										height: 1800,
+									},
+								}}
+							/>
 							<PreviewWrap className="d-flex justify-content-between flex-wrap">
 								{this.state.selectedProduct.images.map(
 									(image, index) => (
