@@ -11,7 +11,7 @@ class Gallery extends React.Component {
 	};
 	render() {
 		return (
-			<div className="container mt-2 mb-4 px-5">
+			<div className="container d-flex justify-content-center mt-2 mb-4 px-5">
 				{this.state.loading ? (
 					<div>
 						<div className="d-flex justify-content-center">
@@ -25,19 +25,21 @@ class Gallery extends React.Component {
 						<p className="text-center">Οι φωτογραφίες φορτώνουν</p>
 					</div>
 				) : null}
-				<ImagesLoaded done={this.isLoaded}>
-					<ImageGallery
-						items={this.props.images}
-						infinite
-						showThumbnails={false}
-						showPlayButton={false}
-						showFullscreenButton={false}
-						showBullets={!this.state.loading}
-						autoPlay
-						showNav={false}
-						slideDuration={2700}
-					/>
-				</ImagesLoaded>
+				<div className="col-10">
+					<ImagesLoaded done={this.isLoaded}>
+						<ImageGallery
+							items={this.props.images}
+							infinite
+							showThumbnails={false}
+							showPlayButton={false}
+							showFullscreenButton={false}
+							showBullets={!this.state.loading}
+							autoPlay
+							showNav={false}
+							slideDuration={2700}
+						/>
+					</ImagesLoaded>
+				</div>
 			</div>
 		);
 	}
