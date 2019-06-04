@@ -7,7 +7,7 @@ const NavLi = () => {
 	const page = url.substring(baseUrl.length);
 
 	return (
-		<NavListWrap className="row h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
+		<NavListWrap className="row navlist h-100 align-items-center d-flex justify-content-around justify-content-lg-start">
 			<ButtonLink
 				className="ml-3 btn"
 				active={

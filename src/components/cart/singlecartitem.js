@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DisabledInput, TextDiv, PMB, P, H5, Del, Button } from './style';
+import {
+	DisabledInput,
+	TextDiv,
+	PMB,
+	P,
+	H5,
+	Del,
+	Button,
+	DelContainer,
+} from './style';
 
 const SingleCartItem = props => {
 	const { image, name, unitPrice, id, quantity } = props.item;
@@ -51,14 +60,14 @@ const SingleCartItem = props => {
 							</strong>
 						</h4>
 					</TextDiv>
-					<div className="col-sm-12 col-md-12 col-lg-1 d-flex">
+					<DelContainer className="col-sm-12 col-md-12 col-lg-1">
 						<Del
-							className="btn align-self-center"
+							className="btn"
 							onClick={() => props.deleteProd(id)}
 						>
 							x
 						</Del>
-					</div>
+					</DelContainer>
 				</div>
 			</div>
 		</div>

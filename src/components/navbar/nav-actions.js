@@ -25,7 +25,7 @@ const NavActions = props => {
 				<SignInAltSolid color="#62534bd9" />
 				<CartAction
 					active={page === '/login'}
-					className="d-xs-none d-sm-none d-md-none d-lg-inline-block"
+					className="d-lg-inline-block text-right"
 				>
 					Είσοδος
 				</CartAction>

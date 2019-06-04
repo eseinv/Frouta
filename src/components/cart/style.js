@@ -27,6 +27,16 @@ export const Del = styled.button`
 	}
 `;
 
+export const DelContainer = styled.div`
+	display: flex;
+	@media only screen and (max-width: 992px) {
+		justify-content: flex-start;
+	}
+	@media only screen and (min-width: 992px) {
+		justify-content: center;
+	}
+`;
+
 export const Button = styled.button`
 	border: 1px solid #373535;
 	border-radius: 3px;

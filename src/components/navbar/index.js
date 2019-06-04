@@ -4,6 +4,9 @@ import { NavLi } from './nav-list';
 import { NavBrand } from './nav-brand';
 import { NavActions } from './nav-actions';
 import { ShoppingCartSolid } from '../../icons/shopping-cart-solid';
+import { SidebarLinks } from './sidebar-links';
+import { SignInAltSolid } from '../../icons/sign-in-alt-solid';
+import { Menu } from '../../icons/menu';
 
 import {
 	Button,
@@ -12,9 +15,9 @@ import {
 	Nav,
 	NavActionsWrap,
 	NavActionsBurger,
-	BurgerButton,
 	LogOutBurger,
-	LoginButton,
+	BurgerButton,
+	CloseButton,
 } from './style';
 
 class NavBar extends React.Component {
@@ -39,12 +42,13 @@ class NavBar extends React.Component {
 			<Container>
 				<div className="container-fluid">
 					<Nav className="row text-center text-lg-left">
-						<div className="col-sm-3 col-md-3 col-lg-4 align-self-center">
+						<div className="col-sm-6 col-md-5 col-lg-4 align-self-center">
 							<NavBrand />
 						</div>
 						<div className="navlist col-sm-7 col-md-7 col-lg-5">
 							<NavLi />
 						</div>
+
 						<NavActionsWrap className="navactions col-sm-2 col-md-1 col-lg-3 align-self-center">
 							<Button
 								to={this.props.userLogged ? '/cart' : '/login'}
@@ -73,52 +77,58 @@ class NavBar extends React.Component {
 									</React.Fragment>
 								)}
 						</NavActionsWrap>
-						{!this.props.userLogged && (
-							<LoginButton
-								to="/login"
-								className="btn col-2"
-								onClick={this.toggleMenu}
-							>
-								{' '}
-								Είσοδος{' '}
-							</LoginButton>
-						)}
-						{this.props.userLogged && (
-							<BurgerButton
-								className="btn col-2"
-								onClick={this.toggleMenu}
-							>
-								{' '}
-								Μενού{' '}
-							</BurgerButton>
-						)}
-						{this.props.userLogged &&
-							localStorage.getItem('token') &&
-							this.state.toggled && (
-								<NavActionsBurger className="text-center">
+
+						{this.state.toggled && (
+							<NavActionsBurger className="text-center">
+								<CloseButton onClick={this.hideMenu}>
+									X
+								</CloseButton>
+
+								<SidebarLinks hideMenu={this.hideMenu} />
+
+								<hr className="bg-white w-75" />
+								{!this.props.userLogged && (
 									<Button
-										onClick={this.hideMenu}
-										to="/cart"
+										to="/login"
 										className="d-block p-2"
-									>
-										<ShoppingCartSolid color="#fff" />
-										<span className="text-white">
-											{' '}
-											Καλάθι{' '}
-										</span>
-									</Button>
-									<Button
 										onClick={this.hideMenu}
-										to="/menu"
-										className="d-block p-2"
 									>
-										<span>Μενού</span>
+										<SignInAltSolid color="#62534bd9" />{' '}
+										Είσοδος
 									</Button>
-									<LogOutBurger onClick={this.logOut}>
-										Έξοδος{' '}
-									</LogOutBurger>
-								</NavActionsBurger>
-							)}
+								)}
+								{this.props.userLogged &&
+									localStorage.getItem('token') && (
+										<React.Fragment>
+											<Button
+												to="/cart"
+												className="d-block p-2"
+												onClick={this.hideMenu}
+											>
+												<ShoppingCartSolid color="#fff" />
+												<span className="text-white">
+													{' '}
+													Καλάθι{' '}
+												</span>
+											</Button>
+											<Button
+												to="/menu"
+												className="d-block p-2"
+												onClick={this.hideMenu}
+											>
+												<span>Μενού</span>
+											</Button>
+
+											<LogOutBurger onClick={this.logOut}>
+												Έξοδος
+											</LogOutBurger>
+										</React.Fragment>
+									)}
+							</NavActionsBurger>
+						)}
+						<BurgerButton onClick={this.toggleMenu}>
+							<Menu />
+						</BurgerButton>
 					</Nav>
 				</div>
 			</Container>

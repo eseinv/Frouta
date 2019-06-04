@@ -1,21 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Button = styled(Link)`
-	background: transparent;
-	border: none;
-	text-decoration: none;
-	color: #62534bd9
-	&:focus {
-		outline: none;
-	}
-	&:hover {
-		color: #62534b;
-		cursor: pointer;
-		text-decoration: none;
-	}
-`;
-
 const active = '#62534b';
 const inactive = '#62534bd9';
 
@@ -38,6 +23,20 @@ export const ButtonLink = styled(Link)`
 	}
 	&:focus {
 		box-shadow: none;
+	}
+
+	@media only screen and (max-width: 1060px) {
+		display: none;
+	}
+`;
+
+export const SideBarLink = styled(Link)`
+	color: #fff;
+	display: block;
+	padding: 0.5em 0;
+	&:hover {
+		background: #9e8e86;
+		color: #fff;
 	}
 `;
 
@@ -91,64 +90,110 @@ export const ActionWrap = styled.div`
 
 export const FpBig = styled.img`
 	max-width: 90%;
-	@media only screen and (max-width: 1022px) {
+	${'' /* @media only screen and (max-width: 1022px) {
 		display: none;
-	}
-`;
-export const FpSmall = styled.img`
-	max-width: 35%;
-	@media only screen and (min-width: 1022px) {
-		display: none;
-	}
-	@media only screen and (min-width: 1022px) {
-		max-width: 40%;
-	}
+	} */}
 `;
 
 export const NavActionsWrap = styled.div`
-	@media only screen and (max-width: 1055px) {
+	@media only screen and (max-width: 1060px) {
 		display: none;
+	}
+`;
+
+export const CloseButton = styled.button`
+	position: absolute;
+	right: 0;
+	background: #62534bd9;
+	padding: .3em .7em;
+	margin: .7em;
+	text-align: right;
+	border: none
+	color: #fff;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		cursor: pointer;
+		background: #9e8e86;
+	}
+`;
+
+export const Button = styled(Link)`
+	background: transparent;
+	border: none;
+	text-decoration: none;
+	color: #62534bd9;
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		background: #9e8e86;
+		color: #62534b;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	@media only screen and (max-width: 1060px) {
+		color: #fff;
+		&:hover {
+			color: #fff;
+		}
+	}
+	@media only screen and (min-width: 1060px) {
+		&:hover {
+			background: transparent;
+		}
 	}
 `;
 
 export const NavActionsBurger = styled.div`
-	background: #587c34;
-	position: absolute;
-	top: 54.7667px;
+	background: #7f726c;
+	position: fixed;
+	color: #fff;
+	top: 0;
 	right: 10px;
-	z-index: 9999;
-	padding: 7px;
+	height: 100%;
+	width: auto;
+	z-index: 99999;
+	padding: 1em 2em;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border: 1px solid #fff;
 	border-top-width: 0;
-	@media only screen and (min-width: 1055px) {
+	@media only screen and (min-width: 1060px) {
 		display: none;
+	}
+	@media only screen and (max-width: 820px) {
+		width: auto;
+	}
+	@media only screen and (max-width: 820px) {
+		width: auto;
+	}
+	@media only screen and (max-width: 600px) {
+		width: 90%;
+		padding: 0;
+	}
+	@media only screen and (max-width: 450px) {
+		width: 90%;
+		padding: 0;
 	}
 `;
 
 export const BurgerButton = styled.button`
-	position: absolute;
-	top: 0.5rem;
-	right: 30px;
-	background: #587c34;
-	color: #fff;
 	background: transparent;
+	border: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.9em 2em;
+	&:hover {
+		cursor: pointer;
+	}
 	&:focus {
 		outline: none;
 	}
-	@media only screen and (min-width: 1055px) {
+	@media only screen and (min-width: 1060px) {
 		display: none;
-		top: 0.5rem;
-	}
-	@media only screen and (min-width: 729px) {
-		top: 1rem;
-	}
-	@media only screen and (min-width: 991px) {
-		top: 1.5rem;
-	}
-	@media only screen and (min-width: 1022px) {
-		top: 0.5rem;
 	}
 `;
 
@@ -165,7 +210,7 @@ export const LoginButton = styled(Link)`
 	&:hover {
 		color: #fff;
 	}
-	@media only screen and (min-width: 1055px) {
+	@media only screen and (min-width: 1060px) {
 		display: none;
 		top: 0.5rem;
 	}
@@ -181,7 +226,7 @@ export const LoginButton = styled(Link)`
 `;
 
 export const NavListWrap = styled.div`
-	@media only screen and (min-width: 1022px) {
-		font-size: 50px;
+	@media only screen and (min-width: 1060px) {
+		display: none;
 	}
 `;

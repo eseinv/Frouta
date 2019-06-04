@@ -48,7 +48,7 @@ class ProductList extends React.Component {
 						<div
 							role="presentation"
 							key={index}
-							className="col-md-4 col-sm-6 text-justify p-3"
+							className="col-sm-6 col-md-6 col-lg-4 text-justify p-3"
 							onClick={() =>
 								this.props.history.push(`product/${product.id}`)
 							}
