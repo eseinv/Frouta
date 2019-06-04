@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getIdFromToken } from '../../data/decode-token';
 import { H3, Input, LogButton } from '../login/style';
@@ -68,7 +69,11 @@ class Menu extends React.Component {
 	};
 
 	componentDidMount() {
-		this.fetchData();
+		const token = localStorage.getItem('token');
+		if (token === null) {
+			return this.props.history.replace('/');
+		}
+		return this.fetchData();
 	}
 
 	render() {
@@ -218,4 +223,7 @@ class Menu extends React.Component {
 	}
 }
 
+Menu.propTypes = {
+	history: PropTypes.object,
+};
 export default Menu;
