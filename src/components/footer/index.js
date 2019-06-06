@@ -17,7 +17,7 @@ const Footer = () => (
 			</div>
 		</div>
 		<div className="row d-flex justify-content-center">
-			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1">
+			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1 bg-transparent">
 				<a
 					href="https://www.facebook.com/farmapalatia/"
 					target="_blank"
@@ -25,12 +25,12 @@ const Footer = () => (
 					<Facebook color="#00a062" />
 				</a>
 			</button>
-			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1 mx-2">
+			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1 mx-2 bg-transparent">
 				<a href="skype:s_khodar?chat">
 					<Skype color="#00a062" />
 				</a>
 			</button>
-			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1">
+			<button className="btn col-2 col-xs-2 col-sm-2 col-md-2 col-lg-1 bg-transparent">
 				<a href="viber://chat?number=+306945296507">
 					<Phone color="#00a062" />
 				</a>
