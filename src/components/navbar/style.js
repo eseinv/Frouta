@@ -104,7 +104,7 @@ export const NavActionsWrap = styled.div`
 export const CloseButton = styled.button`
 	position: absolute;
 	right: 0;
-	background: #62534bd9;
+	background: #9e8e86;
 	padding: .3em .7em;
 	margin: .7em;
 	text-align: right;
@@ -115,7 +115,7 @@ export const CloseButton = styled.button`
 	}
 	&:hover {
 		cursor: pointer;
-		background: #9e8e86;
+		background: #9e8e86c1;
 	}
 `;
 
@@ -160,6 +160,7 @@ export const NavActionsBurger = styled.div`
 	border-bottom-right-radius: 5px;
 	border: 1px solid #fff;
 	border-top-width: 0;
+	transition: all 3s ease;
 	@media only screen and (min-width: 1060px) {
 		display: none;
 	}
@@ -170,12 +171,19 @@ export const NavActionsBurger = styled.div`
 		width: auto;
 	}
 	@media only screen and (max-width: 600px) {
-		width: 90%;
+		width: 10%;
 		padding: 0;
 	}
 	@media only screen and (max-width: 450px) {
 		width: 90%;
 		padding: 0;
+	}
+`;
+
+export const BrandWrapper = styled.div`
+	@media only screen and (max-width: 575px) {
+		margin-left: 0 !important;
+		padding-left: 0 !important;
 	}
 `;
 
