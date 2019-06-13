@@ -7,6 +7,7 @@ import { ShoppingCartSolid } from '../../icons/shopping-cart-solid';
 import { SidebarLinks } from './sidebar-links';
 import { SignInAltSolid } from '../../icons/sign-in-alt-solid';
 import { Menu } from '../../icons/menu';
+import { Close } from '../../icons/close';
 
 import {
 	Button,
@@ -81,7 +82,7 @@ class NavBar extends React.Component {
 						{this.state.toggled && (
 							<NavActionsBurger className="text-center">
 								<CloseButton onClick={this.hideMenu}>
-									X
+									<Close />
 								</CloseButton>
 
 								<SidebarLinks hideMenu={this.hideMenu} />
