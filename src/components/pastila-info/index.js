@@ -1,8 +1,8 @@
 import React from 'react';
-import { H3, H5, P } from './style';
+import { H3, H5, P, TextWrapper } from './style';
 
 export const PastilaInfo = () => (
-	<div className="container mt-4 text-justify">
+	<TextWrapper className="container mt-4 text-justify">
 		<H3> Η Ιστορία της Πεστίλης</H3>
 		<P>
 			Η πεστίλη φρούτων είναι ένα παραδοσιακό ρώσικο γλύκισμα, το οποίο
@@ -55,5 +55,5 @@ export const PastilaInfo = () => (
 			γεύση; Δε χρειάζεται να αρνηθείτε. Απολαύστε την πεστίλη με όλους
 			τους δυνατούς τρόπους.
 		</P>
-	</div>
+	</TextWrapper>
 );
