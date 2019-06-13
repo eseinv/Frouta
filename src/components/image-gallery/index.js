@@ -3,6 +3,7 @@ import ImageGallery from 'react-image-gallery';
 import Loader from 'react-loader-spinner';
 import ImagesLoaded from 'react-images-loaded';
 import PropTypes from 'prop-types';
+import { Div } from './style';
 
 class Gallery extends React.Component {
 	state = { loading: true };
@@ -25,7 +26,7 @@ class Gallery extends React.Component {
 						<p className="text-center">Οι φωτογραφίες φορτώνουν</p>
 					</div>
 				) : null}
-				<div className="col-10">
+				<Div className="col-10">
 					<ImagesLoaded done={this.isLoaded}>
 						<ImageGallery
 							items={this.props.images}
@@ -39,7 +40,7 @@ class Gallery extends React.Component {
 							slideDuration={2700}
 						/>
 					</ImagesLoaded>
-				</div>
+				</Div>
 			</div>
 		);
 	}
