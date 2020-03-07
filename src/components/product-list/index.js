@@ -31,7 +31,7 @@ class ProductList extends React.Component {
 			<div className="container">
 				{this.state.loading ? (
 					<div>
-						<div className="d-flex justify-content-center">
+						<div className="d-flex justify-content-center mt-5">
 							<Loader
 								type="Oval"
 								color="#27ae60"

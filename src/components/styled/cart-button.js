@@ -8,7 +8,7 @@ const Button = styled.button`
 	background-color: #F6F8F8
 	font-weight: bold
 	width: 40px
-	height: 27px;
+	height: 28px;
 	&:focus {
 		outline: none;
 	}
