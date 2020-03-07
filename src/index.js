@@ -17,12 +17,14 @@ import Gallery from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
 import { Images } from './data/images';
 import { shuffle } from './data/shuffler';
+import { Video } from './components/video';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { userLogged: false, cart: [], images: [] };
+		// this.state = { userLogged: false, cart: [], images: [] };
+		this.state = { userLogged: false, cart: [] };
 	}
 	changeLogState = logged => {
 		if (logged) {
@@ -51,10 +53,10 @@ class App extends React.Component {
 		);
 	};
 
-	makeGallery = () => {
-		const images = shuffle(Images);
-		if (images.length > 0) this.setState({ images });
-	};
+	// makeGallery = () => {
+	// 	const images = shuffle(Images);
+	// 	if (images.length > 0) this.setState({ images });
+	// };
 
 	componentWillMount() {
 		const savedLogState = localStorage.getItem('userLogged');
@@ -67,7 +69,7 @@ class App extends React.Component {
 			this.setState({ cart: savedCart });
 		}
 
-		this.makeGallery();
+		// this.makeGallery();
 	}
 
 	render() {
@@ -80,7 +82,7 @@ class App extends React.Component {
 							changeLogState={this.changeLogState}
 							cart={this.state.cart}
 						/>
-						<Route
+						{/* <Route
 							exact
 							path="/"
 							render={props => (
@@ -89,7 +91,9 @@ class App extends React.Component {
 									images={this.state.images}
 								/>
 							)}
-						/>
+						/> */}
+
+						<Route exact path="/" component={Video} />
 						<Route exact path="/" component={ProductList} />
 						<Route
 							path="/product/:id"
