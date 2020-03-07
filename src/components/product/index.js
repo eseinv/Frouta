@@ -11,6 +11,7 @@ import { SmallImage } from './small-image';
 import { getIdFromToken } from '../../data/decode-token';
 import { CartButton } from '../styled/cart-button';
 import { FormButton } from '../styled/form-button';
+import { InfoButton } from '../styled/info-button';
 import {
 	Input,
 	DeadInput,
@@ -28,6 +29,7 @@ class Product extends React.Component {
 			selectedProduct: {},
 			selectedQuantity: 0,
 			activeImage: `https://api.farmapalatia.gr/images/fp.png`,
+			showAllInfoText: false,
 			loading: true,
 		};
 	}
@@ -120,6 +122,10 @@ class Product extends React.Component {
 		}
 	};
 
+	toggleInfoText = () => {
+		this.setState({ showAllInfoText: !this.state.showAllInfoText });
+	};
+
 	setActiveImage = activeImage => {
 		this.setState({ activeImage });
 	};
@@ -131,6 +137,7 @@ class Product extends React.Component {
 	render() {
 		const totalPrice = `${this.state.selectedProduct.unitPrice *
 			this.state.selectedQuantity} \u20AC`;
+		const maxInfoChars = 535;
 		if (!this.state.loading) {
 			return (
 				<div className="container mt-4">
@@ -188,14 +195,43 @@ class Product extends React.Component {
 								{this.state.selectedProduct.name}
 							</ProdName>
 							<ProdText className="text-justify">
-								{this.state.selectedProduct.info}
+								{this.state.selectedProduct.info.length >
+									maxInfoChars && !this.state.showAllInfoText
+									? `${this.state.selectedProduct.info.substring(
+											0,
+											maxInfoChars - 3,
+									  )}...`
+									: this.state.selectedProduct.info}
+								{this.state.selectedProduct.info.length >
+									maxInfoChars &&
+								!this.state.showAllInfoText ? (
+									<InfoButton
+										onClick={() => this.toggleInfoText()}
+									>
+										συνέχεια κειμένου
+									</InfoButton>
+								) : (
+									''
+								)}
+								{this.state.selectedProduct.info.length >
+									maxInfoChars &&
+								this.state.showAllInfoText ? (
+									<InfoButton
+										className="d-block"
+										onClick={() => this.toggleInfoText()}
+									>
+										απόκρυψη κειμένου
+									</InfoButton>
+								) : (
+									''
+								)}
 							</ProdText>
 							<form onSubmit={e => this.handleFormSubmit(e)}>
 								<div className="row">
 									<div className="col-12">
 										<Label
 											htmlFor="quantity"
-											className="d-block"
+											className="d-block mt-2"
 										>
 											Συνολική τιμή
 										</Label>
