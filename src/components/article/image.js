@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 
 const ImgLoader = ({ url }) => {
@@ -11,6 +12,10 @@ const ImgLoader = ({ url }) => {
 			)}
 		</div>
 	);
+};
+
+ImgLoader.propTypes = {
+	url: PropTypes.string.isRequired,
 };
 
 export { ImgLoader };
