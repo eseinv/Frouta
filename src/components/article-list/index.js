@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MainArticleList } from '../../data/main-article-list';
 import { EachArticle } from './each-article';
 
-export default class Article extends React.Component {
+export default class ArticleList extends React.Component {
 	state = {};
 	render() {
 		return (
@@ -31,6 +31,6 @@ export default class Article extends React.Component {
 	}
 }
 
-Article.propTypes = {
+ArticleList.propTypes = {
 	history: PropTypes.object,
 };

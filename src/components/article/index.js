@@ -8,13 +8,15 @@ import { ImgLoader } from './image';
 export default class Article extends React.Component {
 	state = { selectedArticle: {}, suggestedArticles: [], loading: false };
 
-	fetchData = () => {
-		const selectedArticleId = parseInt(this.props.match.params.id, 0);
+	fetchData = (selectedArticleId, shouldGrabNewSuggestions) => {
 		const [selectedArticle] = MainArticleList.filter(
 			article => article.id === selectedArticleId,
 		);
-		const suggestedArticles = this.grabNewArticles(selectedArticleId);
-		this.setState({ selectedArticle, suggestedArticles });
+		if (shouldGrabNewSuggestions) {
+			const suggestedArticles = this.grabNewArticles(selectedArticleId);
+			this.setState({ selectedArticle, suggestedArticles });
+		}
+		this.setState({ selectedArticle });
 	};
 
 	grabNewArticles = exceptThisId => {
@@ -30,8 +32,14 @@ export default class Article extends React.Component {
 		this.setState({ loading: false });
 	};
 
+	updateSelectedArticle = article => {
+		this.props.history.push(`${article.id}`);
+		this.fetchData(article.id, false);
+	};
+
 	componentDidMount() {
-		this.fetchData();
+		const selectedArticleId = parseInt(this.props.match.params.id, 0);
+		this.fetchData(selectedArticleId, true);
 	}
 
 	render() {
@@ -48,9 +56,22 @@ export default class Article extends React.Component {
 						</div>
 
 						<div className="col-3 mt-5 border-left">
+							<a href="/articles" className="text-primary">
+								Όλα τα άρθρα
+							</a>
 							{this.state.suggestedArticles.map(
 								(article, index) => (
-									<SuggestedCard key={index}>
+									<SuggestedCard
+										key={index}
+										// onClick={() =>
+										// 	this.props.history.push(
+										// 		`${article.id}`,
+										// 	)
+										// }
+										onClick={() =>
+											this.updateSelectedArticle(article)
+										}
+									>
 										<H5 className="mt-1">{article.name}</H5>
 										<img
 											className="img img-responsive d-block my-3"
@@ -86,4 +107,5 @@ export default class Article extends React.Component {
 
 Article.propTypes = {
 	match: PropTypes.object,
+	history: PropTypes.object,
 };
