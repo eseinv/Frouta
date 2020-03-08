@@ -12,8 +12,8 @@ export default class Article extends React.Component {
 		const [selectedArticle] = MainArticleList.filter(
 			article => article.id === selectedArticleId,
 		);
-		this.grabNewArticles(selectedArticleId);
-		this.setState({ selectedArticle });
+		const suggestedArticles = this.grabNewArticles(selectedArticleId);
+		this.setState({ selectedArticle, suggestedArticles });
 	};
 
 	grabNewArticles = exceptThisId => {
@@ -22,7 +22,7 @@ export default class Article extends React.Component {
 			article.id !== exceptThisId ? suggestedArray.push(article) : null,
 		);
 		suggestedArray.reverse();
-		return this.setState({ suggestedArticles: suggestedArray });
+		return suggestedArray;
 	};
 
 	isLoaded = () => {
