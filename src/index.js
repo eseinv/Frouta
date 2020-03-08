@@ -13,11 +13,12 @@ import { Contact } from './components/contact/';
 import { NavBar } from './components/navbar/';
 import { ProductList } from './components/product-list/';
 import { Footer } from './components/footer/';
-import Gallery from './components/image-gallery/';
+//	import Gallery from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
-import { Images } from './data/images';
-import { shuffle } from './data/shuffler';
-import { Video } from './components/video';
+//	import { shuffle } from './data/shuffler';
+//	import { Video } from './components/video';
+import ArticleList from './components/article-list';
+import Article from './components/article';
 
 class App extends React.Component {
 	constructor(props) {
@@ -93,7 +94,7 @@ class App extends React.Component {
 							)}
 						/> */}
 
-						<Route exact path="/" component={Video} />
+						{/* <Route exact path="/" component={Video} /> */}
 						<Route exact path="/" component={ProductList} />
 						<Route
 							path="/product/:id"
@@ -109,6 +110,8 @@ class App extends React.Component {
 						<Route path="/partners" component={Partners} />
 						<Route path="/contact" component={Contact} />
 						<Route path="/info" component={PastilaInfo} />
+						<Route path="/articles" component={ArticleList} />
+						<Route path="/article/:id" component={Article} />
 						<Route
 							path="/cart"
 							render={props => (
