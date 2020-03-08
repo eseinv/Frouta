@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 import { MainArticleList } from '../../data/main-article-list';
 import { H1, P, H5, SuggestedCard } from './style';
+import { ImgLoader } from './image';
 
 export default class Article extends React.Component {
 	state = { selectedArticle: {}, suggestedArticles: [], loading: false };
@@ -42,11 +43,7 @@ export default class Article extends React.Component {
 							<H1 className="mt-3">
 								{this.state.selectedArticle.name}
 							</H1>
-							<img
-								className="img img-fluid d-block my-3"
-								src="https://picsum.photos/540/350"
-								alt="img"
-							/>
+							<ImgLoader url="https://picsum.photos/540/350" />
 							<P>{this.state.selectedArticle.text}</P>
 						</div>
 
