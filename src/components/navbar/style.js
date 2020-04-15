@@ -4,9 +4,41 @@ import { Link } from 'react-router-dom';
 const active = '#62534b';
 const inactive = '#62534bd9';
 
+export const FarmaHover = styled.div`
+	position: absolute;
+	margin-top: 5em;
+	margin-left: 250px;
+	width: 200px;
+	background: #ececec;
+	box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1);
+	color: #62534b;
+	list-style: none;
+	padding: 0.5em 0 1em 1.2em;
+	z-index: 9998;
+	&:hover {
+		cursor: pointer;
+	}
+	@media only screen and (max-width: 1060px) {
+		display: none;
+	}
+`;
+
+export const FarmaHoverLi = styled(Link)`
+	display: block;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	margin-top: 1em;
+	&:hover {
+		text-decoration: underline;
+		color: inherit;
+	}
+`;
+
 export const ButtonLink = styled(Link)`
 	position: relative;
 	color: ${props => (props.active === 'true' ? active : inactive)};
+	z-index: 9999;
 	&:after {
 		content: '';
 		position: absolute;

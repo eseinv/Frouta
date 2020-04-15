@@ -10,17 +10,28 @@ export const EachArticle = props => {
 				<div className="col-4 d-flex align-self-center">
 					<img
 						className="img-responsive img-thumbnail"
-						src="https://picsum.photos/250/150"
+						style={{ maxHeight: 150 }}
+						src={`https://api.farmapalatia.gr/images/articles/${
+							props.image
+						}`}
 						alt="img"
 					/>
 				</div>
 				<div className="col-8">
 					<H1>{props.name}</H1>
-					<P>
-						{props.text.length > maxInfoChars
-							? `${props.text.substring(0, maxInfoChars - 3)}...`
-							: props.text}
-					</P>
+
+					{props.text.length > maxInfoChars ? (
+						<P
+							dangerouslySetInnerHTML={{
+								__html: props.text.substring(
+									0,
+									maxInfoChars - 3,
+								),
+							}}
+						/>
+					) : (
+						<P dangerouslySetInnerHTML={{ __html: props.text }} />
+					)}
 				</div>
 			</div>
 		</ArticleCard>
@@ -30,4 +41,5 @@ export const EachArticle = props => {
 EachArticle.propTypes = {
 	name: PropTypes.string,
 	text: PropTypes.string,
+	image: PropTypes.string,
 };

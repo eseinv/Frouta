@@ -1,27 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
-import { MainArticleList } from '../../data/main-article-list';
 import { H1, P, H5, SuggestedCard } from './style';
-import { ImgLoader } from './image';
 
 export default class Article extends React.Component {
-	state = { selectedArticle: {}, suggestedArticles: [], loading: false };
+	state = {
+		articles: [],
+		selectedArticle: {},
+		suggestedArticles: [],
+		loading: true,
+	};
 
-	fetchData = (selectedArticleId, shouldGrabNewSuggestions) => {
-		const [selectedArticle] = MainArticleList.filter(
+	fetchArticles = () => {
+		const token = localStorage.getItem('token');
+		const selectedArticleId = parseInt(this.props.match.params.id, 0);
+		fetch(`https://api.farmapalatia.gr/article`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+			.then(result => result.json())
+			.then(articles => this.setState({ articles }))
+			.then(() => this.fetchData(selectedArticleId))
+			.then(() => this.setState({ loading: false }))
+			.catch(error => console.error('Error:', error));
+	};
+
+	fetchData = selectedArticleId => {
+		const [selectedArticle] = this.state.articles.filter(
 			article => article.id === selectedArticleId,
 		);
-		if (shouldGrabNewSuggestions) {
-			const suggestedArticles = this.grabNewArticles(selectedArticleId);
-			this.setState({ selectedArticle, suggestedArticles });
-		}
+
+		const suggestedArticles = this.grabNewArticles(selectedArticleId);
+		this.setState({ selectedArticle, suggestedArticles });
+
 		this.setState({ selectedArticle });
 	};
 
 	grabNewArticles = exceptThisId => {
-		const suggestedArray = this.state.suggestedArticles;
-		MainArticleList.map(article =>
+		const suggestedArray = [];
+		this.state.articles.map(article =>
 			article.id !== exceptThisId ? suggestedArray.push(article) : null,
 		);
 		suggestedArray.reverse();
@@ -34,12 +54,11 @@ export default class Article extends React.Component {
 
 	updateSelectedArticle = article => {
 		this.props.history.push(`${article.id}`);
-		this.fetchData(article.id, false);
+		this.fetchData(article.id);
 	};
 
 	componentDidMount() {
-		const selectedArticleId = parseInt(this.props.match.params.id, 0);
-		this.fetchData(selectedArticleId, true);
+		this.fetchArticles();
 	}
 
 	render() {
@@ -47,15 +66,26 @@ export default class Article extends React.Component {
 			return (
 				<div className="container">
 					<div className="row d-flex justify-content-center">
-						<div className="col-6 mr-4">
+						<div className="col-md-6 col-sm-12 mr-4">
 							<H1 className="mt-3">
 								{this.state.selectedArticle.name}
 							</H1>
-							<ImgLoader url="https://picsum.photos/540/350" />
-							<P>{this.state.selectedArticle.text}</P>
+							<img
+								className="img-responsive d-block my-3"
+								style={{ maxHeight: 350, maxWidth: 540 }}
+								src={`https://api.farmapalatia.gr/images/articles/${
+									this.state.selectedArticle.image
+								}`}
+								alt="img"
+							/>
+							<P
+								dangerouslySetInnerHTML={{
+									__html: this.state.selectedArticle.text,
+								}}
+							/>
 						</div>
 
-						<div className="col-3 mt-5 border-left">
+						<div className="col-md-3 col-sm-12 mt-5 border-left">
 							<a href="/articles" className="text-primary">
 								Όλα τα άρθρα
 							</a>
@@ -63,11 +93,6 @@ export default class Article extends React.Component {
 								(article, index) => (
 									<SuggestedCard
 										key={index}
-										// onClick={() =>
-										// 	this.props.history.push(
-										// 		`${article.id}`,
-										// 	)
-										// }
 										onClick={() =>
 											this.updateSelectedArticle(article)
 										}
@@ -75,12 +100,24 @@ export default class Article extends React.Component {
 										<H5 className="mt-1">{article.name}</H5>
 										<img
 											className="img img-responsive d-block my-3"
-											src="https://picsum.photos/210/100"
+											style={{
+												width: 200,
+												maxHeight: 100,
+											}}
+											src={`https://api.farmapalatia.gr/images/articles/${
+												article.image
+											}`}
 											alt="img"
 										/>
-										<P className="small">
-											{article.text.substring(0, 65)}...
-										</P>
+										<P
+											className="small"
+											dangerouslySetInnerHTML={{
+												__html: article.text.substring(
+													0,
+													180,
+												),
+											}}
+										/>
 									</SuggestedCard>
 								),
 							)}

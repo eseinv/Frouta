@@ -97,9 +97,14 @@ class Menu extends React.Component {
 				<div className="row">
 					<div className="col-12 mt-5 mb-3 text-center">
 						{this.state.user.type === 'admin' ? (
-							<Link to="/orders">
-								<H3>ΠΑΡΑΓΓΕΛΙΕΣ</H3>
-							</Link>
+							<div>
+								<Link to="/orders">
+									<H3>ΠΑΡΑΓΓΕΛΙΕΣ</H3>
+								</Link>
+								<Link to="/editarticle">
+									<H3>ΑΡΘΡΑ</H3>
+								</Link>
+							</div>
 						) : (
 							<H3>Μενού</H3>
 						)}

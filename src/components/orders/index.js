@@ -52,6 +52,7 @@ class Orders extends React.Component {
 	}
 
 	render() {
+		console.log(this.state.cart);
 		if (this.state.loading) {
 			return (
 				<React.Fragment>

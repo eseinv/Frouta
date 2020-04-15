@@ -16,9 +16,12 @@ import { Footer } from './components/footer/';
 //	import Gallery from './components/image-gallery/';
 import { PastilaInfo } from './components/pastila-info/';
 //	import { shuffle } from './data/shuffler';
-//	import { Video } from './components/video';
+import { Video } from './components/video';
 import ArticleList from './components/article-list';
 import Article from './components/article';
+import EditArticle from './components/article/edit-article';
+import AddArticle from './components/article/add-article';
+import UpdateArticle from './components/article/update-article';
 
 class App extends React.Component {
 	constructor(props) {
@@ -94,7 +97,7 @@ class App extends React.Component {
 							)}
 						/> */}
 
-						{/* <Route exact path="/" component={Video} /> */}
+						<Route exact path="/" component={Video} />
 						<Route exact path="/" component={ProductList} />
 						<Route
 							path="/product/:id"
@@ -112,6 +115,12 @@ class App extends React.Component {
 						<Route path="/info" component={PastilaInfo} />
 						<Route path="/articles" component={ArticleList} />
 						<Route path="/article/:id" component={Article} />
+						<Route path="/editarticle/" component={EditArticle} />
+						<Route path="/addarticle/" component={AddArticle} />
+						<Route
+							path="/updatearticle/"
+							component={UpdateArticle}
+						/>
 						<Route
 							path="/cart"
 							render={props => (

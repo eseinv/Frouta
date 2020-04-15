@@ -14,7 +14,6 @@ export const ArticleCard = styled.div`
 
 export const H1 = styled.h1`
 	color: #62534b;
-	display: inline-block;
 	font-weight: bold;
 `;
 

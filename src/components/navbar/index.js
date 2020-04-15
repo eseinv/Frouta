@@ -22,7 +22,7 @@ import {
 } from './style';
 
 class NavBar extends React.Component {
-	state = { toggled: false };
+	state = { toggled: false, showExpandedMenu: false };
 	toggleMenu = () => {
 		this.setState({ toggled: !this.state.toggled });
 	};
@@ -33,6 +33,11 @@ class NavBar extends React.Component {
 
 	logOut = () => {
 		this.props.changeLogState(false);
+	};
+
+	showFarmaHover = forReal => {
+		if (forReal) return this.setState({ showExpandedMenu: true });
+		return this.setState({ showExpandedMenu: false });
 	};
 
 	componentDidMount() {
@@ -47,7 +52,10 @@ class NavBar extends React.Component {
 							<NavBrand />
 						</div>
 						<div className="navlist col-sm-7 col-md-7 col-lg-5">
-							<NavLi />
+							<NavLi
+								showExpandedMenu={this.state.showExpandedMenu}
+								showFarmaHover={this.showFarmaHover}
+							/>
 						</div>
 
 						<NavActionsWrap className="navactions col-sm-2 col-md-1 col-lg-3 align-self-center">
